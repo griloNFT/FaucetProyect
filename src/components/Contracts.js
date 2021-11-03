@@ -1,0 +1,3 @@
+export const bsctestPCMTokenAddress = "0x62C733e3FaB7087f1077C542765DdD7ce3BC2A17"
+export const bsctestStakingAddress = "0x2ed14F3261eE8A1F1f38Ac40DD52f2E586Bb47F3"
+export const bsctestFaucetAddress = "0xf7Ee921169BbdE883ec701aC3805B967eE1130F4"

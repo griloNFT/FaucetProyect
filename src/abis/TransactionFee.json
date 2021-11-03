@@ -1,0 +1,3942 @@
+{
+  "contractName": "TransactionFee",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Approval",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "previousAdminRole",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "newAdminRole",
+          "type": "bytes32"
+        }
+      ],
+      "name": "RoleAdminChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        }
+      ],
+      "name": "RoleGranted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        }
+      ],
+      "name": "RoleRevoked",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Transfer",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "DEFAULT_ADMIN_ROLE",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "DEVELOPER_ROLE",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        }
+      ],
+      "name": "allowance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "decimals",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "subtractedValue",
+          "type": "uint256"
+        }
+      ],
+      "name": "decreaseAllowance",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getRoleAdmin",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "name": "getRoleMember",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getRoleMemberCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "grantRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "hasRole",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "addedValue",
+          "type": "uint256"
+        }
+      ],
+      "name": "increaseAllowance",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "renounceRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "revokeRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "interfaceId",
+          "type": "bytes4"
+        }
+      ],
+      "name": "supportsInterface",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "symbol",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "transfer",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferFrom",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getTransactionFee",
+      "outputs": [
+        {
+          "internalType": "uint16",
+          "name": "",
+          "type": "uint16"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint16",
+          "name": "_fee",
+          "type": "uint16"
+        }
+      ],
+      "name": "setTransactionFee",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getDevsFee",
+      "outputs": [
+        {
+          "internalType": "uint16",
+          "name": "",
+          "type": "uint16"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint16",
+          "name": "_fee",
+          "type": "uint16"
+        }
+      ],
+      "name": "setDevsFee",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getBurnFee",
+      "outputs": [
+        {
+          "internalType": "uint16",
+          "name": "",
+          "type": "uint16"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint16",
+          "name": "_fee",
+          "type": "uint16"
+        }
+      ],
+      "name": "setBurnFee",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getHolderFee",
+      "outputs": [
+        {
+          "internalType": "uint16",
+          "name": "",
+          "type": "uint16"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint16",
+          "name": "_fee",
+          "type": "uint16"
+        }
+      ],
+      "name": "setHolderFee",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_wallet",
+          "type": "address"
+        }
+      ],
+      "name": "addDev",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_wallet",
+          "type": "address"
+        }
+      ],
+      "name": "removeDev",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"previousAdminRole\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"newAdminRole\",\"type\":\"bytes32\"}],\"name\":\"RoleAdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleGranted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"DEFAULT_ADMIN_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"DEVELOPER_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_wallet\",\"type\":\"address\"}],\"name\":\"addDev\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"}],\"name\":\"allowance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"subtractedValue\",\"type\":\"uint256\"}],\"name\":\"decreaseAllowance\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getBurnFee\",\"outputs\":[{\"internalType\":\"uint16\",\"name\":\"\",\"type\":\"uint16\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getDevsFee\",\"outputs\":[{\"internalType\":\"uint16\",\"name\":\"\",\"type\":\"uint16\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getHolderFee\",\"outputs\":[{\"internalType\":\"uint16\",\"name\":\"\",\"type\":\"uint16\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleAdmin\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"getRoleMember\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleMemberCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getTransactionFee\",\"outputs\":[{\"internalType\":\"uint16\",\"name\":\"\",\"type\":\"uint16\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"grantRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"hasRole\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"addedValue\",\"type\":\"uint256\"}],\"name\":\"increaseAllowance\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_wallet\",\"type\":\"address\"}],\"name\":\"removeDev\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"renounceRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"revokeRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"_fee\",\"type\":\"uint16\"}],\"name\":\"setBurnFee\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"_fee\",\"type\":\"uint16\"}],\"name\":\"setDevsFee\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"_fee\",\"type\":\"uint16\"}],\"name\":\"setHolderFee\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"_fee\",\"type\":\"uint16\"}],\"name\":\"setTransactionFee\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"allowance(address,address)\":{\"details\":\"See {IERC20-allowance}.\"},\"approve(address,uint256)\":{\"details\":\"See {IERC20-approve}. Requirements: - `spender` cannot be the zero address.\"},\"balanceOf(address)\":{\"details\":\"See {IERC20-balanceOf}.\"},\"decimals()\":{\"details\":\"Returns the number of decimals used to get its user representation. For example, if `decimals` equals `2`, a balance of `505` tokens should be displayed to a user as `5.05` (`505 / 10 ** 2`). Tokens usually opt for a value of 18, imitating the relationship between Ether and Wei. This is the value {ERC20} uses, unless this function is overridden; NOTE: This information is only used for _display_ purposes: it in no way affects any of the arithmetic of the contract, including {IERC20-balanceOf} and {IERC20-transfer}.\"},\"decreaseAllowance(address,uint256)\":{\"details\":\"Atomically decreases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address. - `spender` must have allowance for the caller of at least `subtractedValue`.\"},\"getBurnFee()\":{\"details\":\"Get burn fee for every transaction\"},\"getDevsFee()\":{\"details\":\"Get devs fee for every transaction\"},\"getHolderFee()\":{\"details\":\"Get holder fee for every transaction\"},\"getRoleAdmin(bytes32)\":{\"details\":\"Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.\"},\"getRoleMember(bytes32,uint256)\":{\"details\":\"Returns one of the accounts that have `role`. `index` must be a value between 0 and {getRoleMemberCount}, non-inclusive. Role bearers are not sorted in any particular way, and their ordering may change at any point. WARNING: When using {getRoleMember} and {getRoleMemberCount}, make sure you perform all queries on the same block. See the following https://forum.openzeppelin.com/t/iterating-over-elements-on-enumerableset-in-openzeppelin-contracts/2296[forum post] for more information.\"},\"getRoleMemberCount(bytes32)\":{\"details\":\"Returns the number of accounts that have `role`. Can be used together with {getRoleMember} to enumerate all bearers of a role.\"},\"getTransactionFee()\":{\"details\":\"Get transaction fee to pay for every transaction\"},\"grantRole(bytes32,address)\":{\"details\":\"Overload {grantRole} to track enumerable memberships\"},\"hasRole(bytes32,address)\":{\"details\":\"Returns `true` if `account` has been granted `role`.\"},\"increaseAllowance(address,uint256)\":{\"details\":\"Atomically increases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address.\"},\"name()\":{\"details\":\"Returns the name of the token.\"},\"renounceRole(bytes32,address)\":{\"details\":\"Overload {renounceRole} to track enumerable memberships\"},\"revokeRole(bytes32,address)\":{\"details\":\"Overload {revokeRole} to track enumerable memberships\"},\"setBurnFee(uint16)\":{\"details\":\"Set burn fee for every transaction\"},\"setDevsFee(uint16)\":{\"details\":\"Set devs fee for every transaction\"},\"setHolderFee(uint16)\":{\"details\":\"Set holder fee for every transaction\"},\"setTransactionFee(uint16)\":{\"details\":\"Set transaction fee to pay for every transaction\"},\"supportsInterface(bytes4)\":{\"details\":\"See {IERC165-supportsInterface}.\"},\"symbol()\":{\"details\":\"Returns the symbol of the token, usually a shorter version of the name.\"},\"totalSupply()\":{\"details\":\"See {IERC20-totalSupply}.\"},\"transfer(address,uint256)\":{\"details\":\"See {IERC20-transfer}. Requirements: - `recipient` cannot be the zero address. - the caller must have a balance of at least `amount`.\"},\"transferFrom(address,address,uint256)\":{\"details\":\"See {IERC20-transferFrom}. Emits an {Approval} event indicating the updated allowance. This is not required by the EIP. See the note at the beginning of {ERC20}. Requirements: - `sender` and `recipient` cannot be the zero address. - `sender` must have a balance of at least `amount`. - the caller must have allowance for ``sender``'s tokens of at least `amount`.\"}},\"stateVariables\":{\"burnFee\":{\"details\":\"Burn percentage of the transaction fee 50%\"},\"devFee\":{\"details\":\"Developers fee of the transaction 25%\"},\"feeTransaction\":{\"details\":\"Transaction fee 0.7%\"},\"holderFee\":{\"details\":\"Holder fee of the transaction 25%\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/library/TransactionFee.sol\":\"TransactionFee\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/access/AccessControl.sol\":{\"keccak256\":\"0x183481af1c40d2efb26b86f63d6fe9e22f24c87e436d60a69f261b38500e7cd6\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f562746c399ae045994a88b2218d1238a349de07afbfb305aab0c7fdbc2954cc\",\"dweb:/ipfs/QmYoFrDD2c6fi9CpPz1bjCMAyketjZ3G7ByUSVQMntysms\"]},\"@openzeppelin/contracts/access/AccessControlEnumerable.sol\":{\"keccak256\":\"0x313834fba9dbefee1df7717a5e3063ebf567d276e67bc925a03c7f8423f4c50e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://76748567d11b8d92db337c17a705c9348ff4c4f3e0c0cd2f5f0b979de078abb6\",\"dweb:/ipfs/QmZrc4aUrUf7GXzvs1Tsadj8Z89YqdoMN4WEaZKJq2ML3J\"]},\"@openzeppelin/contracts/access/IAccessControl.sol\":{\"keccak256\":\"0xfe0edb09653ed10e8a1bfe03eb9b0ff06775666eee817a95bd3d0799f1ee2b44\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://fbb9d503857eab98f87465df0f02fef03083f30c1dbec82f319f41aaadae19b4\",\"dweb:/ipfs/QmTxDshRAMtoeM45YrTzQZdpmy4mt4scCNHjfZiWSvdETF\"]},\"@openzeppelin/contracts/access/IAccessControlEnumerable.sol\":{\"keccak256\":\"0x6a9a31f278ee3ed0568ab7e3c09ecb72bf92f922475a274760b4c58f87f9ad0c\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e29a0ac0b40b9f11469a0a2a4affe2f059d2530c09bafc08d5433ee25f4c20db\",\"dweb:/ipfs/QmbzCk1qyZxxxosAThz1fJTUjUhx3dj1VVMSQCwGtrXV8U\"]},\"@openzeppelin/contracts/token/ERC20/ERC20.sol\":{\"keccak256\":\"0xb03df8481a954604ad0c9125680893b2e3f7ff770fe470e38b89ac61b84e8072\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b34655953d18ba3a45b762fb6bdbb6549af69a27435e10ece178742bf70baf45\",\"dweb:/ipfs/QmcqjUoFLLMyx7dbwSHUnDBH6aphkVHXWQvQRRev5EAWEh\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x027b891937d20ccf213fdb9c31531574256de774bda99d3a70ecef6e1913ed2a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://087318b21c528119f649899f5b5580566dd8d7b0303d4904bd0e8580c3545f14\",\"dweb:/ipfs/Qmbn5Mj7aUn8hJuQ8VrQjjEXRsXyJKykgnjR9p4C3nfLtL\"]},\"@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol\":{\"keccak256\":\"0x83fe24f5c04a56091e50f4a345ff504c8bff658a76d4c43b16878c8f940c53b2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d4c3df1a7ca104b633a7d81c6c6f5192367d150cd5a32cba81f7f27012729013\",\"dweb:/ipfs/QmSim72e3ZVsfgZt8UceCvbiSuMRHR6WDsiamqNzZahGSY\"]},\"@openzeppelin/contracts/utils/Context.sol\":{\"keccak256\":\"0x90565a39ae45c80f0468dc96c7b20d0afc3055f344c8203a0c9258239f350b9f\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://26e8b38a7ac8e7b4463af00cf7fff1bf48ae9875765bf4f7751e100124d0bc8c\",\"dweb:/ipfs/QmWcsmkVr24xmmjfnBQZoemFniXjj3vwT78Cz6uqZW1Hux\"]},\"@openzeppelin/contracts/utils/Strings.sol\":{\"keccak256\":\"0x391d3ba97ab6856a16b225d6ee29617ad15ff00db70f3b4df1ab5ea33aa47c9d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d636ba90bbbeed04a1ea7fe9ec2466757e30fd38ba2ca173636dbf69a518735e\",\"dweb:/ipfs/QmQwCB2BHnEuYR22PYt9HkpbgeFDhq4rHmaYqAZbX3WRC7\"]},\"@openzeppelin/contracts/utils/introspection/ERC165.sol\":{\"keccak256\":\"0x5718c5df9bd67ac68a796961df938821bb5dc0cd4c6118d77e9145afb187409b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d10e1d9b26042424789246603906ad06143bf9a928f4e99de8b5e3bdc662f549\",\"dweb:/ipfs/Qmejonoaj5MLekPus229rJQHcC6E9dz2xorjHJR84fMfmn\"]},\"@openzeppelin/contracts/utils/introspection/IERC165.sol\":{\"keccak256\":\"0xa28007762d9da9db878dd421960c8cb9a10471f47ab5c1b3309bfe48e9e79ff4\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://796ab6e88af7bf0e78def0f059310c903af6a312b565344e0ff524a0f26e81c6\",\"dweb:/ipfs/QmcsVgLgzWdor3UnAztUkXKNGcysm1MPneWksF72AvnwBx\"]},\"@openzeppelin/contracts/utils/structs/EnumerableSet.sol\":{\"keccak256\":\"0x3778dc944f4a696335878bad8beca60f38b7c79b7a0bd8ddbeb618bd502a95ae\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://12961fd593c79b60088c8829fd760db4149790b1c702411919fac76769e8c39a\",\"dweb:/ipfs/QmXN79ZS3btSrPhiMBWtWmdwaWKjYTaAYpVMt5QHvwwKMw\"]},\"project:/contracts/library/TransactionFee.sol\":{\"keccak256\":\"0x6e9d50483f8a17e88833dc0cb258f0daeb981e6acae7c3f4e67281da16982109\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b7e92803666e86fcc17566192f4192b26e6b59da2b3564accc9c04e38bd4618f\",\"dweb:/ipfs/QmaGNFAS9ny5R2gkEWjnrjYamzVog6xqAeJ1mJFci3kKe1\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.4.22 <0.9.0;\n\nimport \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";\nimport \"@openzeppelin/contracts/access/AccessControlEnumerable.sol\";\n\nabstract contract TransactionFee is ERC20, AccessControlEnumerable {\n  bytes32 public constant DEVELOPER_ROLE = keccak256(\"DEVELOPER_ROLE\");\n\n  /**\n   * @dev Transaction fee 0.7%\n   */\n  uint16 feeTransaction = 70;\n  /**\n   * @dev Burn percentage of the transaction fee 50%\n   */\n  uint16 burnFee = 5000;\n  /**\n   * @dev Developers fee of the transaction 25%\n   */\n  uint16 devFee = 2500;\n  /**\n   * @dev Holder fee of the transaction 25%\n   */\n  uint16 holderFee = 2500;\n\n  constructor() {\n    _setupRole(DEVELOPER_ROLE, _msgSender());\n  }\n\n  /**\n   * @dev Get transaction fee to pay for every transaction\n   */\n  function getTransactionFee() public view returns (uint16) {\n    return feeTransaction;\n  }\n\n  /**\n   * @dev Set transaction fee to pay for every transaction\n   */\n  function setTransactionFee(uint16 _fee) external {\n    feeTransaction = _fee;\n  }\n\n  /**\n   * @dev Get devs fee for every transaction\n   */\n  function getDevsFee() public view returns (uint16) {\n    return devFee;\n  }\n\n  /**\n   * @dev Set devs fee for every transaction\n   */\n  function setDevsFee(uint16 _fee) external {\n    devFee = _fee;\n  }\n\n  /**\n   * @dev Get burn fee for every transaction\n   */\n  function getBurnFee() public view returns (uint16) {\n    return burnFee;\n  }\n\n  /**\n   * @dev Set burn fee for every transaction\n   */\n  function setBurnFee(uint16 _fee) external {\n    burnFee = _fee;\n  }\n\n  /**\n   * @dev Get holder fee for every transaction\n   */\n  function getHolderFee() public view returns (uint16) {\n    return holderFee;\n  }\n\n  /**\n   * @dev Set holder fee for every transaction\n   */\n  function setHolderFee(uint16 _fee) external {\n    holderFee = _fee;\n  }\n\n  function addDev(address _wallet) external {\n    grantRole(DEVELOPER_ROLE, _wallet);\n  }\n\n  function removeDev(address _wallet) external {\n    revokeRole(DEVELOPER_ROLE, _wallet);\n  }\n}\n",
+  "sourcePath": "/home/guillermo/dapps/tuviella-contract/contracts/library/TransactionFee.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/library/TransactionFee.sol",
+    "exportedSymbols": {
+      "AccessControl": [
+        306
+      ],
+      "AccessControlEnumerable": [
+        485
+      ],
+      "Context": [
+        2070
+      ],
+      "ERC165": [
+        2297
+      ],
+      "ERC20": [
+        1325
+      ],
+      "EnumerableSet": [
+        2996
+      ],
+      "IAccessControl": [
+        558
+      ],
+      "IAccessControlEnumerable": [
+        583
+      ],
+      "IERC165": [
+        2309
+      ],
+      "IERC20": [
+        1403
+      ],
+      "IERC20Metadata": [
+        1527
+      ],
+      "Strings": [
+        2273
+      ],
+      "TransactionFee": [
+        5275
+      ]
+    },
+    "id": 5276,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5135,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:32:24"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "id": 5136,
+        "nodeType": "ImportDirective",
+        "scope": 5276,
+        "sourceUnit": 1326,
+        "src": "66:55:24",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/access/AccessControlEnumerable.sol",
+        "file": "@openzeppelin/contracts/access/AccessControlEnumerable.sol",
+        "id": 5137,
+        "nodeType": "ImportDirective",
+        "scope": 5276,
+        "sourceUnit": 486,
+        "src": "122:68:24",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 5138,
+              "name": "ERC20",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 1325,
+              "src": "228:5:24"
+            },
+            "id": 5139,
+            "nodeType": "InheritanceSpecifier",
+            "src": "228:5:24"
+          },
+          {
+            "baseName": {
+              "id": 5140,
+              "name": "AccessControlEnumerable",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 485,
+              "src": "235:23:24"
+            },
+            "id": 5141,
+            "nodeType": "InheritanceSpecifier",
+            "src": "235:23:24"
+          }
+        ],
+        "contractDependencies": [
+          306,
+          485,
+          558,
+          583,
+          1325,
+          1403,
+          1527,
+          2070,
+          2297,
+          2309
+        ],
+        "contractKind": "contract",
+        "fullyImplemented": false,
+        "id": 5275,
+        "linearizedBaseContracts": [
+          5275,
+          485,
+          306,
+          2297,
+          2309,
+          583,
+          558,
+          1325,
+          1527,
+          1403,
+          2070
+        ],
+        "name": "TransactionFee",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "functionSelector": "9103a0e0",
+            "id": 5146,
+            "mutability": "constant",
+            "name": "DEVELOPER_ROLE",
+            "nodeType": "VariableDeclaration",
+            "scope": 5275,
+            "src": "263:68:24",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes32",
+              "typeString": "bytes32"
+            },
+            "typeName": {
+              "id": 5142,
+              "name": "bytes32",
+              "nodeType": "ElementaryTypeName",
+              "src": "263:7:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "value": {
+              "arguments": [
+                {
+                  "hexValue": "444556454c4f5045525f524f4c45",
+                  "id": 5144,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "kind": "string",
+                  "lValueRequested": false,
+                  "nodeType": "Literal",
+                  "src": "314:16:24",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_stringliteral_4504b9dfd7400a1522f49a8b4a100552da9236849581fd59b7363eb48c6a474c",
+                    "typeString": "literal_string \"DEVELOPER_ROLE\""
+                  },
+                  "value": "DEVELOPER_ROLE"
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_stringliteral_4504b9dfd7400a1522f49a8b4a100552da9236849581fd59b7363eb48c6a474c",
+                    "typeString": "literal_string \"DEVELOPER_ROLE\""
+                  }
+                ],
+                "id": 5143,
+                "name": "keccak256",
+                "nodeType": "Identifier",
+                "overloadedDeclarations": [],
+                "referencedDeclaration": 4294967288,
+                "src": "304:9:24",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                  "typeString": "function (bytes memory) pure returns (bytes32)"
+                }
+              },
+              "id": 5145,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "functionCall",
+              "lValueRequested": false,
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "304:27:24",
+              "tryCall": false,
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "documentation": {
+              "id": 5147,
+              "nodeType": "StructuredDocumentation",
+              "src": "336:40:24",
+              "text": " @dev Transaction fee 0.7%"
+            },
+            "id": 5150,
+            "mutability": "mutable",
+            "name": "feeTransaction",
+            "nodeType": "VariableDeclaration",
+            "scope": 5275,
+            "src": "379:26:24",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint16",
+              "typeString": "uint16"
+            },
+            "typeName": {
+              "id": 5148,
+              "name": "uint16",
+              "nodeType": "ElementaryTypeName",
+              "src": "379:6:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint16",
+                "typeString": "uint16"
+              }
+            },
+            "value": {
+              "hexValue": "3730",
+              "id": 5149,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "403:2:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_70_by_1",
+                "typeString": "int_const 70"
+              },
+              "value": "70"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "documentation": {
+              "id": 5151,
+              "nodeType": "StructuredDocumentation",
+              "src": "409:62:24",
+              "text": " @dev Burn percentage of the transaction fee 50%"
+            },
+            "id": 5154,
+            "mutability": "mutable",
+            "name": "burnFee",
+            "nodeType": "VariableDeclaration",
+            "scope": 5275,
+            "src": "474:21:24",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint16",
+              "typeString": "uint16"
+            },
+            "typeName": {
+              "id": 5152,
+              "name": "uint16",
+              "nodeType": "ElementaryTypeName",
+              "src": "474:6:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint16",
+                "typeString": "uint16"
+              }
+            },
+            "value": {
+              "hexValue": "35303030",
+              "id": 5153,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "491:4:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_5000_by_1",
+                "typeString": "int_const 5000"
+              },
+              "value": "5000"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "documentation": {
+              "id": 5155,
+              "nodeType": "StructuredDocumentation",
+              "src": "499:57:24",
+              "text": " @dev Developers fee of the transaction 25%"
+            },
+            "id": 5158,
+            "mutability": "mutable",
+            "name": "devFee",
+            "nodeType": "VariableDeclaration",
+            "scope": 5275,
+            "src": "559:20:24",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint16",
+              "typeString": "uint16"
+            },
+            "typeName": {
+              "id": 5156,
+              "name": "uint16",
+              "nodeType": "ElementaryTypeName",
+              "src": "559:6:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint16",
+                "typeString": "uint16"
+              }
+            },
+            "value": {
+              "hexValue": "32353030",
+              "id": 5157,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "575:4:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_2500_by_1",
+                "typeString": "int_const 2500"
+              },
+              "value": "2500"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "documentation": {
+              "id": 5159,
+              "nodeType": "StructuredDocumentation",
+              "src": "583:53:24",
+              "text": " @dev Holder fee of the transaction 25%"
+            },
+            "id": 5162,
+            "mutability": "mutable",
+            "name": "holderFee",
+            "nodeType": "VariableDeclaration",
+            "scope": 5275,
+            "src": "639:23:24",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint16",
+              "typeString": "uint16"
+            },
+            "typeName": {
+              "id": 5160,
+              "name": "uint16",
+              "nodeType": "ElementaryTypeName",
+              "src": "639:6:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint16",
+                "typeString": "uint16"
+              }
+            },
+            "value": {
+              "hexValue": "32353030",
+              "id": 5161,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "658:4:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_2500_by_1",
+                "typeString": "int_const 2500"
+              },
+              "value": "2500"
+            },
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 5171,
+              "nodeType": "Block",
+              "src": "681:51:24",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 5166,
+                        "name": "DEVELOPER_ROLE",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5146,
+                        "src": "698:14:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "id": 5167,
+                          "name": "_msgSender",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2060,
+                          "src": "714:10:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_view$__$returns$_t_address_$",
+                            "typeString": "function () view returns (address)"
+                          }
+                        },
+                        "id": 5168,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "714:12:24",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 5165,
+                      "name": "_setupRole",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        484
+                      ],
+                      "referencedDeclaration": 484,
+                      "src": "687:10:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$returns$__$",
+                        "typeString": "function (bytes32,address)"
+                      }
+                    },
+                    "id": 5169,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "687:40:24",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 5170,
+                  "nodeType": "ExpressionStatement",
+                  "src": "687:40:24"
+                }
+              ]
+            },
+            "id": 5172,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5163,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "678:2:24"
+            },
+            "returnParameters": {
+              "id": 5164,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "681:0:24"
+            },
+            "scope": 5275,
+            "src": "667:65:24",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 5180,
+              "nodeType": "Block",
+              "src": "865:32:24",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 5178,
+                    "name": "feeTransaction",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 5150,
+                    "src": "878:14:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "functionReturnParameters": 5177,
+                  "id": 5179,
+                  "nodeType": "Return",
+                  "src": "871:21:24"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 5173,
+              "nodeType": "StructuredDocumentation",
+              "src": "736:68:24",
+              "text": " @dev Get transaction fee to pay for every transaction"
+            },
+            "functionSelector": "85d79102",
+            "id": 5181,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getTransactionFee",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5174,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "833:2:24"
+            },
+            "returnParameters": {
+              "id": 5177,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5176,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5181,
+                  "src": "857:6:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 5175,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "857:6:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "856:8:24"
+            },
+            "scope": 5275,
+            "src": "807:90:24",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 5191,
+              "nodeType": "Block",
+              "src": "1021:32:24",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 5189,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 5187,
+                      "name": "feeTransaction",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5150,
+                      "src": "1027:14:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint16",
+                        "typeString": "uint16"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 5188,
+                      "name": "_fee",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5184,
+                      "src": "1044:4:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint16",
+                        "typeString": "uint16"
+                      }
+                    },
+                    "src": "1027:21:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "id": 5190,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1027:21:24"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 5182,
+              "nodeType": "StructuredDocumentation",
+              "src": "901:68:24",
+              "text": " @dev Set transaction fee to pay for every transaction"
+            },
+            "functionSelector": "b45940f2",
+            "id": 5192,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setTransactionFee",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5185,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5184,
+                  "mutability": "mutable",
+                  "name": "_fee",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5192,
+                  "src": "999:11:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 5183,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "999:6:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "998:13:24"
+            },
+            "returnParameters": {
+              "id": 5186,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1021:0:24"
+            },
+            "scope": 5275,
+            "src": "972:81:24",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 5200,
+              "nodeType": "Block",
+              "src": "1165:24:24",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 5198,
+                    "name": "devFee",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 5158,
+                    "src": "1178:6:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "functionReturnParameters": 5197,
+                  "id": 5199,
+                  "nodeType": "Return",
+                  "src": "1171:13:24"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 5193,
+              "nodeType": "StructuredDocumentation",
+              "src": "1057:54:24",
+              "text": " @dev Get devs fee for every transaction"
+            },
+            "functionSelector": "46e50994",
+            "id": 5201,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getDevsFee",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5194,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1133:2:24"
+            },
+            "returnParameters": {
+              "id": 5197,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5196,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5201,
+                  "src": "1157:6:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 5195,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1157:6:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1156:8:24"
+            },
+            "scope": 5275,
+            "src": "1114:75:24",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 5211,
+              "nodeType": "Block",
+              "src": "1292:24:24",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 5209,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 5207,
+                      "name": "devFee",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5158,
+                      "src": "1298:6:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint16",
+                        "typeString": "uint16"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 5208,
+                      "name": "_fee",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5204,
+                      "src": "1307:4:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint16",
+                        "typeString": "uint16"
+                      }
+                    },
+                    "src": "1298:13:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "id": 5210,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1298:13:24"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 5202,
+              "nodeType": "StructuredDocumentation",
+              "src": "1193:54:24",
+              "text": " @dev Set devs fee for every transaction"
+            },
+            "functionSelector": "71867b23",
+            "id": 5212,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setDevsFee",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5205,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5204,
+                  "mutability": "mutable",
+                  "name": "_fee",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5212,
+                  "src": "1270:11:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 5203,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1270:6:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1269:13:24"
+            },
+            "returnParameters": {
+              "id": 5206,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1292:0:24"
+            },
+            "scope": 5275,
+            "src": "1250:66:24",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 5220,
+              "nodeType": "Block",
+              "src": "1428:25:24",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 5218,
+                    "name": "burnFee",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 5154,
+                    "src": "1441:7:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "functionReturnParameters": 5217,
+                  "id": 5219,
+                  "nodeType": "Return",
+                  "src": "1434:14:24"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 5213,
+              "nodeType": "StructuredDocumentation",
+              "src": "1320:54:24",
+              "text": " @dev Get burn fee for every transaction"
+            },
+            "functionSelector": "aa4b10d1",
+            "id": 5221,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getBurnFee",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5214,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1396:2:24"
+            },
+            "returnParameters": {
+              "id": 5217,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5216,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5221,
+                  "src": "1420:6:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 5215,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1420:6:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1419:8:24"
+            },
+            "scope": 5275,
+            "src": "1377:76:24",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 5231,
+              "nodeType": "Block",
+              "src": "1556:25:24",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 5229,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 5227,
+                      "name": "burnFee",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5154,
+                      "src": "1562:7:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint16",
+                        "typeString": "uint16"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 5228,
+                      "name": "_fee",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5224,
+                      "src": "1572:4:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint16",
+                        "typeString": "uint16"
+                      }
+                    },
+                    "src": "1562:14:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "id": 5230,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1562:14:24"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 5222,
+              "nodeType": "StructuredDocumentation",
+              "src": "1457:54:24",
+              "text": " @dev Set burn fee for every transaction"
+            },
+            "functionSelector": "49de5f87",
+            "id": 5232,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setBurnFee",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5225,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5224,
+                  "mutability": "mutable",
+                  "name": "_fee",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5232,
+                  "src": "1534:11:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 5223,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1534:6:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1533:13:24"
+            },
+            "returnParameters": {
+              "id": 5226,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1556:0:24"
+            },
+            "scope": 5275,
+            "src": "1514:67:24",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 5240,
+              "nodeType": "Block",
+              "src": "1697:27:24",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 5238,
+                    "name": "holderFee",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 5162,
+                    "src": "1710:9:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "functionReturnParameters": 5237,
+                  "id": 5239,
+                  "nodeType": "Return",
+                  "src": "1703:16:24"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 5233,
+              "nodeType": "StructuredDocumentation",
+              "src": "1585:56:24",
+              "text": " @dev Get holder fee for every transaction"
+            },
+            "functionSelector": "faa271ff",
+            "id": 5241,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getHolderFee",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5234,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1665:2:24"
+            },
+            "returnParameters": {
+              "id": 5237,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5236,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5241,
+                  "src": "1689:6:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 5235,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1689:6:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1688:8:24"
+            },
+            "scope": 5275,
+            "src": "1644:80:24",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 5251,
+              "nodeType": "Block",
+              "src": "1831:27:24",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 5249,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 5247,
+                      "name": "holderFee",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5162,
+                      "src": "1837:9:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint16",
+                        "typeString": "uint16"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 5248,
+                      "name": "_fee",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5244,
+                      "src": "1849:4:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint16",
+                        "typeString": "uint16"
+                      }
+                    },
+                    "src": "1837:16:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "id": 5250,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1837:16:24"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 5242,
+              "nodeType": "StructuredDocumentation",
+              "src": "1728:56:24",
+              "text": " @dev Set holder fee for every transaction"
+            },
+            "functionSelector": "ee4b4307",
+            "id": 5252,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setHolderFee",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5245,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5244,
+                  "mutability": "mutable",
+                  "name": "_fee",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5252,
+                  "src": "1809:11:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 5243,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1809:6:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1808:13:24"
+            },
+            "returnParameters": {
+              "id": 5246,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1831:0:24"
+            },
+            "scope": 5275,
+            "src": "1787:71:24",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 5262,
+              "nodeType": "Block",
+              "src": "1904:45:24",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 5258,
+                        "name": "DEVELOPER_ROLE",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5146,
+                        "src": "1920:14:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "id": 5259,
+                        "name": "_wallet",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5254,
+                        "src": "1936:7:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 5257,
+                      "name": "grantRole",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        408
+                      ],
+                      "referencedDeclaration": 408,
+                      "src": "1910:9:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$returns$__$",
+                        "typeString": "function (bytes32,address)"
+                      }
+                    },
+                    "id": 5260,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1910:34:24",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 5261,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1910:34:24"
+                }
+              ]
+            },
+            "functionSelector": "b91d3ace",
+            "id": 5263,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addDev",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5255,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5254,
+                  "mutability": "mutable",
+                  "name": "_wallet",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5263,
+                  "src": "1878:15:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5253,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1878:7:24",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1877:17:24"
+            },
+            "returnParameters": {
+              "id": 5256,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1904:0:24"
+            },
+            "scope": 5275,
+            "src": "1862:87:24",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 5273,
+              "nodeType": "Block",
+              "src": "1998:46:24",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 5269,
+                        "name": "DEVELOPER_ROLE",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5146,
+                        "src": "2015:14:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "id": 5270,
+                        "name": "_wallet",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5265,
+                        "src": "2031:7:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 5268,
+                      "name": "revokeRole",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        434
+                      ],
+                      "referencedDeclaration": 434,
+                      "src": "2004:10:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$returns$__$",
+                        "typeString": "function (bytes32,address)"
+                      }
+                    },
+                    "id": 5271,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2004:35:24",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 5272,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2004:35:24"
+                }
+              ]
+            },
+            "functionSelector": "c4026d7b",
+            "id": 5274,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeDev",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5266,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5265,
+                  "mutability": "mutable",
+                  "name": "_wallet",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5274,
+                  "src": "1972:15:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5264,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1972:7:24",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1971:17:24"
+            },
+            "returnParameters": {
+              "id": 5267,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1998:0:24"
+            },
+            "scope": 5275,
+            "src": "1953:91:24",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 5276,
+        "src": "192:1854:24"
+      }
+    ],
+    "src": "32:2015:24"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/library/TransactionFee.sol",
+    "exportedSymbols": {
+      "AccessControl": [
+        306
+      ],
+      "AccessControlEnumerable": [
+        485
+      ],
+      "Context": [
+        2070
+      ],
+      "ERC165": [
+        2297
+      ],
+      "ERC20": [
+        1325
+      ],
+      "EnumerableSet": [
+        2996
+      ],
+      "IAccessControl": [
+        558
+      ],
+      "IAccessControlEnumerable": [
+        583
+      ],
+      "IERC165": [
+        2309
+      ],
+      "IERC20": [
+        1403
+      ],
+      "IERC20Metadata": [
+        1527
+      ],
+      "Strings": [
+        2273
+      ],
+      "TransactionFee": [
+        5275
+      ]
+    },
+    "id": 5276,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5135,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:32:24"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "id": 5136,
+        "nodeType": "ImportDirective",
+        "scope": 5276,
+        "sourceUnit": 1326,
+        "src": "66:55:24",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/access/AccessControlEnumerable.sol",
+        "file": "@openzeppelin/contracts/access/AccessControlEnumerable.sol",
+        "id": 5137,
+        "nodeType": "ImportDirective",
+        "scope": 5276,
+        "sourceUnit": 486,
+        "src": "122:68:24",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 5138,
+              "name": "ERC20",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 1325,
+              "src": "228:5:24"
+            },
+            "id": 5139,
+            "nodeType": "InheritanceSpecifier",
+            "src": "228:5:24"
+          },
+          {
+            "baseName": {
+              "id": 5140,
+              "name": "AccessControlEnumerable",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 485,
+              "src": "235:23:24"
+            },
+            "id": 5141,
+            "nodeType": "InheritanceSpecifier",
+            "src": "235:23:24"
+          }
+        ],
+        "contractDependencies": [
+          306,
+          485,
+          558,
+          583,
+          1325,
+          1403,
+          1527,
+          2070,
+          2297,
+          2309
+        ],
+        "contractKind": "contract",
+        "fullyImplemented": false,
+        "id": 5275,
+        "linearizedBaseContracts": [
+          5275,
+          485,
+          306,
+          2297,
+          2309,
+          583,
+          558,
+          1325,
+          1527,
+          1403,
+          2070
+        ],
+        "name": "TransactionFee",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "functionSelector": "9103a0e0",
+            "id": 5146,
+            "mutability": "constant",
+            "name": "DEVELOPER_ROLE",
+            "nodeType": "VariableDeclaration",
+            "scope": 5275,
+            "src": "263:68:24",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes32",
+              "typeString": "bytes32"
+            },
+            "typeName": {
+              "id": 5142,
+              "name": "bytes32",
+              "nodeType": "ElementaryTypeName",
+              "src": "263:7:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "value": {
+              "arguments": [
+                {
+                  "hexValue": "444556454c4f5045525f524f4c45",
+                  "id": 5144,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "kind": "string",
+                  "lValueRequested": false,
+                  "nodeType": "Literal",
+                  "src": "314:16:24",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_stringliteral_4504b9dfd7400a1522f49a8b4a100552da9236849581fd59b7363eb48c6a474c",
+                    "typeString": "literal_string \"DEVELOPER_ROLE\""
+                  },
+                  "value": "DEVELOPER_ROLE"
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_stringliteral_4504b9dfd7400a1522f49a8b4a100552da9236849581fd59b7363eb48c6a474c",
+                    "typeString": "literal_string \"DEVELOPER_ROLE\""
+                  }
+                ],
+                "id": 5143,
+                "name": "keccak256",
+                "nodeType": "Identifier",
+                "overloadedDeclarations": [],
+                "referencedDeclaration": 4294967288,
+                "src": "304:9:24",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                  "typeString": "function (bytes memory) pure returns (bytes32)"
+                }
+              },
+              "id": 5145,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "functionCall",
+              "lValueRequested": false,
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "304:27:24",
+              "tryCall": false,
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "documentation": {
+              "id": 5147,
+              "nodeType": "StructuredDocumentation",
+              "src": "336:40:24",
+              "text": " @dev Transaction fee 0.7%"
+            },
+            "id": 5150,
+            "mutability": "mutable",
+            "name": "feeTransaction",
+            "nodeType": "VariableDeclaration",
+            "scope": 5275,
+            "src": "379:26:24",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint16",
+              "typeString": "uint16"
+            },
+            "typeName": {
+              "id": 5148,
+              "name": "uint16",
+              "nodeType": "ElementaryTypeName",
+              "src": "379:6:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint16",
+                "typeString": "uint16"
+              }
+            },
+            "value": {
+              "hexValue": "3730",
+              "id": 5149,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "403:2:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_70_by_1",
+                "typeString": "int_const 70"
+              },
+              "value": "70"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "documentation": {
+              "id": 5151,
+              "nodeType": "StructuredDocumentation",
+              "src": "409:62:24",
+              "text": " @dev Burn percentage of the transaction fee 50%"
+            },
+            "id": 5154,
+            "mutability": "mutable",
+            "name": "burnFee",
+            "nodeType": "VariableDeclaration",
+            "scope": 5275,
+            "src": "474:21:24",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint16",
+              "typeString": "uint16"
+            },
+            "typeName": {
+              "id": 5152,
+              "name": "uint16",
+              "nodeType": "ElementaryTypeName",
+              "src": "474:6:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint16",
+                "typeString": "uint16"
+              }
+            },
+            "value": {
+              "hexValue": "35303030",
+              "id": 5153,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "491:4:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_5000_by_1",
+                "typeString": "int_const 5000"
+              },
+              "value": "5000"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "documentation": {
+              "id": 5155,
+              "nodeType": "StructuredDocumentation",
+              "src": "499:57:24",
+              "text": " @dev Developers fee of the transaction 25%"
+            },
+            "id": 5158,
+            "mutability": "mutable",
+            "name": "devFee",
+            "nodeType": "VariableDeclaration",
+            "scope": 5275,
+            "src": "559:20:24",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint16",
+              "typeString": "uint16"
+            },
+            "typeName": {
+              "id": 5156,
+              "name": "uint16",
+              "nodeType": "ElementaryTypeName",
+              "src": "559:6:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint16",
+                "typeString": "uint16"
+              }
+            },
+            "value": {
+              "hexValue": "32353030",
+              "id": 5157,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "575:4:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_2500_by_1",
+                "typeString": "int_const 2500"
+              },
+              "value": "2500"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "documentation": {
+              "id": 5159,
+              "nodeType": "StructuredDocumentation",
+              "src": "583:53:24",
+              "text": " @dev Holder fee of the transaction 25%"
+            },
+            "id": 5162,
+            "mutability": "mutable",
+            "name": "holderFee",
+            "nodeType": "VariableDeclaration",
+            "scope": 5275,
+            "src": "639:23:24",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint16",
+              "typeString": "uint16"
+            },
+            "typeName": {
+              "id": 5160,
+              "name": "uint16",
+              "nodeType": "ElementaryTypeName",
+              "src": "639:6:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint16",
+                "typeString": "uint16"
+              }
+            },
+            "value": {
+              "hexValue": "32353030",
+              "id": 5161,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "658:4:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_2500_by_1",
+                "typeString": "int_const 2500"
+              },
+              "value": "2500"
+            },
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 5171,
+              "nodeType": "Block",
+              "src": "681:51:24",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 5166,
+                        "name": "DEVELOPER_ROLE",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5146,
+                        "src": "698:14:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "id": 5167,
+                          "name": "_msgSender",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2060,
+                          "src": "714:10:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_view$__$returns$_t_address_$",
+                            "typeString": "function () view returns (address)"
+                          }
+                        },
+                        "id": 5168,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "714:12:24",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 5165,
+                      "name": "_setupRole",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        484
+                      ],
+                      "referencedDeclaration": 484,
+                      "src": "687:10:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$returns$__$",
+                        "typeString": "function (bytes32,address)"
+                      }
+                    },
+                    "id": 5169,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "687:40:24",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 5170,
+                  "nodeType": "ExpressionStatement",
+                  "src": "687:40:24"
+                }
+              ]
+            },
+            "id": 5172,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5163,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "678:2:24"
+            },
+            "returnParameters": {
+              "id": 5164,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "681:0:24"
+            },
+            "scope": 5275,
+            "src": "667:65:24",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 5180,
+              "nodeType": "Block",
+              "src": "865:32:24",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 5178,
+                    "name": "feeTransaction",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 5150,
+                    "src": "878:14:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "functionReturnParameters": 5177,
+                  "id": 5179,
+                  "nodeType": "Return",
+                  "src": "871:21:24"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 5173,
+              "nodeType": "StructuredDocumentation",
+              "src": "736:68:24",
+              "text": " @dev Get transaction fee to pay for every transaction"
+            },
+            "functionSelector": "85d79102",
+            "id": 5181,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getTransactionFee",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5174,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "833:2:24"
+            },
+            "returnParameters": {
+              "id": 5177,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5176,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5181,
+                  "src": "857:6:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 5175,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "857:6:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "856:8:24"
+            },
+            "scope": 5275,
+            "src": "807:90:24",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 5191,
+              "nodeType": "Block",
+              "src": "1021:32:24",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 5189,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 5187,
+                      "name": "feeTransaction",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5150,
+                      "src": "1027:14:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint16",
+                        "typeString": "uint16"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 5188,
+                      "name": "_fee",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5184,
+                      "src": "1044:4:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint16",
+                        "typeString": "uint16"
+                      }
+                    },
+                    "src": "1027:21:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "id": 5190,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1027:21:24"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 5182,
+              "nodeType": "StructuredDocumentation",
+              "src": "901:68:24",
+              "text": " @dev Set transaction fee to pay for every transaction"
+            },
+            "functionSelector": "b45940f2",
+            "id": 5192,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setTransactionFee",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5185,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5184,
+                  "mutability": "mutable",
+                  "name": "_fee",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5192,
+                  "src": "999:11:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 5183,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "999:6:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "998:13:24"
+            },
+            "returnParameters": {
+              "id": 5186,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1021:0:24"
+            },
+            "scope": 5275,
+            "src": "972:81:24",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 5200,
+              "nodeType": "Block",
+              "src": "1165:24:24",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 5198,
+                    "name": "devFee",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 5158,
+                    "src": "1178:6:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "functionReturnParameters": 5197,
+                  "id": 5199,
+                  "nodeType": "Return",
+                  "src": "1171:13:24"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 5193,
+              "nodeType": "StructuredDocumentation",
+              "src": "1057:54:24",
+              "text": " @dev Get devs fee for every transaction"
+            },
+            "functionSelector": "46e50994",
+            "id": 5201,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getDevsFee",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5194,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1133:2:24"
+            },
+            "returnParameters": {
+              "id": 5197,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5196,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5201,
+                  "src": "1157:6:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 5195,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1157:6:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1156:8:24"
+            },
+            "scope": 5275,
+            "src": "1114:75:24",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 5211,
+              "nodeType": "Block",
+              "src": "1292:24:24",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 5209,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 5207,
+                      "name": "devFee",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5158,
+                      "src": "1298:6:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint16",
+                        "typeString": "uint16"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 5208,
+                      "name": "_fee",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5204,
+                      "src": "1307:4:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint16",
+                        "typeString": "uint16"
+                      }
+                    },
+                    "src": "1298:13:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "id": 5210,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1298:13:24"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 5202,
+              "nodeType": "StructuredDocumentation",
+              "src": "1193:54:24",
+              "text": " @dev Set devs fee for every transaction"
+            },
+            "functionSelector": "71867b23",
+            "id": 5212,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setDevsFee",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5205,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5204,
+                  "mutability": "mutable",
+                  "name": "_fee",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5212,
+                  "src": "1270:11:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 5203,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1270:6:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1269:13:24"
+            },
+            "returnParameters": {
+              "id": 5206,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1292:0:24"
+            },
+            "scope": 5275,
+            "src": "1250:66:24",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 5220,
+              "nodeType": "Block",
+              "src": "1428:25:24",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 5218,
+                    "name": "burnFee",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 5154,
+                    "src": "1441:7:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "functionReturnParameters": 5217,
+                  "id": 5219,
+                  "nodeType": "Return",
+                  "src": "1434:14:24"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 5213,
+              "nodeType": "StructuredDocumentation",
+              "src": "1320:54:24",
+              "text": " @dev Get burn fee for every transaction"
+            },
+            "functionSelector": "aa4b10d1",
+            "id": 5221,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getBurnFee",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5214,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1396:2:24"
+            },
+            "returnParameters": {
+              "id": 5217,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5216,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5221,
+                  "src": "1420:6:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 5215,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1420:6:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1419:8:24"
+            },
+            "scope": 5275,
+            "src": "1377:76:24",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 5231,
+              "nodeType": "Block",
+              "src": "1556:25:24",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 5229,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 5227,
+                      "name": "burnFee",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5154,
+                      "src": "1562:7:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint16",
+                        "typeString": "uint16"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 5228,
+                      "name": "_fee",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5224,
+                      "src": "1572:4:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint16",
+                        "typeString": "uint16"
+                      }
+                    },
+                    "src": "1562:14:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "id": 5230,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1562:14:24"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 5222,
+              "nodeType": "StructuredDocumentation",
+              "src": "1457:54:24",
+              "text": " @dev Set burn fee for every transaction"
+            },
+            "functionSelector": "49de5f87",
+            "id": 5232,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setBurnFee",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5225,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5224,
+                  "mutability": "mutable",
+                  "name": "_fee",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5232,
+                  "src": "1534:11:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 5223,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1534:6:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1533:13:24"
+            },
+            "returnParameters": {
+              "id": 5226,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1556:0:24"
+            },
+            "scope": 5275,
+            "src": "1514:67:24",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 5240,
+              "nodeType": "Block",
+              "src": "1697:27:24",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 5238,
+                    "name": "holderFee",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 5162,
+                    "src": "1710:9:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "functionReturnParameters": 5237,
+                  "id": 5239,
+                  "nodeType": "Return",
+                  "src": "1703:16:24"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 5233,
+              "nodeType": "StructuredDocumentation",
+              "src": "1585:56:24",
+              "text": " @dev Get holder fee for every transaction"
+            },
+            "functionSelector": "faa271ff",
+            "id": 5241,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getHolderFee",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5234,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1665:2:24"
+            },
+            "returnParameters": {
+              "id": 5237,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5236,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5241,
+                  "src": "1689:6:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 5235,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1689:6:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1688:8:24"
+            },
+            "scope": 5275,
+            "src": "1644:80:24",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 5251,
+              "nodeType": "Block",
+              "src": "1831:27:24",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 5249,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 5247,
+                      "name": "holderFee",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5162,
+                      "src": "1837:9:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint16",
+                        "typeString": "uint16"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 5248,
+                      "name": "_fee",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5244,
+                      "src": "1849:4:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint16",
+                        "typeString": "uint16"
+                      }
+                    },
+                    "src": "1837:16:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "id": 5250,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1837:16:24"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 5242,
+              "nodeType": "StructuredDocumentation",
+              "src": "1728:56:24",
+              "text": " @dev Set holder fee for every transaction"
+            },
+            "functionSelector": "ee4b4307",
+            "id": 5252,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setHolderFee",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5245,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5244,
+                  "mutability": "mutable",
+                  "name": "_fee",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5252,
+                  "src": "1809:11:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 5243,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1809:6:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1808:13:24"
+            },
+            "returnParameters": {
+              "id": 5246,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1831:0:24"
+            },
+            "scope": 5275,
+            "src": "1787:71:24",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 5262,
+              "nodeType": "Block",
+              "src": "1904:45:24",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 5258,
+                        "name": "DEVELOPER_ROLE",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5146,
+                        "src": "1920:14:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "id": 5259,
+                        "name": "_wallet",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5254,
+                        "src": "1936:7:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 5257,
+                      "name": "grantRole",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        408
+                      ],
+                      "referencedDeclaration": 408,
+                      "src": "1910:9:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$returns$__$",
+                        "typeString": "function (bytes32,address)"
+                      }
+                    },
+                    "id": 5260,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1910:34:24",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 5261,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1910:34:24"
+                }
+              ]
+            },
+            "functionSelector": "b91d3ace",
+            "id": 5263,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addDev",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5255,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5254,
+                  "mutability": "mutable",
+                  "name": "_wallet",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5263,
+                  "src": "1878:15:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5253,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1878:7:24",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1877:17:24"
+            },
+            "returnParameters": {
+              "id": 5256,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1904:0:24"
+            },
+            "scope": 5275,
+            "src": "1862:87:24",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 5273,
+              "nodeType": "Block",
+              "src": "1998:46:24",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 5269,
+                        "name": "DEVELOPER_ROLE",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5146,
+                        "src": "2015:14:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "id": 5270,
+                        "name": "_wallet",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5265,
+                        "src": "2031:7:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 5268,
+                      "name": "revokeRole",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        434
+                      ],
+                      "referencedDeclaration": 434,
+                      "src": "2004:10:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$returns$__$",
+                        "typeString": "function (bytes32,address)"
+                      }
+                    },
+                    "id": 5271,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2004:35:24",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 5272,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2004:35:24"
+                }
+              ]
+            },
+            "functionSelector": "c4026d7b",
+            "id": 5274,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeDev",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5266,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5265,
+                  "mutability": "mutable",
+                  "name": "_wallet",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5274,
+                  "src": "1972:15:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5264,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1972:7:24",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1971:17:24"
+            },
+            "returnParameters": {
+              "id": 5267,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1998:0:24"
+            },
+            "scope": 5275,
+            "src": "1953:91:24",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 5276,
+        "src": "192:1854:24"
+      }
+    ],
+    "src": "32:2015:24"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.0+commit.c7dfd78e.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-10-31T13:03:40.323Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "allowance(address,address)": {
+        "details": "See {IERC20-allowance}."
+      },
+      "approve(address,uint256)": {
+        "details": "See {IERC20-approve}. Requirements: - `spender` cannot be the zero address."
+      },
+      "balanceOf(address)": {
+        "details": "See {IERC20-balanceOf}."
+      },
+      "decimals()": {
+        "details": "Returns the number of decimals used to get its user representation. For example, if `decimals` equals `2`, a balance of `505` tokens should be displayed to a user as `5.05` (`505 / 10 ** 2`). Tokens usually opt for a value of 18, imitating the relationship between Ether and Wei. This is the value {ERC20} uses, unless this function is overridden; NOTE: This information is only used for _display_ purposes: it in no way affects any of the arithmetic of the contract, including {IERC20-balanceOf} and {IERC20-transfer}."
+      },
+      "decreaseAllowance(address,uint256)": {
+        "details": "Atomically decreases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address. - `spender` must have allowance for the caller of at least `subtractedValue`."
+      },
+      "getBurnFee()": {
+        "details": "Get burn fee for every transaction"
+      },
+      "getDevsFee()": {
+        "details": "Get devs fee for every transaction"
+      },
+      "getHolderFee()": {
+        "details": "Get holder fee for every transaction"
+      },
+      "getRoleAdmin(bytes32)": {
+        "details": "Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}."
+      },
+      "getRoleMember(bytes32,uint256)": {
+        "details": "Returns one of the accounts that have `role`. `index` must be a value between 0 and {getRoleMemberCount}, non-inclusive. Role bearers are not sorted in any particular way, and their ordering may change at any point. WARNING: When using {getRoleMember} and {getRoleMemberCount}, make sure you perform all queries on the same block. See the following https://forum.openzeppelin.com/t/iterating-over-elements-on-enumerableset-in-openzeppelin-contracts/2296[forum post] for more information."
+      },
+      "getRoleMemberCount(bytes32)": {
+        "details": "Returns the number of accounts that have `role`. Can be used together with {getRoleMember} to enumerate all bearers of a role."
+      },
+      "getTransactionFee()": {
+        "details": "Get transaction fee to pay for every transaction"
+      },
+      "grantRole(bytes32,address)": {
+        "details": "Overload {grantRole} to track enumerable memberships"
+      },
+      "hasRole(bytes32,address)": {
+        "details": "Returns `true` if `account` has been granted `role`."
+      },
+      "increaseAllowance(address,uint256)": {
+        "details": "Atomically increases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address."
+      },
+      "name()": {
+        "details": "Returns the name of the token."
+      },
+      "renounceRole(bytes32,address)": {
+        "details": "Overload {renounceRole} to track enumerable memberships"
+      },
+      "revokeRole(bytes32,address)": {
+        "details": "Overload {revokeRole} to track enumerable memberships"
+      },
+      "setBurnFee(uint16)": {
+        "details": "Set burn fee for every transaction"
+      },
+      "setDevsFee(uint16)": {
+        "details": "Set devs fee for every transaction"
+      },
+      "setHolderFee(uint16)": {
+        "details": "Set holder fee for every transaction"
+      },
+      "setTransactionFee(uint16)": {
+        "details": "Set transaction fee to pay for every transaction"
+      },
+      "supportsInterface(bytes4)": {
+        "details": "See {IERC165-supportsInterface}."
+      },
+      "symbol()": {
+        "details": "Returns the symbol of the token, usually a shorter version of the name."
+      },
+      "totalSupply()": {
+        "details": "See {IERC20-totalSupply}."
+      },
+      "transfer(address,uint256)": {
+        "details": "See {IERC20-transfer}. Requirements: - `recipient` cannot be the zero address. - the caller must have a balance of at least `amount`."
+      },
+      "transferFrom(address,address,uint256)": {
+        "details": "See {IERC20-transferFrom}. Emits an {Approval} event indicating the updated allowance. This is not required by the EIP. See the note at the beginning of {ERC20}. Requirements: - `sender` and `recipient` cannot be the zero address. - `sender` must have a balance of at least `amount`. - the caller must have allowance for ``sender``'s tokens of at least `amount`."
+      }
+    },
+    "stateVariables": {
+      "burnFee": {
+        "details": "Burn percentage of the transaction fee 50%"
+      },
+      "devFee": {
+        "details": "Developers fee of the transaction 25%"
+      },
+      "feeTransaction": {
+        "details": "Transaction fee 0.7%"
+      },
+      "holderFee": {
+        "details": "Holder fee of the transaction 25%"
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
