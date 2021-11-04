@@ -14,10 +14,13 @@ import StakingAbi from './abis/Staking.json'
 
 import patoIcon from './images/patologo.png'
  
+import Loading from './components/Loading'
+import LoadingTransaction from './components/LoadingTransaction'
 import Footer from './components/Footer'
 import ConnectWalletButton from './components/ConnectWalletButton'
 import AddTokenButton from './components/AddTokenButton'
 import chains from './components/AvailableChains'
+import ChainInfo from './components/ChainInfo'
 import NotFound from './components/NotFound'
 
 import Farm from './views/Farm'
@@ -47,7 +50,7 @@ class App extends Component {
       window.web3 = new Web3(window.web3.currentProvider)
     }
     else {
-      window.alert('ETHEREUM - BROWESER NOT DETECTED! PLEASE INSTALL METAMASK EXTENSION')
+      window.alert('ETHEREUM - BROWSER NOT DETECTED! PLEASE INSTALL METAMASK EXTENSION')
     }
   }
 
@@ -132,41 +135,68 @@ class App extends Component {
   }
 
   claimTuViella = async ()  => {
-      this.state.faucet.methods
-      .claim(this.state.chainInUse.tuviellaTokenAddress)
-      .send({from: this.state.account})
-      .on('receipt', (hash) => {
-        window.location.reload()
-      })
+    this.setState({ loading: 'TRANSACTION' })
+    this.state.faucet.methods
+    .claim(this.state.chainInUse.tuviellaTokenAddress)
+    .send({from: this.state.account})
+    .on('receipt', (hash) => {
+      window.location.reload()
+    })
+    .on('error', function(error) {
+      window.location.reload()
+    });
   }
 
-  depositTuViella = async (ammountToDeposit)  => {
-      this.state.tuviellaToken.methods
-      .approve(this.state.chainInUse.stakingAddress, window.web3.utils.toWei(ammountToDeposit.toString(), 'Ether'))
-      .send({from: this.state.account})
-      .on('receipt', (hash) => {
-        this.state.staking.methods.deposit(0, window.web3.utils.toWei(ammountToDeposit.toString(), 'Ether')).send({from: this.state.account}).on('receipt', (hash) => {
-          window.location.reload()
-        })
-      })
+  approveTuViella = async (approveValue)  => {
+    this.setState({ loading: 'TRANSACTION' })
+    this.state.tuviellaToken.methods
+    .approve(this.state.chainInUse.stakingAddress, window.web3.utils.toWei(approveValue.toString(), 'Ether'))
+    .send({from: this.state.account})
+    .on('receipt', (hash) => {
+      window.location.reload()
+    })
+    .on('error', function(error) {
+      window.location.reload()
+    });
+  }
+
+  depositTuViella = async (value)  => {
+    this.setState({ loading: 'TRANSACTION' })
+    this.state.staking.methods
+    .deposit(0, window.web3.utils.toWei(value.toString(), 'Ether'))
+    .send({from: this.state.account})
+    .on('receipt', (hash) => {
+      window.location.reload()
+    })
+    .on('error', function(error) {
+      window.location.reload()
+    });
   }
 
   harvestTuViella = async ()  => {
-      this.state.staking.methods
-      .brrr(0)
-      .send({from: this.state.account})
-      .on('receipt', async (hash) =>  {
-        window.location.reload()
-      })
+    this.setState({ loading: 'TRANSACTION' })
+    this.state.staking.methods
+    .brrr(0)
+    .send({from: this.state.account})
+    .on('receipt', async (hash) =>  {
+      window.location.reload()
+    })
+    .on('error', function(error) {
+      window.location.reload()
+    });
   }
 
-  withdrawTuViella = async (ammountToWithdraw)  => {
-      this.state.staking.methods
-      .withdraw(0, window.web3.utils.toWei(ammountToWithdraw.toString(), 'Ether'))
-      .send({from: this.state.account})
-      .on('receipt', async (hash) =>  {
-        window.location.reload()
-      })
+  withdrawTuViella = async (value)  => {
+    this.setState({ loading: 'TRANSACTION' })
+    this.state.staking.methods
+    .withdraw(0, window.web3.utils.toWei(value.toString(), 'Ether'))
+    .send({from: this.state.account})
+    .on('receipt', async (hash) =>  {
+      window.location.reload()
+    })
+    .on('error', function(error) {
+      window.location.reload()
+    });
   }
 
   //Just for admin use
@@ -175,6 +205,10 @@ class App extends Component {
     .getExpiryOf(this.state.account, this.state.chainInUse.tuviellaTokenAddress)
     .call()
     this.setState({ tuviellaExpiry: tuviellaExpiry }) 
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
   }
 
   constructor(props) {
@@ -192,11 +226,33 @@ class App extends Component {
       tuviellaSecs: 0,
       loading: 'WEB3',
       chainInUse: undefined,
-      ammountToDeposit: 0,
+      approveValue: 1000000000000000,
+      value: 0,
     }
-  } 
+    this.handleChange = this.handleChange.bind(this);
+  }
 
   render() {
+
+    let loading
+    if(this.state.loading === 'WEB3') {
+      loading = <div class="gradient-border">
+        <Loading />
+      </div>
+    }
+    
+    if(this.state.loading === 'INVALID_CHAIN') {
+      loading = <div class="gradient-border">
+        <ChainInfo />
+      </div>
+    }
+    
+    if(this.state.loading === 'TRANSACTION') {
+      loading = <div class="gradient-border">
+        <LoadingTransaction />
+      </div>
+    }
+
     let addTokenBtn
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
       addTokenBtn = <div id="addBtn">
@@ -239,11 +295,15 @@ class App extends Component {
     let farm
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
       farm = <div class="gradient-border">
-        <Farm 
+        <Farm
+          approveValue={this.state.approveValue} 
+          value={this.state.value}
+          handleChange={this.handleChange}
           tuviella={this.state.tuviellaToken}
           farm={this.state.staking} 
           tuviellaTokenBalance={this.state.tuviellaTokenBalance}
           deposit={this.depositTuViella}
+          approve={this.approveTuViella}
           withdraw={this.withdrawTuViella}
           harvest={this.harvestTuViella}
           stakingPending={this.state.stakingPendingViellas}
@@ -275,6 +335,7 @@ class App extends Component {
               </div>
             </nav>    
             <Switch>
+              {loading}
               <Route exact path="/">{home}</Route>         
               <Route path="/faucet">{faucet}</Route>
               <Route path="/farm">{farm}</Route>

@@ -35,7 +35,7 @@ class Faucet extends Component {
             event.preventDefault()
             this.props.claimTuViella()
           }}>
-          {this.props.tuviellaExpiry > 0 ? "You can claim again in: " + this.props.tuviellaExpiry + " secs" : "CLAIM PCM"}
+          {this.props.tuviellaExpiry > 0 ? "WAIT " + this.props.tuviellaExpiry + " SECS" : "CLAIM PCM"}
         </button>
         </div>
       </div>
