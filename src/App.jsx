@@ -148,7 +148,7 @@ class App extends Component {
   }
 
   approveTuViella = async (approveValue)  => {
-    
+    this.setState({ loading: 'TRANSACTION' })
     this.state.tuviellaToken.methods
     .approve(this.state.chainInUse.stakingAddress, window.web3.utils.toWei(approveValue.toString(), 'Ether'))
     .send({from: this.state.account})
