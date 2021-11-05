@@ -4,7 +4,7 @@ class NotFound extends Component {
 
   render() {
     return (
-      <div class="gradient-border" id="notFound">
+      <div>
         <h2>404 Error</h2>
         <h3>Page not found</h3>
         <form class="btn2" action="/">

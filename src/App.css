@@ -1,12 +1,16 @@
 /* GLOBAL */
 
 body{
-  background-color: #141414;
-  margin-top: 80px;
+  background-color: #000000;
+}
+
+main {
+  margin-top: 100px;
+  margin-bottom: 200px;
 }
 
 h1 {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   color: #ffffff;
 }
 
@@ -28,13 +32,8 @@ span {
 
 table {
   margin: 0 auto;
-  margin-top:40px;
-  margin-bottom: 40px;
-  border-top: 2px solid #979797;
-}
-
-table tbody {
-  border-bottom: 2px solid #979797;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 table th {
@@ -43,20 +42,22 @@ table th {
 
 table td {
   color: #00b62d;
-  padding: 0 250px 0 250px;
 }
 
 /* NAVBAR */
 
 #navigator {
   display: inline-flex;
-  background-color: #1b1b1b;
-  border-bottom: 2px solid #979797;
+  background-color: #000000;
   padding: 1px;
 }
 
 #navigator a {
-  margin-left: 15px;
+  margin-left: 20px;
+}
+
+#title {
+  color: #ffffff;
 }
 
 #addBtn {
@@ -81,7 +82,7 @@ table td {
   font-weight: bold;
 }
 
-/* MAIN */
+/* CLASS */
 
 .waitingMetamask{
   background-color: red;
@@ -125,6 +126,31 @@ table td {
   margin-top: 20px;
 }
 
+.footerModal p  {
+  font-weight: bold;
+  color: #ffbb00;
+}
+
+.footerModal b {
+  color: #00b62d;
+}
+
+.footerModal a {
+  text-decoration: none;
+  color: #00b62d;
+  padding: 10px;
+}
+
+.footerModal a:hover {
+  text-decoration: underline;
+}
+
+/* FAUCET */
+
+#buttonModal {
+  margin-bottom: 20px;
+}
+
 /* FARM */
 
 #approveModal {
@@ -135,39 +161,11 @@ table td {
   margin-top: 10px;
 }
 
-#boxModal {
-  display: inline-block;
-  margin-top: 20px;
-  margin-bottom: -20px;
-}
-
-#depositModal {
-  margin-bottom: 20px;
-  float:left; 
-}
-
-.balance  {
-  font-weight: bold;
-  color: #ffbb00;
-}
-
-.balance b {
-  color: #00b62d;
-}
-
-#depositModal button {
-  display: inline-block;
-  margin-left: 10px;
-}
-
 /* FOOTBAR */
 
-#footer {
-  background-color: #1b1b1b;
-  border-top: 2px solid #979797;
+#footer{
+  background-color: #000000;
   padding: 1px;
-  text-align: center;
-
 }
 
 #about {
@@ -175,7 +173,10 @@ table td {
   border-bottom: 1px solid #2e2e2e;
   margin-bottom: 10px;
   padding: 5px;
-
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }
 
 #about a {
@@ -192,6 +193,10 @@ table td {
 
 #social {
   margin-top: 20px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }
 
 #social a {
@@ -417,12 +422,12 @@ hr {
 /* MODAL */
 
 .gradient-border {
+  position: relative;
   color: #ffffff;
   text-align: center;
   background-color: #1b1b1b;
   padding: 20px;
   --borderWidth: 3px;
-  position: relative;
   border-radius: var(--borderWidth);
 }
 .gradient-border:after {

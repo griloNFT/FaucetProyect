@@ -4,7 +4,7 @@ class Soon extends Component {
 
   render() {
     return ( 
-        <div class="gradient-border"> 
+        <div> 
           <h1>WE ARE WORKING ON IT!</h1>
         </div>
     );

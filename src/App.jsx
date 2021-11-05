@@ -16,12 +16,12 @@ import patoIcon from './images/patologo.png'
  
 import Loading from './components/Loading'
 import LoadingTransaction from './components/LoadingTransaction'
-import Footer from './components/Footer'
 import ConnectWalletButton from './components/ConnectWalletButton'
 import AddTokenButton from './components/AddTokenButton'
 import chains from './components/AvailableChains'
 import ChainInfo from './components/ChainInfo'
 import NotFound from './components/NotFound'
+import Footer from './components/Footer'
 
 import Farm from './views/Farm'
 import Faucet from './views/Faucet'
@@ -228,19 +228,19 @@ class App extends Component {
 
     let loading
     if(this.state.loading === 'WEB3') {
-      loading = <div class="gradient-border">
+      loading = <div>
         <Loading />
       </div>
     }
     
     if(this.state.loading === 'INVALID_CHAIN') {
-      loading = <div class="gradient-border">
+      loading = <div>
         <ChainInfo />
       </div>
     }
     
     if(this.state.loading === 'TRANSACTION') {
-      loading = <div class="gradient-border">
+      loading = <div>
         <LoadingTransaction />
       </div>
     }
@@ -256,21 +256,21 @@ class App extends Component {
 
     let home
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
-      home = <div class="gradient-border">
+      home = <div>
         <Home />
       </div>
     }
 
     let soon
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
-      soon = <div class="gradient-border">
+      soon = <div>
         <Soon />
       </div>
     }
 
     let faucet
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
-      faucet = <div class="gradient-border">
+      faucet = <div>
         <Faucet
           tuviella={this.state.tuviellaToken}
           faucet={this.state.faucet} 
@@ -286,7 +286,7 @@ class App extends Component {
 
     let farm
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
-      farm = <div class="gradient-border">
+      farm = <div>
         <Farm
           approveValue={this.state.approveValue} 
           value={this.state.value}
@@ -310,8 +310,8 @@ class App extends Component {
       <Web3ReactProvider getLibrary={getLibrary}>
         <div className="container-fluid">
           <Router>
-            <nav id="navigator" className="navbar navbar-dark fixed-top">
-              <a href="/" className="navbar-brand col-sm-3 col-md-2 mr-0" >
+            <nav id="navigator" className="navbar fixed-top">
+              <a id="title" href="/" className="navbar-brand col-sm-3 col-md-2 mr-0" >
                 <img src={patoIcon} width="30" height="30" className="d-inline-block align-top" alt="" />
                 &nbsp; PROYECT COIN MANAGER
                 {addTokenBtn}
@@ -325,21 +325,23 @@ class App extends Component {
               <div>
                 <ConnectWalletButton />
               </div>
-            </nav>    
-            <Switch>
-              {loading}
-              <Route exact path="/">{home}</Route>         
-              <Route path="/faucet">{faucet}</Route>
-              <Route path="/farm">{farm}</Route>
-              <Route path="/vote">{soon}</Route>
-              <Route path="/nft">{soon}</Route>
-              <Route component={NotFound} />
-            </Switch>
-          </Router> 
-          <div>
-          <Footer /> 
-          </div>    
-        </div>
+            </nav>
+            <main class="gradient-border">    
+              <Switch>             
+                {loading}
+                <Route exact path="/">{home}</Route>         
+                <Route path="/faucet">{faucet}</Route>
+                <Route path="/farm">{farm}</Route>
+                <Route path="/vote">{soon}</Route>
+                <Route path="/nft">{soon}</Route>               
+                <Route component={NotFound} /> 
+              </Switch>
+            </main>
+            <footer id="footer" className="footbar fixed-bottom">
+              <Footer /> 
+            </footer>   
+          </Router>     
+        </div>  
       </Web3ReactProvider>
     );
   }
