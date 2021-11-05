@@ -3,13 +3,13 @@ import React, { Component } from 'react'
 class Farm extends Component {
 
   render() {
-    return (
+    return ( 
       <div>
         <h1>FARM</h1>
         <h6>FARM ADDRESS: &nbsp;<b>{this.props.farm._address}</b></h6>
         <h6>PCM ADDRESS: &nbsp;<b>{this.props.tuviella._address}</b></h6>
         <h6 class="bottom-bar">APY: &nbsp;<b>%</b></h6>
-        
+    
         <table>
           <thead>
             <tr>
@@ -28,33 +28,36 @@ class Farm extends Component {
             </tr>
           </tbody>
           <tfoot>
-            <td>
-              <div class="btn2" id="approveModal">
-                <button
-                  className="slide_from_left"
-                  type="submit"
-                  onClick={(event) => {
-                    event.preventDefault()
-                    this.props.approve(this.props.approveValue)
-                  }}>
-                  APPROVE
-                </button>
-              </div>
-            </td> 
-            <td>
-              <div class="btn2" id="claimModal">
-                <button
-                  disabled={this.props.stakingPending <= 0}
-                  className="slide_from_left"
-                  type="submit"             
-                  onClick={(event) => {
-                    event.preventDefault()
-                    this.props.harvest()
-                  }}>
-                  CLAIM PROFIT
-                </button>
-              </div>
-            </td>     
+            <tr>
+              <td>           
+                <div class="btn2" id="approveModal">
+                  <button
+                    disabled={this.props.stakingStaked > 0}
+                    className="slide_from_left" 
+                    type="submit"
+                    onClick={(event) => {
+                      event.preventDefault()
+                      this.props.approve(this.props.approveValue)
+                    }}>
+                    APPROVE
+                  </button>
+                </div>
+              </td> 
+              <td>
+                <div class="btn2" id="claimModal">
+                  <button
+                    disabled={this.props.stakingPending <= 0}
+                    className="slide_from_left"
+                    type="submit"             
+                    onClick={(event) => {
+                      event.preventDefault()
+                      this.props.harvest()
+                    }}>
+                    CLAIM PROFIT
+                  </button>
+                </div>
+              </td> 
+            </tr>    
           </tfoot>
         </table>
 

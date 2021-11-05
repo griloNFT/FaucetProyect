@@ -63,7 +63,7 @@ class App extends Component {
     for (let chainIndex in chains){
             if(chains[chainIndex].id === chainId){
         chainInUse = chains[chainIndex]
-      }
+      } 
     }
  
     if(!chainInUse){
@@ -111,7 +111,7 @@ class App extends Component {
       this.setState({ loading: 'FALSE' })
     }
   }
-
+  
   addTuviellaToken = async ()  => {
     try {
       const provider = window.web3.currentProvider
@@ -133,7 +133,7 @@ class App extends Component {
       console.log(error);
     }
   }
-
+ 
   claimTuViella = async ()  => {
     this.setState({ loading: 'TRANSACTION' })
     this.state.faucet.methods
@@ -148,16 +148,12 @@ class App extends Component {
   }
 
   approveTuViella = async (approveValue)  => {
-    this.setState({ loading: 'TRANSACTION' })
+    
     this.state.tuviellaToken.methods
     .approve(this.state.chainInUse.stakingAddress, window.web3.utils.toWei(approveValue.toString(), 'Ether'))
     .send({from: this.state.account})
-    .on('receipt', (hash) => {
-      window.location.reload()
-    })
-    .on('error', function(error) {
-      window.location.reload()
-    });
+    .on('receipt', (hash) => {window.location.reload()})
+    .on('error', function(error) {window.location.reload()});
   }
 
   depositTuViella = async (value)  => {
@@ -165,12 +161,8 @@ class App extends Component {
     this.state.staking.methods
     .deposit(0, window.web3.utils.toWei(value.toString(), 'Ether'))
     .send({from: this.state.account})
-    .on('receipt', (hash) => {
-      window.location.reload()
-    })
-    .on('error', function(error) {
-      window.location.reload()
-    });
+    .on('receipt', (hash) => {window.location.reload()})
+    .on('error', function(error) {window.location.reload()});
   }
 
   harvestTuViella = async ()  => {
@@ -226,7 +218,7 @@ class App extends Component {
       tuviellaSecs: 0,
       loading: 'WEB3',
       chainInUse: undefined,
-      approveValue: 1000000000000000,
+      approveValue: 10000000000000000,
       value: 0,
     }
     this.handleChange = this.handleChange.bind(this);
@@ -344,7 +336,9 @@ class App extends Component {
               <Route component={NotFound} />
             </Switch>
           </Router> 
-          <Footer />     
+          <div>
+          <Footer /> 
+          </div>    
         </div>
       </Web3ReactProvider>
     );
