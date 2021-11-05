@@ -218,7 +218,7 @@ class App extends Component {
       tuviellaSecs: 0,
       loading: 'WEB3',
       chainInUse: undefined,
-      approveValue: 10000000000000000,
+      approveValue: 100000000000000000000,
       value: 0,
     }
     this.handleChange = this.handleChange.bind(this);
