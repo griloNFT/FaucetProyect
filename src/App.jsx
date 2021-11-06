@@ -23,9 +23,10 @@ import Footer from './components/Footer'
 
 import patoIcon from './images/patologo.png'
 
-import Pool from './views/Pool'
-import Faucet from './views/Faucet'
 import Home from './views/Home'
+import Faucet from './views/Faucet'
+import Pool from './views/Pool'
+import Vote from './views/Vote'
 import Soon from './views/Soon'
 
 import './App.css'
@@ -263,11 +264,7 @@ class App extends Component {
     let home
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
       home = <div>
-        <Home
-         
-          
-    
-        />
+        <Home />
       </div>
     }
 
@@ -290,6 +287,27 @@ class App extends Component {
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
       pool = <div>
         <Pool
+          patoToken={this.state.patoToken}
+          farm={this.state.staking}
+          approve={this.approveTuViella}
+          approveValue={this.state.approveValue} 
+          value={this.state.value}
+          handleChange={this.handleChange}
+          deposit={this.depositTuViella}
+          withdraw={this.withdrawTuViella}
+          harvest={this.harvestTuViella} 
+          patoTokenBalance={this.state.patoTokenBalance}      
+          stakingPending={this.state.stakingPendingViellas}
+          stakingStaked={this.state.stakingStakedViellas}
+          tokenName="PVP" 
+        />
+      </div>
+    }
+
+    let vote
+    if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
+      vote = <div>
+        <Vote
           patoToken={this.state.patoToken}
           farm={this.state.staking}
           approve={this.approveTuViella}
@@ -340,7 +358,7 @@ class App extends Component {
                 <Route exact path="/">{home}</Route>         
                 <Route path="/faucet">{faucet}</Route>
                 <Route path="/pool">{pool}</Route>
-                <Route path="/vote">{soon}</Route>
+                <Route path="/vote">{vote}</Route>
                 <Route path="/nft">{soon}</Route>               
                 <Route component={NotFound} /> 
               </Switch>

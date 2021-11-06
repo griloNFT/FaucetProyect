@@ -4,6 +4,7 @@ import Github from '../images/github_logo.png'
 import Telegram from '../images/telegram_logo.png'
 import Discord from '../images/discord_logo.png'
 import Twitter from '../images/twitter_logo.png'
+import YouTube from '../images/tube_logo.png'
 
 class Footer extends Component {
 
@@ -19,6 +20,9 @@ class Footer extends Component {
         <div id="social">
           <a href="https://www.twitch.tv/patoverde_pv" target="_blank" rel="noopener noreferrer">
             <img src={Twitch} width="20" height="20" className="d-inline-block align-top" alt="" />
+          </a>
+          <a href="https://www.youtube.com/channel/UCoxr0mC9BpLIpajYDepgnFQ/featured" target="_blank" rel="noopener noreferrer">
+            <img src={YouTube} width="20" height="20" className="d-inline-block align-top" alt="" />
           </a>
           <a href="https://github.com/PatoProyects2/FaucetProyect" target="_blank" rel="noopener noreferrer">
             <img src={Github} width="20" height="20" className="d-inline-block align-top" alt="" />

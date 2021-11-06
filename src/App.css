@@ -17,6 +17,14 @@ h2 {
   color: #ff0000;
 }
 
+h3 {
+  color: #008cff;
+}
+
+h4 {
+  color: #ff6600;
+}
+
 h6 {
   color: #ffbb00;
   font-weight: bold;
@@ -100,7 +108,7 @@ table td {
 
 #navigator {
   display: inline-flex;
-  background-color: #1b1b1b;
+  background-color: #000000;
   padding: 1px;
 }
 
@@ -134,6 +142,13 @@ table td {
   font-weight: bold;
 }
 
+/* HOME */
+
+#twitch {
+  display: inline-block;
+  text-align: center;
+}
+
 /* FAUCET */
 
 /* FARM */
@@ -141,7 +156,7 @@ table td {
 /* FOOTBAR */
 
 #footer{
-  background-color: #1b1b1b;
+  background-color: #000000;
 }
 
 #about {
@@ -222,11 +237,6 @@ table td {
 
 /* BUTTON 2 */
 
-hr {
-  border: 0;
-  border-bottom: 0.0625rem solid #bbb;
-  margin: 3rem 0;
-}
 .btn2 button {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -243,9 +253,11 @@ hr {
   z-index: 1;
   overflow: hidden;
 }
+
 .btn2 button:hover {
   color: #000000;
 }
+
 .btn2 button::after {
   content: "";
   background: #ecf0f1;
@@ -254,9 +266,11 @@ hr {
   padding: 0.85em 0.75em;
   display: block;
 }
+
 .btn2 button[class^="slide"]::after {
   transition: all 0.35s;
 }
+
 .btn2 button[class^="slide"]:hover::after {
   left: 0;
   right: 0;
@@ -264,6 +278,7 @@ hr {
   bottom: 0;
   transition: all 0.35s;
 }
+
 .btn2 button.slide_from_left::after {
   top: 0;
   bottom: 0;
@@ -273,7 +288,7 @@ hr {
 
 /* INPUT */
 
-.field__input{ 
+.field__input { 
   --uiFieldPlaceholderColor: var(--fieldPlaceholderColor, #767676);
   background-color: transparent;
   border-radius: 0;
@@ -284,15 +299,15 @@ hr {
   font-size: inherit;
 }
 
-.field__input:focus::-webkit-input-placeholder{
+.field__input:focus::-webkit-input-placeholder {
   color: var(--uiFieldPlaceholderColor);
 }
 
-.field__input:focus::-moz-placeholder{
+.field__input:focus::-moz-placeholder {
   color: var(--uiFieldPlaceholderColor);
 }
 
-.field{
+.field {
   margin-top: 60px;
   --uiFieldBorderWidth: var(--fieldBorderWidth, 2px);
   --uiFieldPaddingRight: var(--fieldPaddingRight, 1rem);
@@ -303,7 +318,7 @@ hr {
   font-size: var(--fieldFontSize, 1rem);
 }
 
-.field__input{
+.field__input {
   color: #00b62d;
   box-sizing: border-box;
   width: var(--fieldWidth, 100%);
@@ -312,35 +327,34 @@ hr {
   border-bottom: var(--uiFieldBorderWidth) solid var(--fieldBorderColor, #767676);  
 }
 
-.field__input:focus{
+.field__input:focus {
   outline: none;
 }
 
-.field__input::-webkit-input-placeholder{
+.field__input::-webkit-input-placeholder {
   opacity: 0;
   transition: opacity .2s ease-out;
 }
 
-.field__input::-moz-placeholder{
+.field__input::-moz-placeholder {
   opacity: 0;
   transition: opacity .2s ease-out;
 }
 
-.field__input:focus::-webkit-input-placeholder{
+.field__input:focus::-webkit-input-placeholder {
   opacity: 1;
   transition-delay: .2s;
 }
 
-.field__input:focus::-moz-placeholder{
+.field__input:focus::-moz-placeholder {
   opacity: 1;
   transition-delay: .2s;
 }
 
-.field__label-wrap{
+.field__label-wrap {
   box-sizing: border-box;
   pointer-events: none;
   cursor: text;
-
   position: absolute;
   top: 0;
   right: 0;
@@ -348,41 +362,39 @@ hr {
   left: 0;
 }
 
-.field__label-wrap::after{
+.field__label-wrap::after {
   content: "";
   box-sizing: border-box;
   width: 100%;
   height: 0;
   opacity: 0;
-
   position: absolute;
   bottom: 0;
   left: 0;
 }
 
-.field__input:focus ~ .field__label-wrap::after{
+.field__input:focus ~ .field__label-wrap::after {
   opacity: 1;
 }
 
-.field__label{
+.field__label {
   position: absolute;
   left: var(--uiFieldPaddingLeft);
   top: calc(50% - .5em);
   color:#ffffff;
   line-height: 1;
   font-size: var(--fieldHintFontSize, inherit);
-
   transition: top .2s cubic-bezier(0.9, -0.15, 0.1, 1.15), opacity .2s ease-out, font-size .2s ease-out;
   will-change: bottom, opacity, font-size;
 }
 
 .field__input:focus ~ .field__label-wrap .field__label,
-.field__input:not(:placeholder-shown) ~ .field__label-wrap .field__label{
+.field__input:not(:placeholder-shown) ~ .field__label-wrap .field__label {
   --fieldHintFontSize: var(--fieldHintFontSizeFocused, .75rem);
   top: var(--fieldHintTopHover, .25rem);
 }
 
-.field_v1 .field__label-wrap::after{
+.field_v1 .field__label-wrap::after {
   border-bottom: var(--uiFieldBorderWidth) solid var(--uiFieldBorderColorActive);
   transition: opacity .2s ease-out;
   will-change: opacity;
