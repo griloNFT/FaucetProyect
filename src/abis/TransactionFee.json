@@ -671,7 +671,7 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.4.22 <0.9.0;\n\nimport \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";\nimport \"@openzeppelin/contracts/access/AccessControlEnumerable.sol\";\n\nabstract contract TransactionFee is ERC20, AccessControlEnumerable {\n  bytes32 public constant DEVELOPER_ROLE = keccak256(\"DEVELOPER_ROLE\");\n\n  /**\n   * @dev Transaction fee 0.7%\n   */\n  uint16 feeTransaction = 70;\n  /**\n   * @dev Burn percentage of the transaction fee 50%\n   */\n  uint16 burnFee = 5000;\n  /**\n   * @dev Developers fee of the transaction 25%\n   */\n  uint16 devFee = 2500;\n  /**\n   * @dev Holder fee of the transaction 25%\n   */\n  uint16 holderFee = 2500;\n\n  constructor() {\n    _setupRole(DEVELOPER_ROLE, _msgSender());\n  }\n\n  /**\n   * @dev Get transaction fee to pay for every transaction\n   */\n  function getTransactionFee() public view returns (uint16) {\n    return feeTransaction;\n  }\n\n  /**\n   * @dev Set transaction fee to pay for every transaction\n   */\n  function setTransactionFee(uint16 _fee) external {\n    feeTransaction = _fee;\n  }\n\n  /**\n   * @dev Get devs fee for every transaction\n   */\n  function getDevsFee() public view returns (uint16) {\n    return devFee;\n  }\n\n  /**\n   * @dev Set devs fee for every transaction\n   */\n  function setDevsFee(uint16 _fee) external {\n    devFee = _fee;\n  }\n\n  /**\n   * @dev Get burn fee for every transaction\n   */\n  function getBurnFee() public view returns (uint16) {\n    return burnFee;\n  }\n\n  /**\n   * @dev Set burn fee for every transaction\n   */\n  function setBurnFee(uint16 _fee) external {\n    burnFee = _fee;\n  }\n\n  /**\n   * @dev Get holder fee for every transaction\n   */\n  function getHolderFee() public view returns (uint16) {\n    return holderFee;\n  }\n\n  /**\n   * @dev Set holder fee for every transaction\n   */\n  function setHolderFee(uint16 _fee) external {\n    holderFee = _fee;\n  }\n\n  function addDev(address _wallet) external {\n    grantRole(DEVELOPER_ROLE, _wallet);\n  }\n\n  function removeDev(address _wallet) external {\n    revokeRole(DEVELOPER_ROLE, _wallet);\n  }\n}\n",
-  "sourcePath": "/home/guillermo/dapps/tuviella-contract/contracts/library/TransactionFee.sol",
+  "sourcePath": "/home/guillermo/dapps/patoProyect/blockEnd/contracts/library/TransactionFee.sol",
   "ast": {
     "absolutePath": "project:/contracts/library/TransactionFee.sol",
     "exportedSymbols": {
@@ -682,16 +682,16 @@
         485
       ],
       "Context": [
-        2070
+        1879
       ],
       "ERC165": [
-        2297
+        2106
       ],
       "ERC20": [
-        1325
+        1233
       ],
       "EnumerableSet": [
-        2996
+        2805
       ],
       "IAccessControl": [
         558
@@ -700,27 +700,27 @@
         583
       ],
       "IERC165": [
-        2309
+        2118
       ],
       "IERC20": [
-        1403
+        1311
       ],
       "IERC20Metadata": [
-        1527
+        1336
       ],
       "Strings": [
-        2273
+        2082
       ],
       "TransactionFee": [
-        5275
+        5122
       ]
     },
-    "id": 5276,
+    "id": 5123,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 5135,
+        "id": 4982,
         "literals": [
           "solidity",
           ">=",
@@ -731,27 +731,27 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "32:32:24"
+        "src": "32:32:21"
       },
       {
         "absolutePath": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
         "file": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
-        "id": 5136,
+        "id": 4983,
         "nodeType": "ImportDirective",
-        "scope": 5276,
-        "sourceUnit": 1326,
-        "src": "66:55:24",
+        "scope": 5123,
+        "sourceUnit": 1234,
+        "src": "66:55:21",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
         "absolutePath": "@openzeppelin/contracts/access/AccessControlEnumerable.sol",
         "file": "@openzeppelin/contracts/access/AccessControlEnumerable.sol",
-        "id": 5137,
+        "id": 4984,
         "nodeType": "ImportDirective",
-        "scope": 5276,
+        "scope": 5123,
         "sourceUnit": 486,
-        "src": "122:68:24",
+        "src": "122:68:21",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -760,27 +760,27 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 5138,
+              "id": 4985,
               "name": "ERC20",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1325,
-              "src": "228:5:24"
+              "referencedDeclaration": 1233,
+              "src": "228:5:21"
             },
-            "id": 5139,
+            "id": 4986,
             "nodeType": "InheritanceSpecifier",
-            "src": "228:5:24"
+            "src": "228:5:21"
           },
           {
             "baseName": {
-              "id": 5140,
+              "id": 4987,
               "name": "AccessControlEnumerable",
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 485,
-              "src": "235:23:24"
+              "src": "235:23:21"
             },
-            "id": 5141,
+            "id": 4988,
             "nodeType": "InheritanceSpecifier",
-            "src": "235:23:24"
+            "src": "235:23:21"
           }
         ],
         "contractDependencies": [
@@ -788,28 +788,28 @@
           485,
           558,
           583,
-          1325,
-          1403,
-          1527,
-          2070,
-          2297,
-          2309
+          1233,
+          1311,
+          1336,
+          1879,
+          2106,
+          2118
         ],
         "contractKind": "contract",
         "fullyImplemented": false,
-        "id": 5275,
+        "id": 5122,
         "linearizedBaseContracts": [
-          5275,
+          5122,
           485,
           306,
-          2297,
-          2309,
+          2106,
+          2118,
           583,
           558,
-          1325,
-          1527,
-          1403,
-          2070
+          1233,
+          1336,
+          1311,
+          1879
         ],
         "name": "TransactionFee",
         "nodeType": "ContractDefinition",
@@ -817,12 +817,12 @@
           {
             "constant": true,
             "functionSelector": "9103a0e0",
-            "id": 5146,
+            "id": 4993,
             "mutability": "constant",
             "name": "DEVELOPER_ROLE",
             "nodeType": "VariableDeclaration",
-            "scope": 5275,
-            "src": "263:68:24",
+            "scope": 5122,
+            "src": "263:68:21",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -830,10 +830,10 @@
               "typeString": "bytes32"
             },
             "typeName": {
-              "id": 5142,
+              "id": 4989,
               "name": "bytes32",
               "nodeType": "ElementaryTypeName",
-              "src": "263:7:24",
+              "src": "263:7:21",
               "typeDescriptions": {
                 "typeIdentifier": "t_bytes32",
                 "typeString": "bytes32"
@@ -843,14 +843,14 @@
               "arguments": [
                 {
                   "hexValue": "444556454c4f5045525f524f4c45",
-                  "id": 5144,
+                  "id": 4991,
                   "isConstant": false,
                   "isLValue": false,
                   "isPure": true,
                   "kind": "string",
                   "lValueRequested": false,
                   "nodeType": "Literal",
-                  "src": "314:16:24",
+                  "src": "314:16:21",
                   "typeDescriptions": {
                     "typeIdentifier": "t_stringliteral_4504b9dfd7400a1522f49a8b4a100552da9236849581fd59b7363eb48c6a474c",
                     "typeString": "literal_string \"DEVELOPER_ROLE\""
@@ -865,18 +865,18 @@
                     "typeString": "literal_string \"DEVELOPER_ROLE\""
                   }
                 ],
-                "id": 5143,
+                "id": 4990,
                 "name": "keccak256",
                 "nodeType": "Identifier",
                 "overloadedDeclarations": [],
                 "referencedDeclaration": 4294967288,
-                "src": "304:9:24",
+                "src": "304:9:21",
                 "typeDescriptions": {
                   "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
                   "typeString": "function (bytes memory) pure returns (bytes32)"
                 }
               },
-              "id": 5145,
+              "id": 4992,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -884,7 +884,7 @@
               "lValueRequested": false,
               "names": [],
               "nodeType": "FunctionCall",
-              "src": "304:27:24",
+              "src": "304:27:21",
               "tryCall": false,
               "typeDescriptions": {
                 "typeIdentifier": "t_bytes32",
@@ -896,17 +896,17 @@
           {
             "constant": false,
             "documentation": {
-              "id": 5147,
+              "id": 4994,
               "nodeType": "StructuredDocumentation",
-              "src": "336:40:24",
+              "src": "336:40:21",
               "text": " @dev Transaction fee 0.7%"
             },
-            "id": 5150,
+            "id": 4997,
             "mutability": "mutable",
             "name": "feeTransaction",
             "nodeType": "VariableDeclaration",
-            "scope": 5275,
-            "src": "379:26:24",
+            "scope": 5122,
+            "src": "379:26:21",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -914,10 +914,10 @@
               "typeString": "uint16"
             },
             "typeName": {
-              "id": 5148,
+              "id": 4995,
               "name": "uint16",
               "nodeType": "ElementaryTypeName",
-              "src": "379:6:24",
+              "src": "379:6:21",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint16",
                 "typeString": "uint16"
@@ -925,14 +925,14 @@
             },
             "value": {
               "hexValue": "3730",
-              "id": 5149,
+              "id": 4996,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
               "kind": "number",
               "lValueRequested": false,
               "nodeType": "Literal",
-              "src": "403:2:24",
+              "src": "403:2:21",
               "typeDescriptions": {
                 "typeIdentifier": "t_rational_70_by_1",
                 "typeString": "int_const 70"
@@ -944,17 +944,17 @@
           {
             "constant": false,
             "documentation": {
-              "id": 5151,
+              "id": 4998,
               "nodeType": "StructuredDocumentation",
-              "src": "409:62:24",
+              "src": "409:62:21",
               "text": " @dev Burn percentage of the transaction fee 50%"
             },
-            "id": 5154,
+            "id": 5001,
             "mutability": "mutable",
             "name": "burnFee",
             "nodeType": "VariableDeclaration",
-            "scope": 5275,
-            "src": "474:21:24",
+            "scope": 5122,
+            "src": "474:21:21",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -962,10 +962,10 @@
               "typeString": "uint16"
             },
             "typeName": {
-              "id": 5152,
+              "id": 4999,
               "name": "uint16",
               "nodeType": "ElementaryTypeName",
-              "src": "474:6:24",
+              "src": "474:6:21",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint16",
                 "typeString": "uint16"
@@ -973,14 +973,14 @@
             },
             "value": {
               "hexValue": "35303030",
-              "id": 5153,
+              "id": 5000,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
               "kind": "number",
               "lValueRequested": false,
               "nodeType": "Literal",
-              "src": "491:4:24",
+              "src": "491:4:21",
               "typeDescriptions": {
                 "typeIdentifier": "t_rational_5000_by_1",
                 "typeString": "int_const 5000"
@@ -992,17 +992,17 @@
           {
             "constant": false,
             "documentation": {
-              "id": 5155,
+              "id": 5002,
               "nodeType": "StructuredDocumentation",
-              "src": "499:57:24",
+              "src": "499:57:21",
               "text": " @dev Developers fee of the transaction 25%"
             },
-            "id": 5158,
+            "id": 5005,
             "mutability": "mutable",
             "name": "devFee",
             "nodeType": "VariableDeclaration",
-            "scope": 5275,
-            "src": "559:20:24",
+            "scope": 5122,
+            "src": "559:20:21",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -1010,10 +1010,10 @@
               "typeString": "uint16"
             },
             "typeName": {
-              "id": 5156,
+              "id": 5003,
               "name": "uint16",
               "nodeType": "ElementaryTypeName",
-              "src": "559:6:24",
+              "src": "559:6:21",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint16",
                 "typeString": "uint16"
@@ -1021,14 +1021,14 @@
             },
             "value": {
               "hexValue": "32353030",
-              "id": 5157,
+              "id": 5004,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
               "kind": "number",
               "lValueRequested": false,
               "nodeType": "Literal",
-              "src": "575:4:24",
+              "src": "575:4:21",
               "typeDescriptions": {
                 "typeIdentifier": "t_rational_2500_by_1",
                 "typeString": "int_const 2500"
@@ -1040,17 +1040,17 @@
           {
             "constant": false,
             "documentation": {
-              "id": 5159,
+              "id": 5006,
               "nodeType": "StructuredDocumentation",
-              "src": "583:53:24",
+              "src": "583:53:21",
               "text": " @dev Holder fee of the transaction 25%"
             },
-            "id": 5162,
+            "id": 5009,
             "mutability": "mutable",
             "name": "holderFee",
             "nodeType": "VariableDeclaration",
-            "scope": 5275,
-            "src": "639:23:24",
+            "scope": 5122,
+            "src": "639:23:21",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -1058,10 +1058,10 @@
               "typeString": "uint16"
             },
             "typeName": {
-              "id": 5160,
+              "id": 5007,
               "name": "uint16",
               "nodeType": "ElementaryTypeName",
-              "src": "639:6:24",
+              "src": "639:6:21",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint16",
                 "typeString": "uint16"
@@ -1069,14 +1069,14 @@
             },
             "value": {
               "hexValue": "32353030",
-              "id": 5161,
+              "id": 5008,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
               "kind": "number",
               "lValueRequested": false,
               "nodeType": "Literal",
-              "src": "658:4:24",
+              "src": "658:4:21",
               "typeDescriptions": {
                 "typeIdentifier": "t_rational_2500_by_1",
                 "typeString": "int_const 2500"
@@ -1087,20 +1087,20 @@
           },
           {
             "body": {
-              "id": 5171,
+              "id": 5018,
               "nodeType": "Block",
-              "src": "681:51:24",
+              "src": "681:51:21",
               "statements": [
                 {
                   "expression": {
                     "arguments": [
                       {
-                        "id": 5166,
+                        "id": 5013,
                         "name": "DEVELOPER_ROLE",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5146,
-                        "src": "698:14:24",
+                        "referencedDeclaration": 4993,
+                        "src": "698:14:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -1110,18 +1110,18 @@
                         "arguments": [],
                         "expression": {
                           "argumentTypes": [],
-                          "id": 5167,
+                          "id": 5014,
                           "name": "_msgSender",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2060,
-                          "src": "714:10:24",
+                          "referencedDeclaration": 1869,
+                          "src": "714:10:21",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_view$__$returns$_t_address_$",
                             "typeString": "function () view returns (address)"
                           }
                         },
-                        "id": 5168,
+                        "id": 5015,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1129,7 +1129,7 @@
                         "lValueRequested": false,
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "714:12:24",
+                        "src": "714:12:21",
                         "tryCall": false,
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -1148,20 +1148,20 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 5165,
+                      "id": 5012,
                       "name": "_setupRole",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
                         484
                       ],
                       "referencedDeclaration": 484,
-                      "src": "687:10:24",
+                      "src": "687:10:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$returns$__$",
                         "typeString": "function (bytes32,address)"
                       }
                     },
-                    "id": 5169,
+                    "id": 5016,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1169,100 +1169,100 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "687:40:24",
+                    "src": "687:40:21",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 5170,
+                  "id": 5017,
                   "nodeType": "ExpressionStatement",
-                  "src": "687:40:24"
+                  "src": "687:40:21"
                 }
               ]
             },
-            "id": 5172,
+            "id": 5019,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5163,
+              "id": 5010,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "678:2:24"
+              "src": "678:2:21"
             },
             "returnParameters": {
-              "id": 5164,
+              "id": 5011,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "681:0:24"
+              "src": "681:0:21"
             },
-            "scope": 5275,
-            "src": "667:65:24",
+            "scope": 5122,
+            "src": "667:65:21",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 5180,
+              "id": 5027,
               "nodeType": "Block",
-              "src": "865:32:24",
+              "src": "865:32:21",
               "statements": [
                 {
                   "expression": {
-                    "id": 5178,
+                    "id": 5025,
                     "name": "feeTransaction",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 5150,
-                    "src": "878:14:24",
+                    "referencedDeclaration": 4997,
+                    "src": "878:14:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
                     }
                   },
-                  "functionReturnParameters": 5177,
-                  "id": 5179,
+                  "functionReturnParameters": 5024,
+                  "id": 5026,
                   "nodeType": "Return",
-                  "src": "871:21:24"
+                  "src": "871:21:21"
                 }
               ]
             },
             "documentation": {
-              "id": 5173,
+              "id": 5020,
               "nodeType": "StructuredDocumentation",
-              "src": "736:68:24",
+              "src": "736:68:21",
               "text": " @dev Get transaction fee to pay for every transaction"
             },
             "functionSelector": "85d79102",
-            "id": 5181,
+            "id": 5028,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getTransactionFee",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5174,
+              "id": 5021,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "833:2:24"
+              "src": "833:2:21"
             },
             "returnParameters": {
-              "id": 5177,
+              "id": 5024,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5176,
+                  "id": 5023,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5181,
-                  "src": "857:6:24",
+                  "scope": 5028,
+                  "src": "857:6:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1270,10 +1270,10 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 5175,
+                    "id": 5022,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
-                    "src": "857:6:24",
+                    "src": "857:6:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
@@ -1282,34 +1282,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "856:8:24"
+              "src": "856:8:21"
             },
-            "scope": 5275,
-            "src": "807:90:24",
+            "scope": 5122,
+            "src": "807:90:21",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 5191,
+              "id": 5038,
               "nodeType": "Block",
-              "src": "1021:32:24",
+              "src": "1021:32:21",
               "statements": [
                 {
                   "expression": {
-                    "id": 5189,
+                    "id": 5036,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 5187,
+                      "id": 5034,
                       "name": "feeTransaction",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5150,
-                      "src": "1027:14:24",
+                      "referencedDeclaration": 4997,
+                      "src": "1027:14:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint16",
                         "typeString": "uint16"
@@ -1318,54 +1318,54 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 5188,
+                      "id": 5035,
                       "name": "_fee",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5184,
-                      "src": "1044:4:24",
+                      "referencedDeclaration": 5031,
+                      "src": "1044:4:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint16",
                         "typeString": "uint16"
                       }
                     },
-                    "src": "1027:21:24",
+                    "src": "1027:21:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
                     }
                   },
-                  "id": 5190,
+                  "id": 5037,
                   "nodeType": "ExpressionStatement",
-                  "src": "1027:21:24"
+                  "src": "1027:21:21"
                 }
               ]
             },
             "documentation": {
-              "id": 5182,
+              "id": 5029,
               "nodeType": "StructuredDocumentation",
-              "src": "901:68:24",
+              "src": "901:68:21",
               "text": " @dev Set transaction fee to pay for every transaction"
             },
             "functionSelector": "b45940f2",
-            "id": 5192,
+            "id": 5039,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "setTransactionFee",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5185,
+              "id": 5032,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5184,
+                  "id": 5031,
                   "mutability": "mutable",
                   "name": "_fee",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5192,
-                  "src": "999:11:24",
+                  "scope": 5039,
+                  "src": "999:11:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1373,10 +1373,10 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 5183,
+                    "id": 5030,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
-                    "src": "999:6:24",
+                    "src": "999:6:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
@@ -1385,77 +1385,77 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "998:13:24"
+              "src": "998:13:21"
             },
             "returnParameters": {
-              "id": 5186,
+              "id": 5033,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1021:0:24"
+              "src": "1021:0:21"
             },
-            "scope": 5275,
-            "src": "972:81:24",
+            "scope": 5122,
+            "src": "972:81:21",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 5200,
+              "id": 5047,
               "nodeType": "Block",
-              "src": "1165:24:24",
+              "src": "1165:24:21",
               "statements": [
                 {
                   "expression": {
-                    "id": 5198,
+                    "id": 5045,
                     "name": "devFee",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 5158,
-                    "src": "1178:6:24",
+                    "referencedDeclaration": 5005,
+                    "src": "1178:6:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
                     }
                   },
-                  "functionReturnParameters": 5197,
-                  "id": 5199,
+                  "functionReturnParameters": 5044,
+                  "id": 5046,
                   "nodeType": "Return",
-                  "src": "1171:13:24"
+                  "src": "1171:13:21"
                 }
               ]
             },
             "documentation": {
-              "id": 5193,
+              "id": 5040,
               "nodeType": "StructuredDocumentation",
-              "src": "1057:54:24",
+              "src": "1057:54:21",
               "text": " @dev Get devs fee for every transaction"
             },
             "functionSelector": "46e50994",
-            "id": 5201,
+            "id": 5048,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getDevsFee",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5194,
+              "id": 5041,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1133:2:24"
+              "src": "1133:2:21"
             },
             "returnParameters": {
-              "id": 5197,
+              "id": 5044,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5196,
+                  "id": 5043,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5201,
-                  "src": "1157:6:24",
+                  "scope": 5048,
+                  "src": "1157:6:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1463,10 +1463,10 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 5195,
+                    "id": 5042,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1157:6:24",
+                    "src": "1157:6:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
@@ -1475,34 +1475,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1156:8:24"
+              "src": "1156:8:21"
             },
-            "scope": 5275,
-            "src": "1114:75:24",
+            "scope": 5122,
+            "src": "1114:75:21",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 5211,
+              "id": 5058,
               "nodeType": "Block",
-              "src": "1292:24:24",
+              "src": "1292:24:21",
               "statements": [
                 {
                   "expression": {
-                    "id": 5209,
+                    "id": 5056,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 5207,
+                      "id": 5054,
                       "name": "devFee",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5158,
-                      "src": "1298:6:24",
+                      "referencedDeclaration": 5005,
+                      "src": "1298:6:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint16",
                         "typeString": "uint16"
@@ -1511,54 +1511,54 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 5208,
+                      "id": 5055,
                       "name": "_fee",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5204,
-                      "src": "1307:4:24",
+                      "referencedDeclaration": 5051,
+                      "src": "1307:4:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint16",
                         "typeString": "uint16"
                       }
                     },
-                    "src": "1298:13:24",
+                    "src": "1298:13:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
                     }
                   },
-                  "id": 5210,
+                  "id": 5057,
                   "nodeType": "ExpressionStatement",
-                  "src": "1298:13:24"
+                  "src": "1298:13:21"
                 }
               ]
             },
             "documentation": {
-              "id": 5202,
+              "id": 5049,
               "nodeType": "StructuredDocumentation",
-              "src": "1193:54:24",
+              "src": "1193:54:21",
               "text": " @dev Set devs fee for every transaction"
             },
             "functionSelector": "71867b23",
-            "id": 5212,
+            "id": 5059,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "setDevsFee",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5205,
+              "id": 5052,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5204,
+                  "id": 5051,
                   "mutability": "mutable",
                   "name": "_fee",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5212,
-                  "src": "1270:11:24",
+                  "scope": 5059,
+                  "src": "1270:11:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1566,10 +1566,10 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 5203,
+                    "id": 5050,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1270:6:24",
+                    "src": "1270:6:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
@@ -1578,77 +1578,77 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1269:13:24"
+              "src": "1269:13:21"
             },
             "returnParameters": {
-              "id": 5206,
+              "id": 5053,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1292:0:24"
+              "src": "1292:0:21"
             },
-            "scope": 5275,
-            "src": "1250:66:24",
+            "scope": 5122,
+            "src": "1250:66:21",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 5220,
+              "id": 5067,
               "nodeType": "Block",
-              "src": "1428:25:24",
+              "src": "1428:25:21",
               "statements": [
                 {
                   "expression": {
-                    "id": 5218,
+                    "id": 5065,
                     "name": "burnFee",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 5154,
-                    "src": "1441:7:24",
+                    "referencedDeclaration": 5001,
+                    "src": "1441:7:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
                     }
                   },
-                  "functionReturnParameters": 5217,
-                  "id": 5219,
+                  "functionReturnParameters": 5064,
+                  "id": 5066,
                   "nodeType": "Return",
-                  "src": "1434:14:24"
+                  "src": "1434:14:21"
                 }
               ]
             },
             "documentation": {
-              "id": 5213,
+              "id": 5060,
               "nodeType": "StructuredDocumentation",
-              "src": "1320:54:24",
+              "src": "1320:54:21",
               "text": " @dev Get burn fee for every transaction"
             },
             "functionSelector": "aa4b10d1",
-            "id": 5221,
+            "id": 5068,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getBurnFee",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5214,
+              "id": 5061,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1396:2:24"
+              "src": "1396:2:21"
             },
             "returnParameters": {
-              "id": 5217,
+              "id": 5064,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5216,
+                  "id": 5063,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5221,
-                  "src": "1420:6:24",
+                  "scope": 5068,
+                  "src": "1420:6:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1656,10 +1656,10 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 5215,
+                    "id": 5062,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1420:6:24",
+                    "src": "1420:6:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
@@ -1668,34 +1668,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1419:8:24"
+              "src": "1419:8:21"
             },
-            "scope": 5275,
-            "src": "1377:76:24",
+            "scope": 5122,
+            "src": "1377:76:21",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 5231,
+              "id": 5078,
               "nodeType": "Block",
-              "src": "1556:25:24",
+              "src": "1556:25:21",
               "statements": [
                 {
                   "expression": {
-                    "id": 5229,
+                    "id": 5076,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 5227,
+                      "id": 5074,
                       "name": "burnFee",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5154,
-                      "src": "1562:7:24",
+                      "referencedDeclaration": 5001,
+                      "src": "1562:7:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint16",
                         "typeString": "uint16"
@@ -1704,54 +1704,54 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 5228,
+                      "id": 5075,
                       "name": "_fee",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5224,
-                      "src": "1572:4:24",
+                      "referencedDeclaration": 5071,
+                      "src": "1572:4:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint16",
                         "typeString": "uint16"
                       }
                     },
-                    "src": "1562:14:24",
+                    "src": "1562:14:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
                     }
                   },
-                  "id": 5230,
+                  "id": 5077,
                   "nodeType": "ExpressionStatement",
-                  "src": "1562:14:24"
+                  "src": "1562:14:21"
                 }
               ]
             },
             "documentation": {
-              "id": 5222,
+              "id": 5069,
               "nodeType": "StructuredDocumentation",
-              "src": "1457:54:24",
+              "src": "1457:54:21",
               "text": " @dev Set burn fee for every transaction"
             },
             "functionSelector": "49de5f87",
-            "id": 5232,
+            "id": 5079,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "setBurnFee",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5225,
+              "id": 5072,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5224,
+                  "id": 5071,
                   "mutability": "mutable",
                   "name": "_fee",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5232,
-                  "src": "1534:11:24",
+                  "scope": 5079,
+                  "src": "1534:11:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1759,10 +1759,10 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 5223,
+                    "id": 5070,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1534:6:24",
+                    "src": "1534:6:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
@@ -1771,77 +1771,77 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1533:13:24"
+              "src": "1533:13:21"
             },
             "returnParameters": {
-              "id": 5226,
+              "id": 5073,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1556:0:24"
+              "src": "1556:0:21"
             },
-            "scope": 5275,
-            "src": "1514:67:24",
+            "scope": 5122,
+            "src": "1514:67:21",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 5240,
+              "id": 5087,
               "nodeType": "Block",
-              "src": "1697:27:24",
+              "src": "1697:27:21",
               "statements": [
                 {
                   "expression": {
-                    "id": 5238,
+                    "id": 5085,
                     "name": "holderFee",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 5162,
-                    "src": "1710:9:24",
+                    "referencedDeclaration": 5009,
+                    "src": "1710:9:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
                     }
                   },
-                  "functionReturnParameters": 5237,
-                  "id": 5239,
+                  "functionReturnParameters": 5084,
+                  "id": 5086,
                   "nodeType": "Return",
-                  "src": "1703:16:24"
+                  "src": "1703:16:21"
                 }
               ]
             },
             "documentation": {
-              "id": 5233,
+              "id": 5080,
               "nodeType": "StructuredDocumentation",
-              "src": "1585:56:24",
+              "src": "1585:56:21",
               "text": " @dev Get holder fee for every transaction"
             },
             "functionSelector": "faa271ff",
-            "id": 5241,
+            "id": 5088,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getHolderFee",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5234,
+              "id": 5081,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1665:2:24"
+              "src": "1665:2:21"
             },
             "returnParameters": {
-              "id": 5237,
+              "id": 5084,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5236,
+                  "id": 5083,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5241,
-                  "src": "1689:6:24",
+                  "scope": 5088,
+                  "src": "1689:6:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1849,10 +1849,10 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 5235,
+                    "id": 5082,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1689:6:24",
+                    "src": "1689:6:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
@@ -1861,34 +1861,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1688:8:24"
+              "src": "1688:8:21"
             },
-            "scope": 5275,
-            "src": "1644:80:24",
+            "scope": 5122,
+            "src": "1644:80:21",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 5251,
+              "id": 5098,
               "nodeType": "Block",
-              "src": "1831:27:24",
+              "src": "1831:27:21",
               "statements": [
                 {
                   "expression": {
-                    "id": 5249,
+                    "id": 5096,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 5247,
+                      "id": 5094,
                       "name": "holderFee",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5162,
-                      "src": "1837:9:24",
+                      "referencedDeclaration": 5009,
+                      "src": "1837:9:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint16",
                         "typeString": "uint16"
@@ -1897,54 +1897,54 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 5248,
+                      "id": 5095,
                       "name": "_fee",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5244,
-                      "src": "1849:4:24",
+                      "referencedDeclaration": 5091,
+                      "src": "1849:4:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint16",
                         "typeString": "uint16"
                       }
                     },
-                    "src": "1837:16:24",
+                    "src": "1837:16:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
                     }
                   },
-                  "id": 5250,
+                  "id": 5097,
                   "nodeType": "ExpressionStatement",
-                  "src": "1837:16:24"
+                  "src": "1837:16:21"
                 }
               ]
             },
             "documentation": {
-              "id": 5242,
+              "id": 5089,
               "nodeType": "StructuredDocumentation",
-              "src": "1728:56:24",
+              "src": "1728:56:21",
               "text": " @dev Set holder fee for every transaction"
             },
             "functionSelector": "ee4b4307",
-            "id": 5252,
+            "id": 5099,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "setHolderFee",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5245,
+              "id": 5092,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5244,
+                  "id": 5091,
                   "mutability": "mutable",
                   "name": "_fee",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5252,
-                  "src": "1809:11:24",
+                  "scope": 5099,
+                  "src": "1809:11:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1952,10 +1952,10 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 5243,
+                    "id": 5090,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1809:6:24",
+                    "src": "1809:6:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
@@ -1964,48 +1964,48 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1808:13:24"
+              "src": "1808:13:21"
             },
             "returnParameters": {
-              "id": 5246,
+              "id": 5093,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1831:0:24"
+              "src": "1831:0:21"
             },
-            "scope": 5275,
-            "src": "1787:71:24",
+            "scope": 5122,
+            "src": "1787:71:21",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 5262,
+              "id": 5109,
               "nodeType": "Block",
-              "src": "1904:45:24",
+              "src": "1904:45:21",
               "statements": [
                 {
                   "expression": {
                     "arguments": [
                       {
-                        "id": 5258,
+                        "id": 5105,
                         "name": "DEVELOPER_ROLE",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5146,
-                        "src": "1920:14:24",
+                        "referencedDeclaration": 4993,
+                        "src": "1920:14:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
                         }
                       },
                       {
-                        "id": 5259,
+                        "id": 5106,
                         "name": "_wallet",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5254,
-                        "src": "1936:7:24",
+                        "referencedDeclaration": 5101,
+                        "src": "1936:7:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -2023,20 +2023,20 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 5257,
+                      "id": 5104,
                       "name": "grantRole",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
                         408
                       ],
                       "referencedDeclaration": 408,
-                      "src": "1910:9:24",
+                      "src": "1910:9:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$returns$__$",
                         "typeString": "function (bytes32,address)"
                       }
                     },
-                    "id": 5260,
+                    "id": 5107,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2044,38 +2044,38 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1910:34:24",
+                    "src": "1910:34:21",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 5261,
+                  "id": 5108,
                   "nodeType": "ExpressionStatement",
-                  "src": "1910:34:24"
+                  "src": "1910:34:21"
                 }
               ]
             },
             "functionSelector": "b91d3ace",
-            "id": 5263,
+            "id": 5110,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "addDev",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5255,
+              "id": 5102,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5254,
+                  "id": 5101,
                   "mutability": "mutable",
                   "name": "_wallet",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5263,
-                  "src": "1878:15:24",
+                  "scope": 5110,
+                  "src": "1878:15:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2083,10 +2083,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5253,
+                    "id": 5100,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1878:7:24",
+                    "src": "1878:7:21",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2096,48 +2096,48 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1877:17:24"
+              "src": "1877:17:21"
             },
             "returnParameters": {
-              "id": 5256,
+              "id": 5103,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1904:0:24"
+              "src": "1904:0:21"
             },
-            "scope": 5275,
-            "src": "1862:87:24",
+            "scope": 5122,
+            "src": "1862:87:21",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 5273,
+              "id": 5120,
               "nodeType": "Block",
-              "src": "1998:46:24",
+              "src": "1998:46:21",
               "statements": [
                 {
                   "expression": {
                     "arguments": [
                       {
-                        "id": 5269,
+                        "id": 5116,
                         "name": "DEVELOPER_ROLE",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5146,
-                        "src": "2015:14:24",
+                        "referencedDeclaration": 4993,
+                        "src": "2015:14:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
                         }
                       },
                       {
-                        "id": 5270,
+                        "id": 5117,
                         "name": "_wallet",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5265,
-                        "src": "2031:7:24",
+                        "referencedDeclaration": 5112,
+                        "src": "2031:7:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -2155,20 +2155,20 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 5268,
+                      "id": 5115,
                       "name": "revokeRole",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
                         434
                       ],
                       "referencedDeclaration": 434,
-                      "src": "2004:10:24",
+                      "src": "2004:10:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$returns$__$",
                         "typeString": "function (bytes32,address)"
                       }
                     },
-                    "id": 5271,
+                    "id": 5118,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2176,38 +2176,38 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "2004:35:24",
+                    "src": "2004:35:21",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 5272,
+                  "id": 5119,
                   "nodeType": "ExpressionStatement",
-                  "src": "2004:35:24"
+                  "src": "2004:35:21"
                 }
               ]
             },
             "functionSelector": "c4026d7b",
-            "id": 5274,
+            "id": 5121,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "removeDev",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5266,
+              "id": 5113,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5265,
+                  "id": 5112,
                   "mutability": "mutable",
                   "name": "_wallet",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5274,
-                  "src": "1972:15:24",
+                  "scope": 5121,
+                  "src": "1972:15:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2215,10 +2215,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5264,
+                    "id": 5111,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1972:7:24",
+                    "src": "1972:7:21",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2228,26 +2228,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1971:17:24"
+              "src": "1971:17:21"
             },
             "returnParameters": {
-              "id": 5267,
+              "id": 5114,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1998:0:24"
+              "src": "1998:0:21"
             },
-            "scope": 5275,
-            "src": "1953:91:24",
+            "scope": 5122,
+            "src": "1953:91:21",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 5276,
-        "src": "192:1854:24"
+        "scope": 5123,
+        "src": "192:1854:21"
       }
     ],
-    "src": "32:2015:24"
+    "src": "32:2015:21"
   },
   "legacyAST": {
     "absolutePath": "project:/contracts/library/TransactionFee.sol",
@@ -2259,16 +2259,16 @@
         485
       ],
       "Context": [
-        2070
+        1879
       ],
       "ERC165": [
-        2297
+        2106
       ],
       "ERC20": [
-        1325
+        1233
       ],
       "EnumerableSet": [
-        2996
+        2805
       ],
       "IAccessControl": [
         558
@@ -2277,27 +2277,27 @@
         583
       ],
       "IERC165": [
-        2309
+        2118
       ],
       "IERC20": [
-        1403
+        1311
       ],
       "IERC20Metadata": [
-        1527
+        1336
       ],
       "Strings": [
-        2273
+        2082
       ],
       "TransactionFee": [
-        5275
+        5122
       ]
     },
-    "id": 5276,
+    "id": 5123,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 5135,
+        "id": 4982,
         "literals": [
           "solidity",
           ">=",
@@ -2308,27 +2308,27 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "32:32:24"
+        "src": "32:32:21"
       },
       {
         "absolutePath": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
         "file": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
-        "id": 5136,
+        "id": 4983,
         "nodeType": "ImportDirective",
-        "scope": 5276,
-        "sourceUnit": 1326,
-        "src": "66:55:24",
+        "scope": 5123,
+        "sourceUnit": 1234,
+        "src": "66:55:21",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
         "absolutePath": "@openzeppelin/contracts/access/AccessControlEnumerable.sol",
         "file": "@openzeppelin/contracts/access/AccessControlEnumerable.sol",
-        "id": 5137,
+        "id": 4984,
         "nodeType": "ImportDirective",
-        "scope": 5276,
+        "scope": 5123,
         "sourceUnit": 486,
-        "src": "122:68:24",
+        "src": "122:68:21",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -2337,27 +2337,27 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 5138,
+              "id": 4985,
               "name": "ERC20",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1325,
-              "src": "228:5:24"
+              "referencedDeclaration": 1233,
+              "src": "228:5:21"
             },
-            "id": 5139,
+            "id": 4986,
             "nodeType": "InheritanceSpecifier",
-            "src": "228:5:24"
+            "src": "228:5:21"
           },
           {
             "baseName": {
-              "id": 5140,
+              "id": 4987,
               "name": "AccessControlEnumerable",
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 485,
-              "src": "235:23:24"
+              "src": "235:23:21"
             },
-            "id": 5141,
+            "id": 4988,
             "nodeType": "InheritanceSpecifier",
-            "src": "235:23:24"
+            "src": "235:23:21"
           }
         ],
         "contractDependencies": [
@@ -2365,28 +2365,28 @@
           485,
           558,
           583,
-          1325,
-          1403,
-          1527,
-          2070,
-          2297,
-          2309
+          1233,
+          1311,
+          1336,
+          1879,
+          2106,
+          2118
         ],
         "contractKind": "contract",
         "fullyImplemented": false,
-        "id": 5275,
+        "id": 5122,
         "linearizedBaseContracts": [
-          5275,
+          5122,
           485,
           306,
-          2297,
-          2309,
+          2106,
+          2118,
           583,
           558,
-          1325,
-          1527,
-          1403,
-          2070
+          1233,
+          1336,
+          1311,
+          1879
         ],
         "name": "TransactionFee",
         "nodeType": "ContractDefinition",
@@ -2394,12 +2394,12 @@
           {
             "constant": true,
             "functionSelector": "9103a0e0",
-            "id": 5146,
+            "id": 4993,
             "mutability": "constant",
             "name": "DEVELOPER_ROLE",
             "nodeType": "VariableDeclaration",
-            "scope": 5275,
-            "src": "263:68:24",
+            "scope": 5122,
+            "src": "263:68:21",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -2407,10 +2407,10 @@
               "typeString": "bytes32"
             },
             "typeName": {
-              "id": 5142,
+              "id": 4989,
               "name": "bytes32",
               "nodeType": "ElementaryTypeName",
-              "src": "263:7:24",
+              "src": "263:7:21",
               "typeDescriptions": {
                 "typeIdentifier": "t_bytes32",
                 "typeString": "bytes32"
@@ -2420,14 +2420,14 @@
               "arguments": [
                 {
                   "hexValue": "444556454c4f5045525f524f4c45",
-                  "id": 5144,
+                  "id": 4991,
                   "isConstant": false,
                   "isLValue": false,
                   "isPure": true,
                   "kind": "string",
                   "lValueRequested": false,
                   "nodeType": "Literal",
-                  "src": "314:16:24",
+                  "src": "314:16:21",
                   "typeDescriptions": {
                     "typeIdentifier": "t_stringliteral_4504b9dfd7400a1522f49a8b4a100552da9236849581fd59b7363eb48c6a474c",
                     "typeString": "literal_string \"DEVELOPER_ROLE\""
@@ -2442,18 +2442,18 @@
                     "typeString": "literal_string \"DEVELOPER_ROLE\""
                   }
                 ],
-                "id": 5143,
+                "id": 4990,
                 "name": "keccak256",
                 "nodeType": "Identifier",
                 "overloadedDeclarations": [],
                 "referencedDeclaration": 4294967288,
-                "src": "304:9:24",
+                "src": "304:9:21",
                 "typeDescriptions": {
                   "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
                   "typeString": "function (bytes memory) pure returns (bytes32)"
                 }
               },
-              "id": 5145,
+              "id": 4992,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -2461,7 +2461,7 @@
               "lValueRequested": false,
               "names": [],
               "nodeType": "FunctionCall",
-              "src": "304:27:24",
+              "src": "304:27:21",
               "tryCall": false,
               "typeDescriptions": {
                 "typeIdentifier": "t_bytes32",
@@ -2473,17 +2473,17 @@
           {
             "constant": false,
             "documentation": {
-              "id": 5147,
+              "id": 4994,
               "nodeType": "StructuredDocumentation",
-              "src": "336:40:24",
+              "src": "336:40:21",
               "text": " @dev Transaction fee 0.7%"
             },
-            "id": 5150,
+            "id": 4997,
             "mutability": "mutable",
             "name": "feeTransaction",
             "nodeType": "VariableDeclaration",
-            "scope": 5275,
-            "src": "379:26:24",
+            "scope": 5122,
+            "src": "379:26:21",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -2491,10 +2491,10 @@
               "typeString": "uint16"
             },
             "typeName": {
-              "id": 5148,
+              "id": 4995,
               "name": "uint16",
               "nodeType": "ElementaryTypeName",
-              "src": "379:6:24",
+              "src": "379:6:21",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint16",
                 "typeString": "uint16"
@@ -2502,14 +2502,14 @@
             },
             "value": {
               "hexValue": "3730",
-              "id": 5149,
+              "id": 4996,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
               "kind": "number",
               "lValueRequested": false,
               "nodeType": "Literal",
-              "src": "403:2:24",
+              "src": "403:2:21",
               "typeDescriptions": {
                 "typeIdentifier": "t_rational_70_by_1",
                 "typeString": "int_const 70"
@@ -2521,17 +2521,17 @@
           {
             "constant": false,
             "documentation": {
-              "id": 5151,
+              "id": 4998,
               "nodeType": "StructuredDocumentation",
-              "src": "409:62:24",
+              "src": "409:62:21",
               "text": " @dev Burn percentage of the transaction fee 50%"
             },
-            "id": 5154,
+            "id": 5001,
             "mutability": "mutable",
             "name": "burnFee",
             "nodeType": "VariableDeclaration",
-            "scope": 5275,
-            "src": "474:21:24",
+            "scope": 5122,
+            "src": "474:21:21",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -2539,10 +2539,10 @@
               "typeString": "uint16"
             },
             "typeName": {
-              "id": 5152,
+              "id": 4999,
               "name": "uint16",
               "nodeType": "ElementaryTypeName",
-              "src": "474:6:24",
+              "src": "474:6:21",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint16",
                 "typeString": "uint16"
@@ -2550,14 +2550,14 @@
             },
             "value": {
               "hexValue": "35303030",
-              "id": 5153,
+              "id": 5000,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
               "kind": "number",
               "lValueRequested": false,
               "nodeType": "Literal",
-              "src": "491:4:24",
+              "src": "491:4:21",
               "typeDescriptions": {
                 "typeIdentifier": "t_rational_5000_by_1",
                 "typeString": "int_const 5000"
@@ -2569,17 +2569,17 @@
           {
             "constant": false,
             "documentation": {
-              "id": 5155,
+              "id": 5002,
               "nodeType": "StructuredDocumentation",
-              "src": "499:57:24",
+              "src": "499:57:21",
               "text": " @dev Developers fee of the transaction 25%"
             },
-            "id": 5158,
+            "id": 5005,
             "mutability": "mutable",
             "name": "devFee",
             "nodeType": "VariableDeclaration",
-            "scope": 5275,
-            "src": "559:20:24",
+            "scope": 5122,
+            "src": "559:20:21",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -2587,10 +2587,10 @@
               "typeString": "uint16"
             },
             "typeName": {
-              "id": 5156,
+              "id": 5003,
               "name": "uint16",
               "nodeType": "ElementaryTypeName",
-              "src": "559:6:24",
+              "src": "559:6:21",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint16",
                 "typeString": "uint16"
@@ -2598,14 +2598,14 @@
             },
             "value": {
               "hexValue": "32353030",
-              "id": 5157,
+              "id": 5004,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
               "kind": "number",
               "lValueRequested": false,
               "nodeType": "Literal",
-              "src": "575:4:24",
+              "src": "575:4:21",
               "typeDescriptions": {
                 "typeIdentifier": "t_rational_2500_by_1",
                 "typeString": "int_const 2500"
@@ -2617,17 +2617,17 @@
           {
             "constant": false,
             "documentation": {
-              "id": 5159,
+              "id": 5006,
               "nodeType": "StructuredDocumentation",
-              "src": "583:53:24",
+              "src": "583:53:21",
               "text": " @dev Holder fee of the transaction 25%"
             },
-            "id": 5162,
+            "id": 5009,
             "mutability": "mutable",
             "name": "holderFee",
             "nodeType": "VariableDeclaration",
-            "scope": 5275,
-            "src": "639:23:24",
+            "scope": 5122,
+            "src": "639:23:21",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -2635,10 +2635,10 @@
               "typeString": "uint16"
             },
             "typeName": {
-              "id": 5160,
+              "id": 5007,
               "name": "uint16",
               "nodeType": "ElementaryTypeName",
-              "src": "639:6:24",
+              "src": "639:6:21",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint16",
                 "typeString": "uint16"
@@ -2646,14 +2646,14 @@
             },
             "value": {
               "hexValue": "32353030",
-              "id": 5161,
+              "id": 5008,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
               "kind": "number",
               "lValueRequested": false,
               "nodeType": "Literal",
-              "src": "658:4:24",
+              "src": "658:4:21",
               "typeDescriptions": {
                 "typeIdentifier": "t_rational_2500_by_1",
                 "typeString": "int_const 2500"
@@ -2664,20 +2664,20 @@
           },
           {
             "body": {
-              "id": 5171,
+              "id": 5018,
               "nodeType": "Block",
-              "src": "681:51:24",
+              "src": "681:51:21",
               "statements": [
                 {
                   "expression": {
                     "arguments": [
                       {
-                        "id": 5166,
+                        "id": 5013,
                         "name": "DEVELOPER_ROLE",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5146,
-                        "src": "698:14:24",
+                        "referencedDeclaration": 4993,
+                        "src": "698:14:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -2687,18 +2687,18 @@
                         "arguments": [],
                         "expression": {
                           "argumentTypes": [],
-                          "id": 5167,
+                          "id": 5014,
                           "name": "_msgSender",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2060,
-                          "src": "714:10:24",
+                          "referencedDeclaration": 1869,
+                          "src": "714:10:21",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_view$__$returns$_t_address_$",
                             "typeString": "function () view returns (address)"
                           }
                         },
-                        "id": 5168,
+                        "id": 5015,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -2706,7 +2706,7 @@
                         "lValueRequested": false,
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "714:12:24",
+                        "src": "714:12:21",
                         "tryCall": false,
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -2725,20 +2725,20 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 5165,
+                      "id": 5012,
                       "name": "_setupRole",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
                         484
                       ],
                       "referencedDeclaration": 484,
-                      "src": "687:10:24",
+                      "src": "687:10:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$returns$__$",
                         "typeString": "function (bytes32,address)"
                       }
                     },
-                    "id": 5169,
+                    "id": 5016,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2746,100 +2746,100 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "687:40:24",
+                    "src": "687:40:21",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 5170,
+                  "id": 5017,
                   "nodeType": "ExpressionStatement",
-                  "src": "687:40:24"
+                  "src": "687:40:21"
                 }
               ]
             },
-            "id": 5172,
+            "id": 5019,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5163,
+              "id": 5010,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "678:2:24"
+              "src": "678:2:21"
             },
             "returnParameters": {
-              "id": 5164,
+              "id": 5011,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "681:0:24"
+              "src": "681:0:21"
             },
-            "scope": 5275,
-            "src": "667:65:24",
+            "scope": 5122,
+            "src": "667:65:21",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 5180,
+              "id": 5027,
               "nodeType": "Block",
-              "src": "865:32:24",
+              "src": "865:32:21",
               "statements": [
                 {
                   "expression": {
-                    "id": 5178,
+                    "id": 5025,
                     "name": "feeTransaction",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 5150,
-                    "src": "878:14:24",
+                    "referencedDeclaration": 4997,
+                    "src": "878:14:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
                     }
                   },
-                  "functionReturnParameters": 5177,
-                  "id": 5179,
+                  "functionReturnParameters": 5024,
+                  "id": 5026,
                   "nodeType": "Return",
-                  "src": "871:21:24"
+                  "src": "871:21:21"
                 }
               ]
             },
             "documentation": {
-              "id": 5173,
+              "id": 5020,
               "nodeType": "StructuredDocumentation",
-              "src": "736:68:24",
+              "src": "736:68:21",
               "text": " @dev Get transaction fee to pay for every transaction"
             },
             "functionSelector": "85d79102",
-            "id": 5181,
+            "id": 5028,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getTransactionFee",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5174,
+              "id": 5021,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "833:2:24"
+              "src": "833:2:21"
             },
             "returnParameters": {
-              "id": 5177,
+              "id": 5024,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5176,
+                  "id": 5023,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5181,
-                  "src": "857:6:24",
+                  "scope": 5028,
+                  "src": "857:6:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2847,10 +2847,10 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 5175,
+                    "id": 5022,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
-                    "src": "857:6:24",
+                    "src": "857:6:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
@@ -2859,34 +2859,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "856:8:24"
+              "src": "856:8:21"
             },
-            "scope": 5275,
-            "src": "807:90:24",
+            "scope": 5122,
+            "src": "807:90:21",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 5191,
+              "id": 5038,
               "nodeType": "Block",
-              "src": "1021:32:24",
+              "src": "1021:32:21",
               "statements": [
                 {
                   "expression": {
-                    "id": 5189,
+                    "id": 5036,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 5187,
+                      "id": 5034,
                       "name": "feeTransaction",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5150,
-                      "src": "1027:14:24",
+                      "referencedDeclaration": 4997,
+                      "src": "1027:14:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint16",
                         "typeString": "uint16"
@@ -2895,54 +2895,54 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 5188,
+                      "id": 5035,
                       "name": "_fee",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5184,
-                      "src": "1044:4:24",
+                      "referencedDeclaration": 5031,
+                      "src": "1044:4:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint16",
                         "typeString": "uint16"
                       }
                     },
-                    "src": "1027:21:24",
+                    "src": "1027:21:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
                     }
                   },
-                  "id": 5190,
+                  "id": 5037,
                   "nodeType": "ExpressionStatement",
-                  "src": "1027:21:24"
+                  "src": "1027:21:21"
                 }
               ]
             },
             "documentation": {
-              "id": 5182,
+              "id": 5029,
               "nodeType": "StructuredDocumentation",
-              "src": "901:68:24",
+              "src": "901:68:21",
               "text": " @dev Set transaction fee to pay for every transaction"
             },
             "functionSelector": "b45940f2",
-            "id": 5192,
+            "id": 5039,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "setTransactionFee",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5185,
+              "id": 5032,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5184,
+                  "id": 5031,
                   "mutability": "mutable",
                   "name": "_fee",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5192,
-                  "src": "999:11:24",
+                  "scope": 5039,
+                  "src": "999:11:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2950,10 +2950,10 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 5183,
+                    "id": 5030,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
-                    "src": "999:6:24",
+                    "src": "999:6:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
@@ -2962,77 +2962,77 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "998:13:24"
+              "src": "998:13:21"
             },
             "returnParameters": {
-              "id": 5186,
+              "id": 5033,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1021:0:24"
+              "src": "1021:0:21"
             },
-            "scope": 5275,
-            "src": "972:81:24",
+            "scope": 5122,
+            "src": "972:81:21",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 5200,
+              "id": 5047,
               "nodeType": "Block",
-              "src": "1165:24:24",
+              "src": "1165:24:21",
               "statements": [
                 {
                   "expression": {
-                    "id": 5198,
+                    "id": 5045,
                     "name": "devFee",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 5158,
-                    "src": "1178:6:24",
+                    "referencedDeclaration": 5005,
+                    "src": "1178:6:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
                     }
                   },
-                  "functionReturnParameters": 5197,
-                  "id": 5199,
+                  "functionReturnParameters": 5044,
+                  "id": 5046,
                   "nodeType": "Return",
-                  "src": "1171:13:24"
+                  "src": "1171:13:21"
                 }
               ]
             },
             "documentation": {
-              "id": 5193,
+              "id": 5040,
               "nodeType": "StructuredDocumentation",
-              "src": "1057:54:24",
+              "src": "1057:54:21",
               "text": " @dev Get devs fee for every transaction"
             },
             "functionSelector": "46e50994",
-            "id": 5201,
+            "id": 5048,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getDevsFee",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5194,
+              "id": 5041,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1133:2:24"
+              "src": "1133:2:21"
             },
             "returnParameters": {
-              "id": 5197,
+              "id": 5044,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5196,
+                  "id": 5043,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5201,
-                  "src": "1157:6:24",
+                  "scope": 5048,
+                  "src": "1157:6:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3040,10 +3040,10 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 5195,
+                    "id": 5042,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1157:6:24",
+                    "src": "1157:6:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
@@ -3052,34 +3052,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1156:8:24"
+              "src": "1156:8:21"
             },
-            "scope": 5275,
-            "src": "1114:75:24",
+            "scope": 5122,
+            "src": "1114:75:21",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 5211,
+              "id": 5058,
               "nodeType": "Block",
-              "src": "1292:24:24",
+              "src": "1292:24:21",
               "statements": [
                 {
                   "expression": {
-                    "id": 5209,
+                    "id": 5056,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 5207,
+                      "id": 5054,
                       "name": "devFee",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5158,
-                      "src": "1298:6:24",
+                      "referencedDeclaration": 5005,
+                      "src": "1298:6:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint16",
                         "typeString": "uint16"
@@ -3088,54 +3088,54 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 5208,
+                      "id": 5055,
                       "name": "_fee",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5204,
-                      "src": "1307:4:24",
+                      "referencedDeclaration": 5051,
+                      "src": "1307:4:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint16",
                         "typeString": "uint16"
                       }
                     },
-                    "src": "1298:13:24",
+                    "src": "1298:13:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
                     }
                   },
-                  "id": 5210,
+                  "id": 5057,
                   "nodeType": "ExpressionStatement",
-                  "src": "1298:13:24"
+                  "src": "1298:13:21"
                 }
               ]
             },
             "documentation": {
-              "id": 5202,
+              "id": 5049,
               "nodeType": "StructuredDocumentation",
-              "src": "1193:54:24",
+              "src": "1193:54:21",
               "text": " @dev Set devs fee for every transaction"
             },
             "functionSelector": "71867b23",
-            "id": 5212,
+            "id": 5059,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "setDevsFee",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5205,
+              "id": 5052,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5204,
+                  "id": 5051,
                   "mutability": "mutable",
                   "name": "_fee",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5212,
-                  "src": "1270:11:24",
+                  "scope": 5059,
+                  "src": "1270:11:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3143,10 +3143,10 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 5203,
+                    "id": 5050,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1270:6:24",
+                    "src": "1270:6:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
@@ -3155,77 +3155,77 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1269:13:24"
+              "src": "1269:13:21"
             },
             "returnParameters": {
-              "id": 5206,
+              "id": 5053,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1292:0:24"
+              "src": "1292:0:21"
             },
-            "scope": 5275,
-            "src": "1250:66:24",
+            "scope": 5122,
+            "src": "1250:66:21",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 5220,
+              "id": 5067,
               "nodeType": "Block",
-              "src": "1428:25:24",
+              "src": "1428:25:21",
               "statements": [
                 {
                   "expression": {
-                    "id": 5218,
+                    "id": 5065,
                     "name": "burnFee",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 5154,
-                    "src": "1441:7:24",
+                    "referencedDeclaration": 5001,
+                    "src": "1441:7:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
                     }
                   },
-                  "functionReturnParameters": 5217,
-                  "id": 5219,
+                  "functionReturnParameters": 5064,
+                  "id": 5066,
                   "nodeType": "Return",
-                  "src": "1434:14:24"
+                  "src": "1434:14:21"
                 }
               ]
             },
             "documentation": {
-              "id": 5213,
+              "id": 5060,
               "nodeType": "StructuredDocumentation",
-              "src": "1320:54:24",
+              "src": "1320:54:21",
               "text": " @dev Get burn fee for every transaction"
             },
             "functionSelector": "aa4b10d1",
-            "id": 5221,
+            "id": 5068,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getBurnFee",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5214,
+              "id": 5061,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1396:2:24"
+              "src": "1396:2:21"
             },
             "returnParameters": {
-              "id": 5217,
+              "id": 5064,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5216,
+                  "id": 5063,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5221,
-                  "src": "1420:6:24",
+                  "scope": 5068,
+                  "src": "1420:6:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3233,10 +3233,10 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 5215,
+                    "id": 5062,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1420:6:24",
+                    "src": "1420:6:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
@@ -3245,34 +3245,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1419:8:24"
+              "src": "1419:8:21"
             },
-            "scope": 5275,
-            "src": "1377:76:24",
+            "scope": 5122,
+            "src": "1377:76:21",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 5231,
+              "id": 5078,
               "nodeType": "Block",
-              "src": "1556:25:24",
+              "src": "1556:25:21",
               "statements": [
                 {
                   "expression": {
-                    "id": 5229,
+                    "id": 5076,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 5227,
+                      "id": 5074,
                       "name": "burnFee",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5154,
-                      "src": "1562:7:24",
+                      "referencedDeclaration": 5001,
+                      "src": "1562:7:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint16",
                         "typeString": "uint16"
@@ -3281,54 +3281,54 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 5228,
+                      "id": 5075,
                       "name": "_fee",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5224,
-                      "src": "1572:4:24",
+                      "referencedDeclaration": 5071,
+                      "src": "1572:4:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint16",
                         "typeString": "uint16"
                       }
                     },
-                    "src": "1562:14:24",
+                    "src": "1562:14:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
                     }
                   },
-                  "id": 5230,
+                  "id": 5077,
                   "nodeType": "ExpressionStatement",
-                  "src": "1562:14:24"
+                  "src": "1562:14:21"
                 }
               ]
             },
             "documentation": {
-              "id": 5222,
+              "id": 5069,
               "nodeType": "StructuredDocumentation",
-              "src": "1457:54:24",
+              "src": "1457:54:21",
               "text": " @dev Set burn fee for every transaction"
             },
             "functionSelector": "49de5f87",
-            "id": 5232,
+            "id": 5079,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "setBurnFee",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5225,
+              "id": 5072,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5224,
+                  "id": 5071,
                   "mutability": "mutable",
                   "name": "_fee",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5232,
-                  "src": "1534:11:24",
+                  "scope": 5079,
+                  "src": "1534:11:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3336,10 +3336,10 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 5223,
+                    "id": 5070,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1534:6:24",
+                    "src": "1534:6:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
@@ -3348,77 +3348,77 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1533:13:24"
+              "src": "1533:13:21"
             },
             "returnParameters": {
-              "id": 5226,
+              "id": 5073,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1556:0:24"
+              "src": "1556:0:21"
             },
-            "scope": 5275,
-            "src": "1514:67:24",
+            "scope": 5122,
+            "src": "1514:67:21",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 5240,
+              "id": 5087,
               "nodeType": "Block",
-              "src": "1697:27:24",
+              "src": "1697:27:21",
               "statements": [
                 {
                   "expression": {
-                    "id": 5238,
+                    "id": 5085,
                     "name": "holderFee",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 5162,
-                    "src": "1710:9:24",
+                    "referencedDeclaration": 5009,
+                    "src": "1710:9:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
                     }
                   },
-                  "functionReturnParameters": 5237,
-                  "id": 5239,
+                  "functionReturnParameters": 5084,
+                  "id": 5086,
                   "nodeType": "Return",
-                  "src": "1703:16:24"
+                  "src": "1703:16:21"
                 }
               ]
             },
             "documentation": {
-              "id": 5233,
+              "id": 5080,
               "nodeType": "StructuredDocumentation",
-              "src": "1585:56:24",
+              "src": "1585:56:21",
               "text": " @dev Get holder fee for every transaction"
             },
             "functionSelector": "faa271ff",
-            "id": 5241,
+            "id": 5088,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getHolderFee",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5234,
+              "id": 5081,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1665:2:24"
+              "src": "1665:2:21"
             },
             "returnParameters": {
-              "id": 5237,
+              "id": 5084,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5236,
+                  "id": 5083,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5241,
-                  "src": "1689:6:24",
+                  "scope": 5088,
+                  "src": "1689:6:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3426,10 +3426,10 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 5235,
+                    "id": 5082,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1689:6:24",
+                    "src": "1689:6:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
@@ -3438,34 +3438,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1688:8:24"
+              "src": "1688:8:21"
             },
-            "scope": 5275,
-            "src": "1644:80:24",
+            "scope": 5122,
+            "src": "1644:80:21",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 5251,
+              "id": 5098,
               "nodeType": "Block",
-              "src": "1831:27:24",
+              "src": "1831:27:21",
               "statements": [
                 {
                   "expression": {
-                    "id": 5249,
+                    "id": 5096,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 5247,
+                      "id": 5094,
                       "name": "holderFee",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5162,
-                      "src": "1837:9:24",
+                      "referencedDeclaration": 5009,
+                      "src": "1837:9:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint16",
                         "typeString": "uint16"
@@ -3474,54 +3474,54 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 5248,
+                      "id": 5095,
                       "name": "_fee",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5244,
-                      "src": "1849:4:24",
+                      "referencedDeclaration": 5091,
+                      "src": "1849:4:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint16",
                         "typeString": "uint16"
                       }
                     },
-                    "src": "1837:16:24",
+                    "src": "1837:16:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
                     }
                   },
-                  "id": 5250,
+                  "id": 5097,
                   "nodeType": "ExpressionStatement",
-                  "src": "1837:16:24"
+                  "src": "1837:16:21"
                 }
               ]
             },
             "documentation": {
-              "id": 5242,
+              "id": 5089,
               "nodeType": "StructuredDocumentation",
-              "src": "1728:56:24",
+              "src": "1728:56:21",
               "text": " @dev Set holder fee for every transaction"
             },
             "functionSelector": "ee4b4307",
-            "id": 5252,
+            "id": 5099,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "setHolderFee",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5245,
+              "id": 5092,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5244,
+                  "id": 5091,
                   "mutability": "mutable",
                   "name": "_fee",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5252,
-                  "src": "1809:11:24",
+                  "scope": 5099,
+                  "src": "1809:11:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3529,10 +3529,10 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 5243,
+                    "id": 5090,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1809:6:24",
+                    "src": "1809:6:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint16",
                       "typeString": "uint16"
@@ -3541,48 +3541,48 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1808:13:24"
+              "src": "1808:13:21"
             },
             "returnParameters": {
-              "id": 5246,
+              "id": 5093,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1831:0:24"
+              "src": "1831:0:21"
             },
-            "scope": 5275,
-            "src": "1787:71:24",
+            "scope": 5122,
+            "src": "1787:71:21",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 5262,
+              "id": 5109,
               "nodeType": "Block",
-              "src": "1904:45:24",
+              "src": "1904:45:21",
               "statements": [
                 {
                   "expression": {
                     "arguments": [
                       {
-                        "id": 5258,
+                        "id": 5105,
                         "name": "DEVELOPER_ROLE",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5146,
-                        "src": "1920:14:24",
+                        "referencedDeclaration": 4993,
+                        "src": "1920:14:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
                         }
                       },
                       {
-                        "id": 5259,
+                        "id": 5106,
                         "name": "_wallet",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5254,
-                        "src": "1936:7:24",
+                        "referencedDeclaration": 5101,
+                        "src": "1936:7:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -3600,20 +3600,20 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 5257,
+                      "id": 5104,
                       "name": "grantRole",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
                         408
                       ],
                       "referencedDeclaration": 408,
-                      "src": "1910:9:24",
+                      "src": "1910:9:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$returns$__$",
                         "typeString": "function (bytes32,address)"
                       }
                     },
-                    "id": 5260,
+                    "id": 5107,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3621,38 +3621,38 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1910:34:24",
+                    "src": "1910:34:21",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 5261,
+                  "id": 5108,
                   "nodeType": "ExpressionStatement",
-                  "src": "1910:34:24"
+                  "src": "1910:34:21"
                 }
               ]
             },
             "functionSelector": "b91d3ace",
-            "id": 5263,
+            "id": 5110,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "addDev",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5255,
+              "id": 5102,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5254,
+                  "id": 5101,
                   "mutability": "mutable",
                   "name": "_wallet",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5263,
-                  "src": "1878:15:24",
+                  "scope": 5110,
+                  "src": "1878:15:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3660,10 +3660,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5253,
+                    "id": 5100,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1878:7:24",
+                    "src": "1878:7:21",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -3673,48 +3673,48 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1877:17:24"
+              "src": "1877:17:21"
             },
             "returnParameters": {
-              "id": 5256,
+              "id": 5103,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1904:0:24"
+              "src": "1904:0:21"
             },
-            "scope": 5275,
-            "src": "1862:87:24",
+            "scope": 5122,
+            "src": "1862:87:21",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 5273,
+              "id": 5120,
               "nodeType": "Block",
-              "src": "1998:46:24",
+              "src": "1998:46:21",
               "statements": [
                 {
                   "expression": {
                     "arguments": [
                       {
-                        "id": 5269,
+                        "id": 5116,
                         "name": "DEVELOPER_ROLE",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5146,
-                        "src": "2015:14:24",
+                        "referencedDeclaration": 4993,
+                        "src": "2015:14:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
                         }
                       },
                       {
-                        "id": 5270,
+                        "id": 5117,
                         "name": "_wallet",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5265,
-                        "src": "2031:7:24",
+                        "referencedDeclaration": 5112,
+                        "src": "2031:7:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -3732,20 +3732,20 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 5268,
+                      "id": 5115,
                       "name": "revokeRole",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
                         434
                       ],
                       "referencedDeclaration": 434,
-                      "src": "2004:10:24",
+                      "src": "2004:10:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$returns$__$",
                         "typeString": "function (bytes32,address)"
                       }
                     },
-                    "id": 5271,
+                    "id": 5118,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3753,38 +3753,38 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "2004:35:24",
+                    "src": "2004:35:21",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 5272,
+                  "id": 5119,
                   "nodeType": "ExpressionStatement",
-                  "src": "2004:35:24"
+                  "src": "2004:35:21"
                 }
               ]
             },
             "functionSelector": "c4026d7b",
-            "id": 5274,
+            "id": 5121,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "removeDev",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5266,
+              "id": 5113,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5265,
+                  "id": 5112,
                   "mutability": "mutable",
                   "name": "_wallet",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5274,
-                  "src": "1972:15:24",
+                  "scope": 5121,
+                  "src": "1972:15:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3792,10 +3792,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5264,
+                    "id": 5111,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1972:7:24",
+                    "src": "1972:7:21",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -3805,26 +3805,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1971:17:24"
+              "src": "1971:17:21"
             },
             "returnParameters": {
-              "id": 5267,
+              "id": 5114,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1998:0:24"
+              "src": "1998:0:21"
             },
-            "scope": 5275,
-            "src": "1953:91:24",
+            "scope": 5122,
+            "src": "1953:91:21",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 5276,
-        "src": "192:1854:24"
+        "scope": 5123,
+        "src": "192:1854:21"
       }
     ],
-    "src": "32:2015:24"
+    "src": "32:2015:21"
   },
   "compiler": {
     "name": "solc",
@@ -3832,7 +3832,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-10-31T13:03:40.323Z",
+  "updatedAt": "2021-11-05T21:12:41.231Z",
   "devdoc": {
     "kind": "dev",
     "methods": {

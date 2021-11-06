@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
-class Farm extends Component {
+class Pool extends Component {
 
   render() {
     return ( 
       <div>
-        <h1>FARM</h1>
-        <h6 class="bottom-bar">APY: &nbsp;<b>%</b></h6>
+        <h1>POOL</h1>
+        <h6 class="bottom-bar">ESTIMATED REWARDS: &nbsp;<b>0 PVP /DAY</b></h6>
         <table>
           <thead>
             <tr>
@@ -17,10 +17,10 @@ class Farm extends Component {
           <tbody>
             <tr>
               <td>
-               <b>{Math.round(window.web3.utils.fromWei(this.props.stakingStaked.toString(), 'Ether')*100)/100 + " PCM" }</b>
+               <b>{Math.round(window.web3.utils.fromWei(this.props.stakingStaked.toString(), 'Ether')*100)/100 + " PVP" }</b>
               </td>
               <td>
-               <b>{Math.round(window.web3.utils.fromWei(this.props.stakingPending.toString(), 'Ether')*100)/100 + " PCM" }</b>
+               <b>{Math.round(window.web3.utils.fromWei(this.props.stakingPending.toString(), 'Ether')*100)/100 + " PVP" }</b>
               </td>
             </tr>
           </tbody>
@@ -36,10 +36,10 @@ class Farm extends Component {
                       event.preventDefault()
                       this.props.approve(this.props.approveValue)
                     }}>
-                    APPROVE
+                    APPROVE DEPOSIT
                   </button>
                 </div>
-              </td> 
+              </td>  
               <td>
                 <div class="btn2" id="claimModal">
                   <button
@@ -67,13 +67,13 @@ class Farm extends Component {
               onChange={this.props.handleChange} 
             />
             <span class="field__label-wrap">
-              <span class="field__label">PCM AMOUNT</span>
+              <span class="field__label">PATO AMOUNT</span>
             </span>
           </label>
         </div>
         <div class="btn2">
           <table>
-            <tfoot>
+            <tfoot id="farmButton">
               <tr>
                 <td>
                   <button
@@ -104,13 +104,13 @@ class Farm extends Component {
           </table> 
         </div>
         <div class="footerModal">     
-          <p>WALLET BALANCE &nbsp;<b>{Math.round(window.web3.utils.fromWei(this.props.tuviellaTokenBalance.toString(), 'Ether')*100)/100 + " PCM"}</b></p>
-          <a href="https://testnet.bscscan.com/address/0x2ed14F3261eE8A1F1f38Ac40DD52f2E586Bb47F3" target="_blank" rel="noopener noreferrer">FARM ADDRESS</a>
-          <a href="https://testnet.bscscan.com/address/0x62C733e3FaB7087f1077C542765DdD7ce3BC2A17" target="_blank" rel="noopener noreferrer">PCM ADDRESS</a>
+          <p>WALLET BALANCE &nbsp;<b>{Math.round(window.web3.utils.fromWei(this.props.patoTokenBalance.toString(), 'Ether')*100)/100 + " PVP"}</b></p>
+          <a href="https://testnet.bscscan.com/address/0x5AD196844dfa35C53b72e92A9927653455530503" target="_blank" rel="noopener noreferrer">FARM CONTRACT</a>
+          <a href="https://testnet.bscscan.com/address/0x613Aa50c5245C7b3fEFe28f26009216Df754767d" target="_blank" rel="noopener noreferrer">PVP CONTRACT</a>
         </div>
       </div>
     );
   }
 }
 
-export default Farm;
+export default Pool;

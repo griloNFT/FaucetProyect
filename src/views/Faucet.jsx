@@ -15,27 +15,27 @@ class Faucet extends Component {
           <tbody>
             <tr>
               <td>
-                <b>{Math.round(window.web3.utils.fromWei(this.props.faucetTuviellaTokenBalance.toString(), 'Ether')*100)/100 + " PCM"}</b>
+                <b>{Math.round(window.web3.utils.fromWei(this.props.faucetPatoTokenBalance.toString(), 'Ether')*100)/100 + " PVP"}</b>
               </td>
             </tr>
           </tbody>
         </table>
-        <div id="buttonModal" class="btn2">
+        <div class="btn2">
           <button
             type="submit"
-            disabled={this.props.tuviellaExpiry > 0 }
+            disabled={this.props.patoExpiry > 0 }
             className="slide_from_left"
             onClick={(event) => {
               event.preventDefault()
               this.props.claimTuViella()
             }}>
-          {this.props.tuviellaExpiry > 0 ? "WAIT " + this.props.tuviellaExpiry + " SECS" : "CLAIM PCM"}
+          {this.props.patoExpiry > 0 ? "CLAIM AGAIN IN " + this.props.patoExpiry + " SECS" : "CLAIM 1 PVP TOKEN"}
           </button>
         </div>
         <div class="footerModal">     
-          <p>WALLET BALANCE &nbsp;<b>{Math.round(window.web3.utils.fromWei(this.props.tuviellaTokenBalance.toString(), 'Ether')*100)/100 + " PCM"}</b></p>
-          <a href="https://testnet.bscscan.com/address/0x2ed14F3261eE8A1F1f38Ac40DD52f2E586Bb47F3" target="_blank" rel="noopener noreferrer">FAUCET ADDRESS</a>
-          <a href="https://testnet.bscscan.com/address/0x62C733e3FaB7087f1077C542765DdD7ce3BC2A17" target="_blank" rel="noopener noreferrer">PCM ADDRESS</a>
+          <p>WALLET BALANCE &nbsp;<b>{Math.round(window.web3.utils.fromWei(this.props.patoTokenBalance.toString(), 'Ether')*100)/100 + " PVP"}</b></p>
+          <a href="https://testnet.bscscan.com/address/0xE99E1B538c718C2F637845F303e0146Df4c85CE3" target="_blank" rel="noopener noreferrer">FAUCET CONTRACT</a>
+          <a href="https://testnet.bscscan.com/address/0x613Aa50c5245C7b3fEFe28f26009216Df754767d" target="_blank" rel="noopener noreferrer">PVP CONTRACT</a>
         </div>
       </div>
     );

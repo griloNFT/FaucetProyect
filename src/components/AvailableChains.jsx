@@ -1,14 +1,11 @@
 import Chain from "./Chain"
 import {
-    bsctestPCMTokenAddress,
-    bsctestFaucetAddress,
-    bsctestStakingAddress
-     
+    bscTestPatoTokenAddress,
+    bscTestStakingAddress,
+    bscTestFaucetAddress 
 } from './Contracts'
 
 let chains = []
-
-//Chain: Name, id, Token, rcp, scanner, TuviellaTokenAddress, FaucetAddress, StakingAddress
 
 chains.push(
     new Chain(
@@ -17,9 +14,9 @@ chains.push(
         "BNB",
         "https://data-seed-prebsc-1-s1.binance.org:8545/",
         "https://testnet.bscscan.com",
-        bsctestPCMTokenAddress,
-        bsctestFaucetAddress,
-        bsctestStakingAddress
+        bscTestPatoTokenAddress,
+        bscTestStakingAddress,
+        bscTestFaucetAddress
     )
 )
 

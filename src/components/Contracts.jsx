@@ -1,3 +1,4 @@
-export const bsctestPCMTokenAddress = "0x62C733e3FaB7087f1077C542765DdD7ce3BC2A17"
-export const bsctestStakingAddress = "0x2ed14F3261eE8A1F1f38Ac40DD52f2E586Bb47F3"
-export const bsctestFaucetAddress = "0xf7Ee921169BbdE883ec701aC3805B967eE1130F4"
+export const bscTestPatoTokenAddress = "0x613Aa50c5245C7b3fEFe28f26009216Df754767d"
+export const bscTestStakingAddress = "0x5AD196844dfa35C53b72e92A9927653455530503"
+export const bscTestFaucetAddress = "0xE99E1B538c718C2F637845F303e0146Df4c85CE3"
+

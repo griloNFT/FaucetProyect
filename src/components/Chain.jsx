@@ -5,21 +5,20 @@ class Chain {
   symbol = "-"
   rpcUrl = "-"
   blockExplorerUrl = "-"
-  tuviellaTokenAddress = "-"
+  patoTokenAddress = "-"
   stakingAddress = "-"
   faucetAddress = "-"
 
-  constructor(name, id, symbol, rpcUrl, blockExplorerUrl, tuviellaTokenAddress, faucetAddress, stakingAddress){
+  constructor(name, id, symbol, rpcUrl, blockExplorerUrl, patoTokenAddress, stakingAddress, faucetAddress){
     this.name = name
     this.id = id
     this.symbol = symbol
     this.rpcUrl = rpcUrl
     this.blockExplorerUrl = blockExplorerUrl
-    this.tuviellaTokenAddress = tuviellaTokenAddress
-    this.faucetAddress = faucetAddress
+    this.patoTokenAddress = patoTokenAddress
     this.stakingAddress = stakingAddress
+    this.faucetAddress = faucetAddress
   } 
-  
 }
 
 export default Chain;

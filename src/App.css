@@ -1,7 +1,7 @@
 /* GLOBAL */
 
 body{
-  background-color: #000000;
+  background-color: #1b1b1b;
 }
 
 main {
@@ -10,7 +10,6 @@ main {
 }
 
 h1 {
-  margin-bottom: 20px;
   color: #ffffff;
 }
 
@@ -32,8 +31,7 @@ span {
 
 table {
   margin: 0 auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 10px;
 }
 
 table th {
@@ -44,11 +42,71 @@ table td {
   color: #00b62d;
 }
 
+/* CLASS */
+
+.waitingMetamask{
+  background-color: red;
+  backdrop-filter: blur(5px);
+}
+
+.loader {
+  margin-top: 20px;
+  position: relative;
+}
+
+.spinner {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.circle {
+  width: 100px;
+  height: 100px;
+  border: 10px solid;
+  border-right-color: transparent;
+}
+
+.inactive {
+  color: #00b62d;
+  text-decoration: none;
+}
+
+.inactive:hover {
+  color: #ffbb00;
+}
+
+.active {
+  color: #ffbb00; 
+}
+
+.footerModal p  {
+  font-weight: bold;
+  color: #ffbb00;
+}
+
+.footerModal b {
+  color: #00b62d;
+}
+
+.footerModal a {
+  text-decoration: none;
+  color: #00b62d;
+  padding: 10px;
+}
+
+.footerModal a:hover {
+  text-decoration: underline;
+}
+
 /* NAVBAR */
 
 #navigator {
   display: inline-flex;
-  background-color: #000000;
+  background-color: #1b1b1b;
   padding: 1px;
 }
 
@@ -82,109 +140,29 @@ table td {
   font-weight: bold;
 }
 
-/* CLASS */
-
-.waitingMetamask{
-  background-color: red;
-  backdrop-filter: blur(5px);
-}
-
-.loader {
-  position: relative;
-}
-
-.spinner {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.circle {
-  width: 100px;
-  height: 100px;
-  border: 10px solid;
-  border-right-color: transparent;
-}
-
-.inactive {
-  color: #00b62d;
-  text-decoration: none;
-}
-
-.inactive:hover {
-  color: #ffbb00;
-}
-
-.active {
-  color: #ffbb00; 
-}
-
-.main {
-  margin-top: 20px;
-}
-
-.footerModal p  {
-  font-weight: bold;
-  color: #ffbb00;
-}
-
-.footerModal b {
-  color: #00b62d;
-}
-
-.footerModal a {
-  text-decoration: none;
-  color: #00b62d;
-  padding: 10px;
-}
-
-.footerModal a:hover {
-  text-decoration: underline;
-}
-
 /* FAUCET */
 
-#buttonModal {
-  margin-bottom: 20px;
-}
-
 /* FARM */
-
-#approveModal {
-  margin-top: 10px;
-}
-
-#claimModal {
-  margin-top: 10px;
-}
 
 /* FOOTBAR */
 
 #footer{
-  background-color: #000000;
-  padding: 1px;
+  background-color: #1b1b1b;
 }
 
 #about {
   color: #ffbb00;
-  border-bottom: 1px solid #2e2e2e;
-  margin-bottom: 10px;
-  padding: 5px;
   left: 0;
   bottom: 0;
   width: 100%;
   text-align: center;
+  margin-bottom: 10px;
 }
 
 #about a {
-  justify-content: center;
-  display: flex;
   color: #00b62d;
+  margin-left: 10px;
   text-decoration: none;
-  margin-bottom: 5px;
 }
 
 #about a:hover {
@@ -192,15 +170,15 @@ table td {
 }
 
 #social {
-  margin-top: 20px;
   left: 0;
   bottom: 0;
   width: 100%;
   text-align: center;
+  margin-bottom: 10px;
 }
 
 #social a {
-  margin-left: 25px;
+  margin-left: 15px;
 }
 
 /* BUTTON 1 */
@@ -256,6 +234,8 @@ hr {
   margin: 3rem 0;
 }
 .btn2 button {
+  margin-top: 10px;
+  margin-bottom: 10px;
   width:140px;
   height:50px;
   margin-left: 10px;
@@ -265,7 +245,6 @@ hr {
   color: #000000;
   border: 0.25rem solid #ffbb00;
   border-radius: 20px;
-  padding: 10px;
   position: relative;
   z-index: 1;
   overflow: hidden;
@@ -302,14 +281,11 @@ hr {
 
 .field__input{ 
   --uiFieldPlaceholderColor: var(--fieldPlaceholderColor, #767676);
-  
   background-color: transparent;
   border-radius: 0;
   border: none;
-
   -webkit-appearance: none;
   -moz-appearance: none;
-
   font-family: inherit;
   font-size: inherit;
 }
@@ -323,11 +299,11 @@ hr {
 }
 
 .field{
+  margin-top: 60px;
   --uiFieldBorderWidth: var(--fieldBorderWidth, 2px);
   --uiFieldPaddingRight: var(--fieldPaddingRight, 1rem);
   --uiFieldPaddingLeft: var(--fieldPaddingLeft, 1rem);   
   --uiFieldBorderColorActive: var(--fieldBorderColorActive, #ffbb00);
-
   display: var(--fieldDisplay, inline-flex);
   position: relative;
   font-size: var(--fieldFontSize, 1rem);
@@ -409,7 +385,6 @@ hr {
 .field__input:focus ~ .field__label-wrap .field__label,
 .field__input:not(:placeholder-shown) ~ .field__label-wrap .field__label{
   --fieldHintFontSize: var(--fieldHintFontSizeFocused, .75rem);
-
   top: var(--fieldHintTopHover, .25rem);
 }
 

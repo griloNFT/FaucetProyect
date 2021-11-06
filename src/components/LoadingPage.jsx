@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Spinner } from 'reactstrap'
 
-class Loading extends Component {
+class LoadingPage extends Component {
 
   render() {
     return ( 
@@ -16,4 +16,4 @@ class Loading extends Component {
   }
 }
 
-export default Loading;
+export default LoadingPage;
