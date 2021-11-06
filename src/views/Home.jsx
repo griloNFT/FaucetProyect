@@ -6,6 +6,7 @@ class Home extends Component {
     return ( 
         <div>
           <h1>WELCOME TO THE PROYECT COIN MANAGER COMMUNITY!</h1>
+          <h1></h1>
         </div>
     );
   }

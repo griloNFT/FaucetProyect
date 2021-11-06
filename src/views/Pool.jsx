@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import patoIcon from '../images/patologo.png'
 
 class Pool extends Component {
 
@@ -6,7 +7,7 @@ class Pool extends Component {
     return ( 
       <div>
         <h1>POOL</h1>
-        <h6 class="bottom-bar">ESTIMATED REWARDS: &nbsp;<b>0 PVP /DAY</b></h6>
+        <img src={patoIcon} width="70" height="70" className="d-inline-block align-top" alt="" />
         <table>
           <thead>
             <tr>
@@ -17,10 +18,10 @@ class Pool extends Component {
           <tbody>
             <tr>
               <td>
-               <b>{Math.round(window.web3.utils.fromWei(this.props.stakingStaked.toString(), 'Ether')*100)/100 + " PVP" }</b>
+                {Math.round(window.web3.utils.fromWei(this.props.stakingStaked.toString(), 'Ether')*100)/100 + " " + this.props.tokenName.toString()}
               </td>
               <td>
-               <b>{Math.round(window.web3.utils.fromWei(this.props.stakingPending.toString(), 'Ether')*100)/100 + " PVP" }</b>
+                {Math.round(window.web3.utils.fromWei(this.props.stakingPending.toString(), 'Ether')*100)/100 + " " + this.props.tokenName.toString()}
               </td>
             </tr>
           </tbody>
@@ -104,7 +105,7 @@ class Pool extends Component {
           </table> 
         </div>
         <div class="footerModal">     
-          <p>WALLET BALANCE &nbsp;<b>{Math.round(window.web3.utils.fromWei(this.props.patoTokenBalance.toString(), 'Ether')*100)/100 + " PVP"}</b></p>
+          <h6>WALLET BALANCE &nbsp;<span>{Math.round(window.web3.utils.fromWei(this.props.patoTokenBalance.toString(), 'Ether')*100)/100 + " " + this.props.tokenName.toString()}</span></h6>
           <a href="https://testnet.bscscan.com/address/0x5AD196844dfa35C53b72e92A9927653455530503" target="_blank" rel="noopener noreferrer">FARM CONTRACT</a>
           <a href="https://testnet.bscscan.com/address/0x613Aa50c5245C7b3fEFe28f26009216Df754767d" target="_blank" rel="noopener noreferrer">PVP CONTRACT</a>
         </div>

@@ -12,9 +12,9 @@ class Footer extends Component {
       <div>
         <div id="about">
           <h6>ABOUT</h6>
-          <a href="/">Chart</a>
-          <a href="/">Tokenomics</a>
-          <a href="/">Roadmap</a>
+          <a href="/">CHART</a>
+          <a href="/">TOKENOMICS</a>
+          <a href="/">ROADMAP</a>
         </div>
         <div id="social">
           <a href="https://www.twitch.tv/patoverde_pv" target="_blank" rel="noopener noreferrer">

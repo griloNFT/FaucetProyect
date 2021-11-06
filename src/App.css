@@ -19,13 +19,11 @@ h2 {
 
 h6 {
   color: #ffbb00;
-}
-
-h6 b {
-  color: #00b62d;
+  font-weight: bold;
 }
 
 span {
+  font-weight: normal;
   color: #00b62d;
 }
 
@@ -36,6 +34,7 @@ table {
 
 table th {
   color: #ffbb00;
+  font-weight: bold;
 }
 
 table td {
@@ -83,18 +82,13 @@ table td {
   color: #ffbb00; 
 }
 
-.footerModal p  {
-  font-weight: bold;
-  color: #ffbb00;
-}
-
 .footerModal b {
   color: #00b62d;
 }
 
 .footerModal a {
+  color: #ffffff;
   text-decoration: none;
-  color: #00b62d;
   padding: 10px;
 }
 

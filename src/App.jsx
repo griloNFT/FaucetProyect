@@ -263,7 +263,11 @@ class App extends Component {
     let home
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
       home = <div>
-        <Home />
+        <Home
+         
+          
+    
+        />
       </div>
     }
 
@@ -277,6 +281,7 @@ class App extends Component {
           patoTokenBalance={this.state.patoTokenBalance}
           faucetPatoTokenBalance={this.state.faucetPatoTokenBalance}
           patoExpiry={this.state.patoExpiry} 
+          tokenName="PVP"
         />
       </div>
     }
@@ -297,6 +302,7 @@ class App extends Component {
           patoTokenBalance={this.state.patoTokenBalance}      
           stakingPending={this.state.stakingPendingViellas}
           stakingStaked={this.state.stakingStakedViellas}
+          tokenName="PVP" 
         />
       </div>
     }

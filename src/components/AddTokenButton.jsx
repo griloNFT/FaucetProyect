@@ -10,7 +10,7 @@ class AddTokenButton extends Component {
         event.preventDefault()
         this.props.addTuviellaToken()
         }}>
-        Add Token to Metamask
+      Add Token to Metamask
       </button>
     );
   }

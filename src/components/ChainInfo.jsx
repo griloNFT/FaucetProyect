@@ -13,8 +13,8 @@ class ChainInfo extends Component {
       <p><b>SYMBOL: &nbsp;</b>BNB</p>
       <p><b>BLOCK EXPLORER URL: &nbsp;</b>https://testnet.bscscan.com/</p>
       <form class="btn2" action="/">
-          <button className="slide_from_left" type="submit">REFRESH PAGE</button>
-        </form>
+        <button className="slide_from_left" type="submit">REFRESH PAGE</button>
+      </form>
     </div>
     );
   }
