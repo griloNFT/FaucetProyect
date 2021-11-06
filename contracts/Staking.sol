@@ -23,7 +23,7 @@ contract Staking is Ownable {
     struct UserInfo {
         uint256 amount;     // How many tokens the user has provided.
         uint256 rewardDebt; // Reward debt. See explanation below.Lo que ya se le entrego.
-        uint256 userPerBLock; //Tokens que recibe el user por bloque.
+        //uint256 userPerBLock; //Tokens que recibe el user por bloque.
 
         //
         // We do some fancy math here. Basically, any point in time, the amount of CAKEs
@@ -69,14 +69,14 @@ contract Staking is Ownable {
     //Contador de usuarios.
     uint public cantUsers = 0;
     //Fee in witdraaaws!
-    uint public fee; 
+    uint public fee = 500; 
     // Total allocation points. Must be the sum of all allocation points in all pools.
     uint256 public totalAllocPoint = 0;
     // The block number when TUpato mining starts.
     uint256 public startBlock;
 
     //Variable para el timelock. Permite activar desactivar harvest and reinvet brrr.
-    bool public rewardsActive = false;
+    bool public rewardsActive = true;
     
 
     event Deposit(address indexed user, uint256 indexed pid, uint256 amount);
@@ -215,6 +215,7 @@ contract Staking is Ownable {
     }
 
     // Deposit LP tokens to MasterChef for pato allocation.
+    
     function deposit(uint256 _pid, uint256 _amount) public {
         PoolInfo storage pool = poolInfo[_pid];
         UserInfo storage user = userInfo[_pid][msg.sender];
@@ -227,31 +228,32 @@ contract Staking is Ownable {
                 }
             }
         }
+        if (user.amount == 0){
+            cantUsers = cantUsers.add(1);
+        }
         
         if (_amount > 0) {
-            pool.stakedToken.safeTransferFrom(address(msg.sender), address(this), _amount);
+            pool.stakedToken.safeTransferFrom(address(msg.sender), address(this), _amount);            
             pool.totalTokensInPool = pool.totalTokensInPool.add(_amount);
+            
             user.amount = user.amount.add(_amount);
-        }  
+        } 
         if(rewardsActive){      
             user.rewardDebt = user.amount.mul(pool.accPATOPerShare).div(1e12);
         }
 
-        if (user.amount == 0){
-            cantUsers = cantUsers.add(1);
-        }
+        
         //multiplierAutomatic();
         emit Deposit(msg.sender, _pid, _amount);
     }
 
     // Withdraw LP tokens from MasterChef.
     function withdraw(uint256 _pid, uint256 _amount) public {
-        require(rewardsActive == true, "Las recompenza aun no estan preparadas");
+        //require(rewardsActive == true, "Las recompenza aun no estan preparadas");
         PoolInfo storage pool = poolInfo[_pid];
-        UserInfo storage user = userInfo[_pid][msg.sender];
-        uint  balanceCero = 0;
+        UserInfo storage user = userInfo[_pid][msg.sender];        
         require(user.amount >= _amount, "withdraw exceeds user balance");
-        require(user.amount > balanceCero, "Cero balance");
+        
 
         updatePool(_pid);
         uint256 pending = user.amount.mul(pool.accPATOPerShare).div(1e12).sub(user.rewardDebt);
@@ -261,24 +263,24 @@ contract Staking is Ownable {
             }
         }
         if(_amount > 0) {
-            user.amount = user.amount.sub(_amount);            
-            //tuki PATODEV
-            //fee to dev address.                        
-                       
-            
-            pool.stakedToken.safeTransfer(address(/*devaddr*/), _amount.div(fee));          
-            pool.stakedToken.safeTransfer(address(msg.sender), _amount.sub(_amount.div(fee)));
+
+            uint256 depositFee = _amount.mul(fee).div(10000);
+            uint256 amountFee =  _amount.sub(depositFee);
+
+            pool.stakedToken.safeTransfer(devaddr, depositFee);
+            user.amount = user.amount.sub(_amount);          
+            pool.stakedToken.safeTransfer(address(msg.sender), amountFee);
             
             pool.totalTokensInPool = pool.totalTokensInPool.sub(_amount);
-
         }
+
         if(rewardsActive ){
             user.rewardDebt = user.amount.mul(pool.accPATOPerShare).div(1e12);
         }
+
         if(user.amount == 0){
             cantUsers =cantUsers.sub(1);
-        }
-        //multiplierAutomatic();
+        }        
         emit Withdraw(msg.sender, _pid, _amount);
     }
 
@@ -315,7 +317,7 @@ contract Staking is Ownable {
 
         uint256 pending = user.amount.mul(accPATOPerShare).div(1e12).sub(user.rewardDebt);
         //PATOCODE
-        uint256 userPerBLock = user.amount.mul(PATOPerBlock).div(pool.totalTokensInPool).mul(28800);
+        //uint256 userPerBLock = user.amount.mul(PATOPerBlock).div(pool.totalTokensInPool).mul(28800);
         require(pending > 0, "No pending to brrr");
         rewardContract.payTo(msg.sender, pending);
         user.rewardDebt = user.amount.mul(accPATOPerShare).div(1e12);
@@ -382,57 +384,6 @@ contract Staking is Ownable {
     //Activar retiros de reward.sol
     function setActive(bool _rewardsActive) public onlyOwner {
         rewardsActive = _rewardsActive;
-    }
-
-
-
-    function multiplierAutomatic() internal {
-        uint balanceofRewards;
-        uint userMult; 
-        
-        if(rewardContract.totalPATOInContract() > 0) {
-            if (rewardContract.totalPATOInContract() >= 4800000) {
-                userMult = 100;
-            }else{
-                if (rewardContract.totalPATOInContract() >= 3600000 ) {
-                    userMult = 80;
-                }else{
-                    if (rewardContract.totalPATOInContract() >= 2400000) {
-                        userMult = 60;
-                    }else{
-                        if (rewardContract.totalPATOInContract() >= 2400000) {
-                            userMult = 30;
-                        }else{
-                            if (rewardContract.totalPATOInContract() >= 1200000) {
-                                userMult = 10;
-                            }else{
-                                if (rewardContract.totalPATOInContract() >= 1200000) {
-                                    userMult = 5;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        if (cantUsers <= 10) {
-           userMult = 1;
-        }
-        if ((cantUsers <= 50) && (cantUsers > 10)){
-            userMult = 2;
-        }
-        if ((cantUsers <= 100) && (cantUsers > 50)){
-            userMult = 4;
-        }
-        if ((cantUsers <= 1000) && (cantUsers > 100)){
-            userMult = 6;
-        }
-        if ((cantUsers <= 10000) && (cantUsers > 1000)){
-            userMult = 8;
-        }
-        
-        
-        BONUS_MULTIPLIER = (BONUS_MULTIPLIER * balanceofRewards) * userMult;
     }
     
 }
