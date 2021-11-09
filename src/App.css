@@ -63,13 +63,13 @@ main {
 section {
   margin: 0 auto;
   background-color: rgba(90, 90, 90, 0.404);
+  padding: 30px;
 }
 
 article {
   text-align: center;
   margin-top: 40px;
   margin-bottom: 500px;
-  padding: 30px;
 }
 
 article h1 {
@@ -98,7 +98,7 @@ footer {
 
 h1 {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  color: #000000;
+  color: #ffffff;
 }
 
 h2 {
@@ -157,7 +157,7 @@ table td {
 }
 
 .spinner {
-  color:#000000;
+  color:#ffffff;
   margin: 0;
   position: absolute;
   top: 50%;
