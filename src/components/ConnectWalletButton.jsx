@@ -22,9 +22,8 @@ export default function ConnectWalletButton() {
   }
 
   return (
-    <div id="connectModal">
-      {active ? <span id="activateWallet">BSC - TESTNET | <b>{account}</b></span>: <span><b>BSC - TESTNET</b></span>} 
-      {active ? <button class="btn first" onClick={disconnect}>Hide Wallet</button> : <button class="btn first" onClick={connect}>Show Wallet</button>} 
+    <div>
+      {active ? <button class="btn first" onClick={disconnect}>DISCONNECT</button> : <button class="btn first" onClick={connect}>CONNECT WALLET</button>}
     </div>
   )
 }

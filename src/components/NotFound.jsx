@@ -6,7 +6,7 @@ class NotFound extends Component {
     return (
       <div>
         <h2>404 ERROR</h2>
-        <h3>PAGE NOT FOUND</h3>
+        <h6>PAGE NOT FOUND</h6>
         <form class="btn2" action="/">
           <button className="slide_from_left" type="submit">BACK HOME</button>
         </form>

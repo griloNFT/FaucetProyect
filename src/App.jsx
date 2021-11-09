@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
+  Switch, 
+  Route, 
   NavLink
 } from "react-router-dom";
 import Web3 from 'web3'
@@ -11,30 +11,31 @@ import { Web3ReactProvider } from '@web3-react/core'
 import PatoVerde from './abis/PatoVerde.json'
 import FaucetAbi from './abis/Faucet.json'
 import StakingAbi from './abis/Staking.json'
- 
+import SmartContract from './abis/nft/NerdyCoderClones.json'
+
 import LoadingPage from './components/LoadingPage'
 import LoadingTransaction from './components/LoadingTransaction'
 import ConnectWalletButton from './components/ConnectWalletButton'
 import AddTokenButton from './components/AddTokenButton'
 import chains from './components/AvailableChains'
-import ChainInfo from './components/ChainInfo'
+import WrongNetwork from './components/WrongNetwork'
 import NotFound from './components/NotFound'
 import Footer from './components/Footer'
-
-import patoIcon from './images/patologo.png'
 
 import Home from './views/Home'
 import Faucet from './views/Faucet'
 import Pool from './views/Pool'
 import Vote from './views/Vote'
-import Soon from './views/Soon'
+import Nft from './views/Nft'
+
+import patoIcon from './images/patologo.png'
 
 import './App.css'
 
 function getLibrary(provider) {
   return new Web3(provider)
 }
- 
+
 class App extends Component {
 
   async componentWillMount() {
@@ -73,37 +74,53 @@ class App extends Component {
     } else {
       this.setState({ chainInUse })
       this.setState({ account: accounts[0] })
-   
       try {
         const patoToken = new web3.eth.Contract(PatoVerde.abi, chainInUse.patoTokenAddress)
         this.setState({ patoToken })
-        let patoTokenBalance = await patoToken.methods.balanceOf(this.state.account).call(  )
-        let faucetPatoTokenBalance = await patoToken.methods.balanceOf(chainInUse.faucetAddress).call(  ) 
+        let patoTokenBalance = await patoToken.methods.balanceOf(this.state.account).call()
         this.setState({ patoTokenBalance: patoTokenBalance.toString() })
+        let faucetPatoTokenBalance = await patoToken.methods.balanceOf(chainInUse.faucetAddress).call()  
         this.setState({ faucetPatoTokenBalance: faucetPatoTokenBalance.toString() })
       } catch(e) {
         window.alert('PATO CONTRACT NOT DEPLOYED TO DETECTED NETWORK!')
       }
-
       try {
         const staking = new web3.eth.Contract(StakingAbi.abi, chainInUse.stakingAddress)
         this.setState({ staking })
       } catch(e) {
         window.alert('STAKING CONTRACT NOT DEPLOYED TO DETECTED NETWORK!')
       }
-  
       try {
         const faucet = new web3.eth.Contract(FaucetAbi.abi, chainInUse.faucetAddress)
         this.setState({ faucet })
       } catch(e) {
         window.alert('FAUCET CONTRACT NOT DEPLOYED TO DETECTED NETWORK!')
       }
-  
+      try {
+        const nftMinter = new web3.eth.Contract(SmartContract.abi, chainInUse.nftMinterAddress)
+        this.setState({ nftMinter })
+        let nftUri = await nftMinter.methods.baseURI().call()
+        this.setState({ nftUri: nftUri.toString() })
+        let nftBalance = await nftMinter.methods.balanceOf(this.state.account).call()
+        this.setState({ nftBalance: nftBalance.toString() })
+        let maxMint = await nftMinter.methods.maxSupply().call()
+        this.setState({ maxMint: maxMint.toString() })
+        let actualMint = await nftMinter.methods.totalSupply().call()
+        this.setState({ actualMint: actualMint.toString() })
+        let nftCost = await nftMinter.methods.cost().call()
+        this.setState({ nftCost: nftCost.toString() })
+        let nftName = await nftMinter.methods.name().call()
+        this.setState({ nftName: nftName.toString() })
+        let nftSymbol = await nftMinter.methods.symbol().call()
+        this.setState({ nftSymbol: nftSymbol.toString() })
+      } catch(e) {
+        window.alert('NFT CONTRACT NOT DEPLOYED TO DETECTED NETWORK!')
+      }
+
       let patoExpiry = await this.state.faucet.methods.getExpiryOf(this.state.account, chainInUse.patoTokenAddress).call()
       let tuviellaSecs = await this.state.faucet.methods.getSecsOf(chainInUse.patoTokenAddress).call() // NO SE USA
       let stakingStakedViellas = await this.state.staking.methods.userInfo(0, this.state.account).call()
       let stakingPendingViellas = await this.state.staking.methods.pendingPATO(0, this.state.account).call()
-  
       this.setState({ stakingPendingViellas: stakingPendingViellas, 
                       stakingStakedViellas: stakingStakedViellas[0],
                       patoExpiry: patoExpiry, 
@@ -116,7 +133,6 @@ class App extends Component {
   addTuviellaToken = async ()  => {
     try {
       const provider = window.web3.currentProvider
-
       await provider.sendAsync({
         method: 'wallet_watchAsset',
         params: {
@@ -200,6 +216,26 @@ class App extends Component {
     });
   }
 
+  claimNFTs = async (_amount) => {
+    this.setState({ loading: 'TRANSACTION' })
+    if (_amount <= 0) {
+      return;
+    }
+    this.state.nftMinter.methods
+      .mint(this.state.account, _amount)
+      .send({
+        gasLimit: "285000",
+        from: this.state.account,
+        value: window.web3.utils.toWei((0 * _amount).toString(), "ether"),
+      })
+      .on('receipt', async (hash) => {
+        window.location.reload()
+      })
+      .on('error', function(error) {
+        window.location.reload()
+      });
+  }
+
   //Just for admin use
   updateExpiry = async ()  => {
     let tuviellaExpiry = await this.state.faucet.methods
@@ -219,6 +255,17 @@ class App extends Component {
       patoToken: {},
       faucet: {},
       staking: {},
+      nftMinter: {},
+      nftMarket: {},
+      totalCount: '0',
+      nfts: '0',
+      nftBalance: '0',
+      maxMint: '0',
+      actualMint: '0',
+      nftCost: '0',
+      nftUri: '',
+      nftName: '',
+      nftSymbol: '',
       stakingPendingViellas: 0,
       stakingStakedViellas: 0,
       patoTokenBalance: '0',
@@ -229,6 +276,13 @@ class App extends Component {
       chainInUse: undefined,
       approveValue: 100000000000000000000,
       value: 0,
+      buffer: true,
+      loading1: true,
+      description: '',
+      tokenURI: '',
+      imageUrl: '',
+      name: '',
+      ipfs: '',
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -243,7 +297,7 @@ class App extends Component {
     }
     if(this.state.loading === 'INVALID_CHAIN') {
       loading = <div>
-        <ChainInfo />
+        <WrongNetwork />
       </div>
     }
     if(this.state.loading === 'TRANSACTION') {
@@ -252,9 +306,9 @@ class App extends Component {
       </div>
     }
 
-    let addTokenBtn
+    let addToken
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
-      addTokenBtn = <div id="addBtn">
+      addToken = <div id="addBtn">
         <AddTokenButton 
           addTuviellaToken={this.addTuviellaToken}
         />
@@ -325,49 +379,66 @@ class App extends Component {
       </div>
     }
 
-    let soon
+    let nft
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
-      soon = <div>
-        <Soon />
+      nft = <div>
+        <Nft
+          nftMinter={this.state.nftMinter}
+          claimNFTs={this.claimNFTs}
+          nftBalance={this.state.nftBalance}
+          maxMint={this.state.maxMint}
+          actualMint={this.state.actualMint}
+          nftCost={this.state.nftCost}
+          nftName={this.state.nftName}
+          nftSymbol={this.state.nftSymbol}
+          nftUri={this.state.nftUri}
+          tokenName="PVPNFT"
+        />
       </div>
     }
 
     return (
       <Web3ReactProvider getLibrary={getLibrary}>
-        <div className="container-fluid">
+        <div>
           <Router>
-            <nav id="navigator" className="navbar fixed-top">
-              <a id="title" href="/" className="navbar-brand col-sm-3 col-md-2 mr-0" >
-                <img src={patoIcon} width="30" height="30" className="d-inline-block align-top" alt="" />
-                &nbsp; PATO MANAGER
-                {addTokenBtn}
+            <header>
+              <a href="/">
+                <p id="text"><img id="logo" src={patoIcon} width="70" height="70" alt="" /><h1 class="titleH1">PATO VERDE PROJECTS</h1></p>
               </a>
-              <div id="menu">                                                         
-                <NavLink className="inactive" activeClassName="active" to="/faucet"><a>FAUCET</a></NavLink>                                     
-                <NavLink className="inactive" activeClassName="active" to="/pool"><a>POOL</a></NavLink>                                     
-                <NavLink className="inactive" activeClassName="active" to="/vote"><a>VOTE</a></NavLink>                                
-                <NavLink className="inactive" activeClassName="active" to="/nft"><a>NFT</a></NavLink>                       
-              </div>       
-              <div>
+              <div id="walletModal">
                 <ConnectWalletButton />
               </div>
+              <div id="addTokenModal">
+                {addToken}
+              </div>
+            </header>
+            <nav>
+              <ul id="menu">                                                          
+                <NavLink className="inactive" activeClassName="active" to="/faucet"><li><a>FAUCET</a></li></NavLink>                                     
+                <NavLink className="inactive" activeClassName="active" to="/pool"><li><a>POOL</a></li></NavLink>                                     
+                <NavLink className="inactive" activeClassName="active" to="/vote"><li><a>VOTE</a></li></NavLink>                                
+                <NavLink className="inactive" activeClassName="active" to="/nft"><li><a>NFT</a></li></NavLink>                      
+              </ul> 
             </nav>
-            <main class="gradient-border">    
-              <Switch>             
-                {loading}
-                <Route exact path="/">{home}</Route>         
-                <Route path="/faucet">{faucet}</Route>
-                <Route path="/pool">{pool}</Route>
-                <Route path="/vote">{vote}</Route>
-                <Route path="/nft">{soon}</Route>               
-                <Route component={NotFound} /> 
-              </Switch>
+            <main>
+              <section>    
+                <Switch>             
+                  {loading}
+                  <Route exact path="/">{home}</Route>         
+                  <Route path="/faucet">{faucet}</Route>
+                  <Route path="/pool">{pool}</Route>
+                  <Route path="/vote">{vote}</Route>
+                  <Route path="/nft">{nft}</Route>      
+                  <Route component={NotFound} /> 
+               </Switch>
+              </section>
             </main>
-            <footer id="footer" className="footbar fixed-bottom">
+            <footer>
               <Footer /> 
-            </footer>   
+            </footer> 
           </Router>     
-        </div>  
+        </div>
+          
       </Web3ReactProvider>
     );
   }

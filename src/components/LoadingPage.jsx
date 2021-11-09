@@ -5,7 +5,8 @@ class LoadingPage extends Component {
 
   render() {
     return ( 
-      <div><h1>LOADING DAPP</h1>
+      <div>
+        <h1>LOADING DAPP</h1>
         <div class="loader">
           <div class="spinner">
             <Spinner class="circle"/>

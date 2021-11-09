@@ -8,8 +8,10 @@ class Chain {
   patoTokenAddress = "-"
   stakingAddress = "-"
   faucetAddress = "-"
+  nftAddress = "-"
 
-  constructor(name, id, symbol, rpcUrl, blockExplorerUrl, patoTokenAddress, stakingAddress, faucetAddress){
+
+  constructor(name, id, symbol, rpcUrl, blockExplorerUrl, patoTokenAddress, stakingAddress, faucetAddress, nftMinterAddress){
     this.name = name
     this.id = id
     this.symbol = symbol
@@ -18,6 +20,7 @@ class Chain {
     this.patoTokenAddress = patoTokenAddress
     this.stakingAddress = stakingAddress
     this.faucetAddress = faucetAddress
+    this.nftMinterAddress = nftMinterAddress
   } 
 }
 

@@ -17,7 +17,7 @@ class Footer extends Component {
           <a href="/">TOKENOMICS</a>
           <a href="/">ROADMAP</a>
         </div>
-        <div id="social">
+        <div class="social">
           <a href="https://www.twitch.tv/patoverde_pv" target="_blank" rel="noopener noreferrer">
             <img src={Twitch} width="20" height="20" className="d-inline-block align-top" alt="" />
           </a>

@@ -1,27 +1,26 @@
 import React, { Component } from 'react'
-import patoIcon from '../images/patologo.png'
 
 class Pool extends Component {
 
   render() {
     return ( 
-      <div>
-        <h1>POOL</h1>
-        <img src={patoIcon} width="70" height="70" className="d-inline-block align-top" alt="" />
+      <article>
+        <h1>STAKE YOUR PVP TOKENS AND EARN REWARDS</h1>
+      <div class="boxModal">
         <table>
           <thead>
             <tr>
-              <th scope="col">YOUR DEPOSIT</th>
-              <th scope="col">YOUR PROFIT</th>
+              <th scope="col">DEPOSIT</th>
+              <th scope="col">PROFIT</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>
-                {Math.round(window.web3.utils.fromWei(this.props.stakingStaked.toString(), 'Ether')*100)/100 + " " + this.props.tokenName.toString()}
+                <span>{Math.round(window.web3.utils.fromWei(this.props.stakingStaked.toString(), 'Ether')*100)/100 + " " + this.props.tokenName.toString()}</span>
               </td>
               <td>
-                {Math.round(window.web3.utils.fromWei(this.props.stakingPending.toString(), 'Ether')*100)/100 + " " + this.props.tokenName.toString()}
+                <span>{Math.round(window.web3.utils.fromWei(this.props.stakingPending.toString(), 'Ether')*100)/100 + " " + this.props.tokenName.toString()}</span>
               </td>
             </tr>
           </tbody>
@@ -68,7 +67,7 @@ class Pool extends Component {
               onChange={this.props.handleChange} 
             />
             <span class="field__label-wrap">
-              <span class="field__label">PATO AMOUNT</span>
+              <span class="field__label">PVP AMOUNT</span>
             </span>
           </label>
         </div>
@@ -103,13 +102,13 @@ class Pool extends Component {
               </tr>
             </tfoot>
           </table> 
-        </div>
-        <div class="footerModal">     
-          <h6>WALLET BALANCE &nbsp;<span>{Math.round(window.web3.utils.fromWei(this.props.patoTokenBalance.toString(), 'Ether')*100)/100 + " " + this.props.tokenName.toString()}</span></h6>
-          <a href="https://testnet.bscscan.com/address/0x5AD196844dfa35C53b72e92A9927653455530503" target="_blank" rel="noopener noreferrer">FARM CONTRACT</a>
-          <a href="https://testnet.bscscan.com/address/0x613Aa50c5245C7b3fEFe28f26009216Df754767d" target="_blank" rel="noopener noreferrer">PVP CONTRACT</a>
-        </div>
+        </div>    
+          <h6>WALLET BALANCE: &nbsp;<span>{Math.round(window.web3.utils.fromWei(this.props.patoTokenBalance.toString(), 'Ether')*100)/100 + " " + this.props.tokenName.toString()}</span></h6>
+         
       </div>
+      <a href="https://testnet.bscscan.com/address/0x5AD196844dfa35C53b72e92A9927653455530503" target="_blank" rel="noopener noreferrer">POOL CONTRACT</a>
+          <a href="https://testnet.bscscan.com/address/0x613Aa50c5245C7b3fEFe28f26009216Df754767d" target="_blank" rel="noopener noreferrer">PVP CONTRACT</a>
+      </article>
     );
   }
 }

@@ -2,7 +2,8 @@ import Chain from "./Chain"
 import {
     bscTestPatoTokenAddress,
     bscTestStakingAddress,
-    bscTestFaucetAddress 
+    bscTestFaucetAddress,
+    bscTestNftAddress
 } from './Contracts'
 
 let chains = []
@@ -16,7 +17,8 @@ chains.push(
         "https://testnet.bscscan.com",
         bscTestPatoTokenAddress,
         bscTestStakingAddress,
-        bscTestFaucetAddress
+        bscTestFaucetAddress,
+        bscTestNftAddress,
     )
 )
 
