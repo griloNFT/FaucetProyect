@@ -23,10 +23,11 @@ import NotFound from './components/NotFound'
 import Footer from './components/Footer'
 
 import Home from './views/Home'
-import Faucet from './views/Faucet'
+import Claim from './views/Claim'
 import Pool from './views/Pool'
 import Vote from './views/Vote'
-import Nft from './views/Nft'
+import Market from './views/Market'
+import Soon from './views/Soon'
 
 import patoIcon from './images/patologo.png'
 
@@ -70,7 +71,7 @@ class App extends Component {
  
     if(!chainInUse){
       this.setState({ loading: "INVALID_CHAIN" })
-      window.alert('INVALID NETWORK DETECTED, CONNECT TO BSC-TESTNET NETWORK!')
+      window.alert('INVALID NETWORK, CONNECT TO BSC-TESTNET NETWORK!')
     } else {
       this.setState({ chainInUse })
       this.setState({ account: accounts[0] })
@@ -118,19 +119,17 @@ class App extends Component {
       }
 
       let patoExpiry = await this.state.faucet.methods.getExpiryOf(this.state.account, chainInUse.patoTokenAddress).call()
-      let tuviellaSecs = await this.state.faucet.methods.getSecsOf(chainInUse.patoTokenAddress).call() // NO SE USA
       let stakingStakedViellas = await this.state.staking.methods.userInfo(0, this.state.account).call()
       let stakingPendingViellas = await this.state.staking.methods.pendingPATO(0, this.state.account).call()
       this.setState({ stakingPendingViellas: stakingPendingViellas, 
                       stakingStakedViellas: stakingStakedViellas[0],
-                      patoExpiry: patoExpiry, 
-                      tuviellaSecs: tuviellaSecs // NO SE USA
+                      patoExpiry: patoExpiry
                     })
       this.setState({ loading: 'FALSE' })
     }
   }
   
-  addTuviellaToken = async ()  => {
+  addToken = async ()  => {
     try {
       const provider = window.web3.currentProvider
       await provider.sendAsync({
@@ -145,13 +144,49 @@ class App extends Component {
           },
         },
       });
-      this.setState({ loading: 'FALSE' })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  addNetwork = async ()  => {
+    try {
+      const provider = window.web3.currentProvider
+      await provider.sendAsync({
+        method: 'wallet_addEthereumChain',
+        params: [{
+            chainId: "0x38",
+            chainName: "BSC - Mainnet",
+            rpcUrls: ["https://bsc-dataseed.binance.org/"],
+            iconUrls: ["https://queesunbitcoin.com/wp-content/uploads/2021/05/curso-sobre-binance-online.png"],
+            nativeCurrency: {
+              name: "BNB",
+              symbol: "BNB",
+              decimals: 18,
+            },
+            blockExplorerUrls: ["https://bscscan.com/"],
+        }],
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  switchNetwork = async ()  => {
+    try {
+      const provider = window.web3.currentProvider
+      await provider.sendAsync({
+        method: 'wallet_switchEthereumChain',
+        params: [{
+            chainId: "0x38",
+        }],
+      });
     } catch (error) {
       console.log(error);
     }
   }
  
-  claimTuViella = async ()  => {
+  claimToken = async ()  => {
     this.setState({ loading: 'TRANSACTION' })
     this.state.faucet.methods
     .claim(this.state.chainInUse.patoTokenAddress)
@@ -164,7 +199,7 @@ class App extends Component {
     });
   }
 
-  approveTuViella = async (approveValue)  => {
+  approveToken = async (approveValue)  => {
     this.setState({ loading: 'TRANSACTION' })
     this.state.patoToken.methods
     .approve(this.state.chainInUse.stakingAddress, window.web3.utils.toWei(approveValue.toString(), 'Ether'))
@@ -177,7 +212,7 @@ class App extends Component {
     });
   }
 
-  depositTuViella = async (value)  => {
+  depositToken = async (value)  => {
     this.setState({ loading: 'TRANSACTION' })
     this.state.staking.methods
     .deposit(0, window.web3.utils.toWei(value.toString(), 'Ether'))
@@ -190,7 +225,7 @@ class App extends Component {
     });
   }
 
-  harvestTuViella = async ()  => {
+  harvestToken = async ()  => {
     this.setState({ loading: 'TRANSACTION' })
     this.state.staking.methods
     .brrr(0)
@@ -203,7 +238,7 @@ class App extends Component {
     });
   }
 
-  withdrawTuViella = async (value)  => {
+  withdrawToken = async (value)  => {
     this.setState({ loading: 'TRANSACTION' })
     this.state.staking.methods
     .withdraw(0, window.web3.utils.toWei(value.toString(), 'Ether'))
@@ -236,14 +271,6 @@ class App extends Component {
       });
   }
 
-  //Just for admin use
-  updateExpiry = async ()  => {
-    let tuviellaExpiry = await this.state.faucet.methods
-    .getExpiryOf(this.state.account, this.state.chainInUse.patoTokenAddress)
-    .call()
-    this.setState({ tuviellaExpiry: tuviellaExpiry }) 
-  }
-
   handleChange(event) {
     this.setState({value: event.target.value});
   }
@@ -255,10 +282,14 @@ class App extends Component {
       patoToken: {},
       faucet: {},
       staking: {},
+      stakingPendingViellas: 0,
+      stakingStakedViellas: 0,
+      approveValue: 100000000000000000000,
+      value: 0,
+      patoTokenBalance: '0',
+      faucetPatoTokenBalance: '0',
+      patoExpiry: 0,
       nftMinter: {},
-      nftMarket: {},
-      totalCount: '0',
-      nfts: '0',
       nftBalance: '0',
       maxMint: '0',
       actualMint: '0',
@@ -266,23 +297,8 @@ class App extends Component {
       nftUri: '',
       nftName: '',
       nftSymbol: '',
-      stakingPendingViellas: 0,
-      stakingStakedViellas: 0,
-      patoTokenBalance: '0',
-      faucetPatoTokenBalance: '0',
-      patoExpiry: 0,
-      tuviellaSecs: 0, // NO SE USA
       loading: 'WEB3',
       chainInUse: undefined,
-      approveValue: 100000000000000000000,
-      value: 0,
-      buffer: true,
-      loading1: true,
-      description: '',
-      tokenURI: '',
-      imageUrl: '',
-      name: '',
-      ipfs: '',
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -297,7 +313,9 @@ class App extends Component {
     }
     if(this.state.loading === 'INVALID_CHAIN') {
       loading = <div>
-        <WrongNetwork />
+        <WrongNetwork 
+          addNetwork={this.addNetwork}
+        />
       </div>
     }
     if(this.state.loading === 'TRANSACTION') {
@@ -310,7 +328,16 @@ class App extends Component {
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
       addToken = <div id="addBtn">
         <AddTokenButton 
-          addTuviellaToken={this.addTuviellaToken}
+          addToken={this.addToken}
+        />
+      </div>
+    }
+
+    let soon
+    if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
+      soon = <div>
+        <Soon
+        
         />
       </div>
     }
@@ -322,17 +349,28 @@ class App extends Component {
       </div>
     }
 
-    let faucet
+    let claim
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
-      faucet = <div>
-        <Faucet
+      claim = <div>
+        <Claim
           patoToken={this.state.patoToken}
           faucet={this.state.faucet}
-          claimTuViella={this.claimTuViella} 
+          claimToken={this.claimToken} 
           patoTokenBalance={this.state.patoTokenBalance}
           faucetPatoTokenBalance={this.state.faucetPatoTokenBalance}
           patoExpiry={this.state.patoExpiry} 
           tokenName="PVP"
+
+          nftMinter={this.state.nftMinter}
+          claimNFTs={this.claimNFTs}
+          nftBalance={this.state.nftBalance}
+          maxMint={this.state.maxMint}
+          actualMint={this.state.actualMint}
+          nftCost={this.state.nftCost}
+          nftName={this.state.nftName}
+          nftSymbol={this.state.nftSymbol}
+          nftUri={this.state.nftUri}
+          nftName="PVPN"
         />
       </div>
     }
@@ -341,15 +379,15 @@ class App extends Component {
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
       pool = <div>
         <Pool
+          approveToken={this.approveToken}
+          harvestToken={this.harvestToken} 
+          handleChange={this.handleChange}
+          depositToken={this.depositToken}
+          withdrawToken={this.withdrawToken}
           patoToken={this.state.patoToken}
-          farm={this.state.staking}
-          approve={this.approveTuViella}
+          staking={this.state.staking}
           approveValue={this.state.approveValue} 
           value={this.state.value}
-          handleChange={this.handleChange}
-          deposit={this.depositTuViella}
-          withdraw={this.withdrawTuViella}
-          harvest={this.harvestTuViella} 
           patoTokenBalance={this.state.patoTokenBalance}      
           stakingPending={this.state.stakingPendingViellas}
           stakingStaked={this.state.stakingStakedViellas}
@@ -362,41 +400,19 @@ class App extends Component {
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
       vote = <div>
         <Vote
-          patoToken={this.state.patoToken}
-          farm={this.state.staking}
-          approve={this.approveTuViella}
-          approveValue={this.state.approveValue} 
-          value={this.state.value}
-          handleChange={this.handleChange}
-          deposit={this.depositTuViella}
-          withdraw={this.withdrawTuViella}
-          harvest={this.harvestTuViella} 
-          patoTokenBalance={this.state.patoTokenBalance}      
-          stakingPending={this.state.stakingPendingViellas}
-          stakingStaked={this.state.stakingStakedViellas}
-          tokenName="PVP" 
+          
         />
       </div>
     }
 
-    let nft
+    let market
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
-      nft = <div>
-        <Nft
-          nftMinter={this.state.nftMinter}
-          claimNFTs={this.claimNFTs}
-          nftBalance={this.state.nftBalance}
-          maxMint={this.state.maxMint}
-          actualMint={this.state.actualMint}
-          nftCost={this.state.nftCost}
-          nftName={this.state.nftName}
-          nftSymbol={this.state.nftSymbol}
-          nftUri={this.state.nftUri}
-          tokenName="PVPNFT"
+      market = <div>
+        <Market
         />
       </div>
     }
-
+    
     return (
       <Web3ReactProvider getLibrary={getLibrary}>
         <div>
@@ -408,37 +424,36 @@ class App extends Component {
               <div id="walletModal">
                 <ConnectWalletButton />
               </div>
-              <div id="addTokenModal">
+              <div id="addTokenModal"> 
                 {addToken}
               </div>
             </header>
             <nav>
               <ul id="menu">                                                          
-                <NavLink className="inactive" activeClassName="active" to="/faucet"><li><a>FAUCET</a></li></NavLink>                                     
+                <NavLink className="inactive" activeClassName="active" to="/claim"><li><a>CLAIM</a></li></NavLink>                                     
                 <NavLink className="inactive" activeClassName="active" to="/pool"><li><a>POOL</a></li></NavLink>                                     
                 <NavLink className="inactive" activeClassName="active" to="/vote"><li><a>VOTE</a></li></NavLink>                                
-                <NavLink className="inactive" activeClassName="active" to="/nft"><li><a>NFT</a></li></NavLink>                      
+                <NavLink className="inactive" activeClassName="active" to="/market"><li><a>MARKET</a></li></NavLink>                      
               </ul> 
             </nav>
             <main>
-              <section>    
+              <section>   
                 <Switch>             
                   {loading}
                   <Route exact path="/">{home}</Route>         
-                  <Route path="/faucet">{faucet}</Route>
+                  <Route path="/claim">{claim}</Route>
                   <Route path="/pool">{pool}</Route>
-                  <Route path="/vote">{vote}</Route>
-                  <Route path="/nft">{nft}</Route>      
+                  <Route path="/vote">{soon}</Route>
+                  <Route path="/market">{soon}</Route>      
                   <Route component={NotFound} /> 
-               </Switch>
+                </Switch>
               </section>
             </main>
             <footer>
               <Footer /> 
             </footer> 
           </Router>     
-        </div>
-          
+        </div> 
       </Web3ReactProvider>
     );
   }

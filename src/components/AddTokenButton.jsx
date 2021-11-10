@@ -8,9 +8,9 @@ class AddTokenButton extends Component {
         class="btn first"
         onClick={(event) => {
         event.preventDefault()
-        this.props.addTuviellaToken()
+        this.props.addToken()
         }}>
-      Add Token to Metamask
+      Add PVP token
       </button>
     );
   }

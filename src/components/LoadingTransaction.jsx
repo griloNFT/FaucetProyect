@@ -5,12 +5,15 @@ class LoadingTransaction extends Component {
 
   render() {
     return ( 
-      <div><h1>WAITING METAMASK EXTENSION</h1>
-        <div class="loader">
-          <div class="spinner">
-            <Spinner class="circle"/>
+      <div>
+        <article>
+          <h1>METAMASK</h1>
+          <div class="loader">
+            <div class="spinner">
+              <Spinner class="circle"/>
+            </div>
           </div>
-        </div>
+        </article>
       </div>
     ); 
   }

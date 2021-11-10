@@ -10,8 +10,10 @@ class Pool extends Component {
 
   render() {
     return ( 
+      <div>
+        <h1>MANAGE PROJECT IDEAS WITH PVP</h1>
       <article>
-        <h1>MANAGE YOUR PROJECT IDEAS WITH PVP TOKENS</h1>
+        
       <div class="boxModal">
         <table>
           <thead>
@@ -146,6 +148,7 @@ class Pool extends Component {
       <a href="https://testnet.bscscan.com/address/0x5AD196844dfa35C53b72e92A9927653455530503" target="_blank" rel="noopener noreferrer">VOTE CONTRACT</a>
       <a href="https://testnet.bscscan.com/address/0x613Aa50c5245C7b3fEFe28f26009216Df754767d" target="_blank" rel="noopener noreferrer">PVP CONTRACT</a> 
       </article>
+      </div>
     );
   }
 }
