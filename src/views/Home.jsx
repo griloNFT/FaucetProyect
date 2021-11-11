@@ -7,8 +7,8 @@ class Home extends Component {
   render() {
     return (
       <article>
-        <h1 class="titles">WELCOME TO THE PROYECT COIN MANAGER COMMUNITY!</h1>
-        <div>
+        <h1 class="titles">WELCOME TO THE PVP COMMUNITY!</h1>
+        {/* <div>
           <div id="twitch">
             <ReactPlayer
               width="640"
@@ -17,7 +17,7 @@ class Home extends Component {
               controls
             />
           </div>  
-        </div>
+        </div> */}
       </article>
     );
   }

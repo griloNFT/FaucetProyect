@@ -13,11 +13,11 @@ class Footer extends Component {
       <div>
         <div id="about">
           <h6>ABOUT</h6>
-          <a href="/">CHART</a>
-          <a href="/">TOKENOMICS</a>
-          <a href="/">ROADMAP</a>
-        </div>
-        <div class="social">
+            <a href="/">CHART</a>
+            <a href="/">TOKENOMICS</a>
+            <a href="/">ROADMAP</a>
+    
+          <div class="social">
           <a href="https://www.twitch.tv/patoverde_pv" target="_blank" rel="noopener noreferrer">
             <img src={Twitch} width="20" height="20" className="d-inline-block align-top" alt="" />
           </a>
@@ -37,6 +37,8 @@ class Footer extends Component {
             <img src={Twitter} width="20" height="20" className="d-inline-block align-top" alt="" />
           </a>
         </div>
+        </div>
+        
       </div>
     );
   }

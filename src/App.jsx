@@ -325,13 +325,11 @@ class App extends Component {
     }
 
     let addToken
-    if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
       addToken = <div id="addBtn">
         <AddTokenButton 
           addToken={this.addToken}
         />
       </div>
-    }
 
     let soon
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
@@ -419,21 +417,22 @@ class App extends Component {
           <Router>
             <header>
               <a href="/">
-                <p id="text"><img id="logo" src={patoIcon} width="70" height="70" alt="" /><h1 class="titleH1">PATO VERDE PROJECTS</h1></p>
+                <img src={patoIcon} width="30" height="30" alt="" /><h1>PATO VERDE PROJECTS</h1>
               </a>
+              <div id="tokenModal">
+                {addToken}
+              </div>
               <div id="walletModal">
                 <ConnectWalletButton />
-              </div>
-              <div id="addTokenModal"> 
-                {addToken}
               </div>
             </header>
             <nav>
               <ul id="menu">                                                          
                 <NavLink className="inactive" activeClassName="active" to="/claim"><li><a>CLAIM</a></li></NavLink>                                     
                 <NavLink className="inactive" activeClassName="active" to="/pool"><li><a>POOL</a></li></NavLink>                                     
-                <NavLink className="inactive" activeClassName="active" to="/vote"><li><a>VOTE</a></li></NavLink>                                
-                <NavLink className="inactive" activeClassName="active" to="/market"><li><a>MARKET</a></li></NavLink>                      
+                <NavLink className="inactive" activeClassName="active" to="/vote"><li><a>VOTE</a></li></NavLink>
+                <NavLink className="inactive" activeClassName="active" to="/lottery"><li><a>LOTTERY</a></li></NavLink>                                
+                <NavLink className="inactive" activeClassName="active" to="/nft"><li><a>NFT</a></li></NavLink>                      
               </ul> 
             </nav>
             <main>
@@ -444,7 +443,8 @@ class App extends Component {
                   <Route path="/claim">{claim}</Route>
                   <Route path="/pool">{pool}</Route>
                   <Route path="/vote">{soon}</Route>
-                  <Route path="/market">{soon}</Route>      
+                  <Route path="/lottery">{soon}</Route>
+                  <Route path="/nft">{soon}</Route>      
                   <Route component={NotFound} /> 
                 </Switch>
               </section>

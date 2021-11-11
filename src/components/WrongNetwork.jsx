@@ -6,27 +6,27 @@ class WrongNetwork extends Component {
 
     return (
       <article>
-        <h2>WRONG NETWORK! PLEASE CONNECT TO BSC - MAINNET</h2>
+        <h2 class="titles">USE METAMASK FOR BSC NETWORK</h2>
         <div class="boxModal">
           <h3>BSC - MAINNET</h3>
           <h4>https://bsc-dataseed.binance.org/</h4>
           <h4>56</h4 >
           <h4>BNB</h4>
           <h4>https://bscscan.com/</h4>
-          <form class="btn2" action="/">
-            <button
-              class="btn first"
-              onClick={(event) => {
-                event.preventDefault()
-                this.props.addNetwork()
-              }}>
-              ADD NETWORK
-            </button>
+          <button
+            class="btn1"
+            onClick={(event) => {
+              event.preventDefault()
+              this.props.addNetwork()
+            }}>
+            ADD NETWORK
+          </button>
+          <form action="/">
             <button 
-              className="slide_from_left" 
+              class="btn1" 
               type="submit"
             >
-              REFRESH
+              BACK HOME
             </button>
           </form>
         </div>

@@ -5,7 +5,8 @@ class AddTokenButton extends Component {
   render() {
     return (
       <button
-        class="btn first"
+        class="btn1"
+        type="submit"
         onClick={(event) => {
         event.preventDefault()
         this.props.addToken()

@@ -23,7 +23,7 @@ export default function ConnectWalletButton() {
 
   return (
     <div>
-      {active ? <button class="btn first" onClick={disconnect}>DISCONNECT</button> : <button class="btn first" onClick={connect}>CONNECT WALLET</button>}
+      {active ? <button type="submit" class="btn1" onClick={disconnect}>DISCONNECT</button> : <button type="submit" class="btn1" onClick={connect}>CONNECT WALLET</button>}
     </div>
   )
 }

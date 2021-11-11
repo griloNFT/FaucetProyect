@@ -5,11 +5,18 @@ class NotFound extends Component {
   render() {
     return (
       <div>
-        <h2>404 ERROR</h2>
+        <h2 class="titles">404 ERROR</h2>
+        <div class="boxModal">
         <h6>PAGE NOT FOUND</h6>
-        <form class="btn2" action="/">
-          <button className="slide_from_left" type="submit">BACK HOME</button>
-        </form>
+          <form action="/">
+            <button 
+              class="btn1" 
+              type="submit"
+            >
+              BACK HOME
+            </button>
+          </form>
+        </div>
       </div>
     );
   }
