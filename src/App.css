@@ -147,6 +147,10 @@ a:hover {
   color: #00b62d;
 }
 
+p {
+  color: #ffffff;
+}
+
 /* CLASS */
 
 .titles {
@@ -245,10 +249,27 @@ a:hover {
 
 /* HOME */
 
-#twitch {
+#presentation {
   display: inline-block;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: #1f1f1fe0;
+  border-radius: 30px;
   text-align: center;
+  width: 1000px;
+  height: 100%;
+  padding: 20px;
+  box-shadow: 2px 2px 10px rgb(29, 29, 29);
 }
+
+#presentation div {
+  margin-bottom: 50px;
+
+}
+
+
 
 /* FAUCET */
 
