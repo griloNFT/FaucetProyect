@@ -12,8 +12,8 @@ class Home extends Component {
       <div>
       <article>
         <h1 class="titles">PVP COMMUNITY</h1>
-        <div id="presentation">
         <p><img src={Portada} /></p>
+        <div id="presentation">
             <div>
             <h3>WHAT IS PVP?</h3>
             <p>
@@ -43,7 +43,7 @@ class Home extends Component {
               3. Create or vote project ideas on blockchain with PVP tokens!
             </p>
             <p>  
-              4. Manage NFT Marketplace PVP tokens!
+              4. Manage NFT market place PVP tokens!
             </p>
             </div>
             <div>
@@ -55,10 +55,10 @@ class Home extends Component {
             <h3>TOKENOMICS</h3>
             <img src={Tokenomics} width="250" height="250" alt="" />
             <p>
-              INITIAL SUPPLY: 10.000.000 PVP
+              TOTAL SUPPLY: 10.000.000 PVP
             </p>
             <p>
-              TOTAL SUPPLY: 21.000.000 PVP 
+              MAX SUPPLY: 21.000.000 PVP 
             </p>
           </div>
         </div> 

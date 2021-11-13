@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Portada from '../images/token.png'
 
 class Pool extends Component {
 
@@ -6,6 +7,7 @@ class Pool extends Component {
     return (
       <div>
         <h1 class="titles">STAKE PVP AND EARN REWARDS</h1>
+        <p><img src={Portada} /></p>
         <article> 
           <div class="boxModal">
             <table>
@@ -18,10 +20,10 @@ class Pool extends Component {
               <tbody>
                 <tr>
                   <td>
-                    <span>{Math.round(window.web3.utils.fromWei(this.props.stakingStaked.toString(), 'Ether')*100)/100 + " " + this.props.tokenName.toString()}</span>
+                    <span>{Math.round(window.web3.utils.fromWei(this.props.stakingStaked.toString(), 'Ether')*100)/100}</span>
                   </td>
                   <td>
-                    <span>{Math.round(window.web3.utils.fromWei(this.props.stakingPending.toString(), 'Ether')*100)/100 + " " + this.props.tokenName.toString()}</span>
+                    <span>{Math.round(window.web3.utils.fromWei(this.props.stakingPending.toString(), 'Ether')*100)/100}</span>
                   </td>
                 </tr>
               </tbody>
@@ -104,7 +106,7 @@ class Pool extends Component {
                 </tfoot>
               </table> 
             </div>    
-            <h6>WALLET BALANCE: &nbsp;<span>{Math.round(window.web3.utils.fromWei(this.props.patoTokenBalance.toString(), 'Ether')*100)/100 + " " + this.props.tokenName.toString()}</span></h6>
+            <h4>WALLET BALANCE: &nbsp;<span>{Math.round(window.web3.utils.fromWei(this.props.patoTokenBalance.toString(), 'Ether')*100)/100 + " " + this.props.tokenName.toString()}</span></h4>
             <div class="footerModal">
               <a href="https://testnet.bscscan.com/address/0x5AD196844dfa35C53b72e92A9927653455530503" target="_blank" rel="noopener noreferrer">POOL CONTRACT</a>
               <a href="https://testnet.bscscan.com/address/0x613Aa50c5245C7b3fEFe28f26009216Df754767d" target="_blank" rel="noopener noreferrer">PVP CONTRACT</a>

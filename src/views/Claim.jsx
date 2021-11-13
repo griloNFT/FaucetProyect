@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Portada from '../images/token.png'
 
 class Faucet extends Component {
 
@@ -6,18 +7,19 @@ class Faucet extends Component {
     return (
       <div>
         <h1 class="titles">CLAIM FREE PVP EVERY 24 HOURS</h1>
+        <p><img src={Portada} /></p>
         <article>
           <div class="boxModal">    
             <table>
               <thead>
                 <tr>
-                  <th scope="col">AVAILABE TOKENS</th>
+                  <th scope="col">AVAILABE PVP</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td> 
-                    {Math.round(window.web3.utils.fromWei(this.props.faucetPatoTokenBalance.toString(), 'Ether')*100)/100 + " " + this.props.tokenName.toString()}
+                    {Math.round(window.web3.utils.fromWei(this.props.faucetPatoTokenBalance.toString(), 'Ether')*100)/100}
                   </td>
                 </tr>
               </tbody>
@@ -39,7 +41,7 @@ class Faucet extends Component {
                 </tr>
               </tfoot>
             </table> 
-            <h6>WALLET BALANCE: &nbsp;<span>{Math.round(window.web3.utils.fromWei(this.props.patoTokenBalance.toString(), 'Ether')*100)/100 + " " + this.props.tokenName.toString()}</span></h6>
+            <h4>WALLET BALANCE: &nbsp;<span>{Math.round(window.web3.utils.fromWei(this.props.patoTokenBalance.toString(), 'Ether')*100)/100 + " " + this.props.tokenName.toString()}</span></h4>
             <div class="footerModal">
               <a href="https://testnet.bscscan.com/address/0xE99E1B538c718C2F637845F303e0146Df4c85CE3" target="_blank" rel="noopener noreferrer">FAUCET CONTRACT</a>
               <a href="https://testnet.bscscan.com/address/0x613Aa50c5245C7b3fEFe28f26009216Df754767d" target="_blank" rel="noopener noreferrer">PVP CONTRACT</a>
@@ -49,13 +51,13 @@ class Faucet extends Component {
             <table>
               <thead>
                 <tr>
-                  <th scope="col">AVAILABE NFTS</th>                     
+                  <th scope="col">AVAILABE PVP_NFT</th>                     
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>
-                    {Math.round (this.props.maxMint - this.props.actualMint) + " " + this.props.nftName}
+                    {Math.round(this.props.maxMint - this.props.actualMint)}
                   </td>
                 </tr>
               </tbody>
@@ -76,7 +78,7 @@ class Faucet extends Component {
                 </tr>
               </tfoot>
             </table>
-            <h6>WALLET BALANCE: &nbsp;<span>{this.props.nftBalance} {this.props.nftName}</span></h6>
+            <h4>WALLET BALANCE: &nbsp;<span>{this.props.nftBalance} {this.props.nftName}</span></h4>
               <div class="footerModal">
                 <a href="https://testnet.bscscan.com/address/0x3B709314Bc7213C6784b0a8a1Dcbd5cAB02B8f12" target="_blank" rel="noopener noreferrer">PATO_NFT CONTRACT</a>
                 <a href={this.props.nftUri} target="_blank" rel="noopener noreferrer">NFT METADATA</a>
