@@ -27,6 +27,11 @@ import Claim from './views/Claim'
 import Pool from './views/Pool'
 import Vote from './views/Vote'
 import Market from './views/Market'
+
+import Board from './views/Games/components/Board/Board'
+import RecentNumbers from './views/Games/components/RecentNumbers/RecentNumbers'
+import BettingPanel from './views/Games/components/BettingPanel/BettingPanel'
+
 import Soon from './views/Soon'
 
 import patoIcon from './images/patologo.png'
@@ -271,6 +276,89 @@ class App extends Component {
       });
   }
 
+   /**
+     * Create the object used for determining the random result and the ammount to scroll the roulette ribbon by
+     * 
+     * @return {object} - The built object
+    */
+    create_obj = () => {
+      let obj = {}
+      for (let i = 0; i < 15; i++) {
+          if (i === 0) {
+              obj[i] = [5983, 6037];
+          } else {
+              let last = obj[i - 1][1];
+              obj[i] = [Math.round((last + 2.34) * 100) / 100, Math.round((last + 2.34 + 54) * 100) / 100];
+          }
+      }
+      return obj
+  }
+  /**
+   * Pick and random number given the object
+   * 
+   * @param {object} - Object built using create_obj()
+   * @return {float} - The ammount to scroll the roulette ribbon by
+   */
+  pick_random_number = (obj) => {
+      let keys = Object.keys(obj)
+      let random_key = keys[keys.length * Math.random() << 0];
+      let range_arr = obj[random_key]
+      let random_offset = Math.random() * (range_arr[1] - range_arr[0]) + range_arr[0];
+      return random_offset;
+  }
+  /**
+   * Function used to reset the state when a spin is finished
+   */
+  reset = () => {
+      this.setState({ spin: false, spin_complete: false, btn_disable: false })
+  }
+  /**
+   * Used to add a number to the lastFive to be shown in the recent spins section
+   * 
+   * @param {integer} - Number to add to the lastFive array 
+   */
+  addToLastTen = (number) => {
+      let copy = [...this.state.lastTen]
+      copy.splice(-1, 1);
+      copy.unshift(number);
+      this.setState({ lastTen: copy })
+  }
+  /**
+   * Used to find what number the ribbon landed on given the ribbon offset
+   * 
+   * @param {integer} chosen - The ribbon offset
+   * @param {object} obj - The object built via create_obj()
+   */
+  getResult = (chosen, obj) => {
+      for(var key in obj){
+          if(obj[key][0] <= chosen && obj[key][1] >= chosen){
+              return key
+          }
+      }
+  }
+  /**
+   * Used to spin the ribbon
+   * 
+   * @return {integer} The result of the spin 
+   */
+  spin = () => {
+      const number_obj = this.create_obj()
+      const chosen_number = this.pick_random_number(number_obj)
+      const result = this.getResult(chosen_number, number_obj)
+      let current_spinNum = this.state.spinNum
+      this.setState({ spin: true, spinNum: current_spinNum += 1, chosen: chosen_number, chosen_num: parseInt(result) })
+      setTimeout(() => {
+          this.setState({ spin_complete: true, spin: false })
+          this.addToLastTen(result)
+          setTimeout(() => {
+              this.reset()
+              clearTimeout()
+          }, 1000)
+          clearTimeout()
+      }, 8500)
+      return result;
+  }
+
   handleChange(event) {
     this.setState({value: event.target.value});
   }
@@ -299,6 +387,12 @@ class App extends Component {
       nftSymbol: '',
       loading: 'WEB3',
       chainInUse: undefined,
+
+      spinNum: 0,
+      spin: false,
+      spin_complete: false,
+      lastTen: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      btn_disable: false,
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -410,6 +504,45 @@ class App extends Component {
         />
       </div>
     }
+
+    const black_numbers = [1, 3, 5, 7, 9, 11, 13]
+    let games
+    if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
+      games = <div>
+        <Board 
+          spin={this.state.spin} 
+          complete={this.state.spin_complete} 
+          chosen_number={this.state.chosen} 
+          black_numbers={black_numbers} 
+        />
+        <RecentNumbers
+          title="Last 10 Spins"
+          lastTen={this.state.lastTen}
+          black_numbers={black_numbers}
+        />
+        <BettingPanel
+          spin={this.spin}
+          game={this.state.spin} 
+          complete={this.state.spin_complete}
+          chosen_number={this.state.chosen_num}
+
+          approveToken={this.approveToken}
+          harvestToken={this.harvestToken} 
+          handleChange={this.handleChange}
+          depositToken={this.depositToken}
+          withdrawToken={this.withdrawToken}
+          patoToken={this.state.patoToken}
+          staking={this.state.staking}
+          approveValue={this.state.approveValue} 
+          value={this.state.value}
+          patoTokenBalance={this.state.patoTokenBalance}      
+          stakingPending={this.state.stakingPendingViellas}
+          stakingStaked={this.state.stakingStakedViellas}
+          tokenName="PVP" 
+        />
+      </div> 
+    }
+
     
     return (
       <Web3ReactProvider getLibrary={getLibrary}>
@@ -432,7 +565,8 @@ class App extends Component {
                 <NavLink className="inactive" activeClassName="active" to="/pool"><li><a>POOL</a></li></NavLink>                                     
                 <NavLink className="inactive" activeClassName="active" to="/vote"><li><a>VOTE</a></li></NavLink>
                 <NavLink className="inactive" activeClassName="active" to="/lottery"><li><a>LOTTERY</a></li></NavLink>                                
-                <NavLink className="inactive" activeClassName="active" to="/nft"><li><a>NFT</a></li></NavLink>                      
+                <NavLink className="inactive" activeClassName="active" to="/nft"><li><a>NFT</a></li></NavLink>    
+                <NavLink className="inactive" activeClassName="active" to="/games"><li><a>GAMES</a></li></NavLink>                   
               </ul> 
             </nav>
             <main>
@@ -444,7 +578,8 @@ class App extends Component {
                   <Route path="/pool">{pool}</Route>
                   <Route path="/vote">{soon}</Route>
                   <Route path="/lottery">{soon}</Route>
-                  <Route path="/nft">{soon}</Route>      
+                  <Route path="/nft">{soon}</Route>
+                  <Route path="/games">{soon}</Route> 
                   <Route component={NotFound} /> 
                 </Switch>
               </section>
