@@ -4,9 +4,9 @@ class Soon extends Component {
 
   render() {
     return ( 
-      <article>
+      <div>
         <h1 class="titles">SOON</h1>
-      </article>
+      </div>
     );
   }
 }

@@ -543,14 +543,13 @@ class App extends Component {
       </div> 
     }
 
-    
     return (
       <Web3ReactProvider getLibrary={getLibrary}>
         <div>
           <Router>
             <header>
               <a href="/">
-                <img src={patoIcon} width="30" height="30" alt="" /><h1>PATO VERDE PROJECTS</h1>
+                <h1>PATO VERDE PROJECTS</h1>
               </a>
               <div id="tokenModal">
                 {addToken}

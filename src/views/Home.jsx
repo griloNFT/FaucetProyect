@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactPlayer from "react-player"
 import Tokenomics from '../images/tokenomics.png'
-import Portada from '../images/token.png'
+import Portada from '../images/patologo.png'
 
 
 class Home extends Component {
@@ -12,7 +12,7 @@ class Home extends Component {
       <div>
       <article>
         <h1 class="titles">PVP COMMUNITY</h1>
-        <p><img src={Portada} /></p>
+        <p><img src={Portada} class="logo" /></p>
         <div id="presentation">
             <div>
             <h3>WHAT IS PVP?</h3>

@@ -13,12 +13,6 @@ header {
   padding: 5px;
 }
 
-header img {
-  border-radius: 50px;
-  margin-right: 10px;
-  margin-top: 9px;
-}
-
 header h1 {
   color: #ffffff;
   font-size: 30px;
@@ -72,7 +66,6 @@ article {
   margin-top: 20px;
   margin-bottom: 300px;
   display: flexbox;
-
 }
 
 article h1 {
@@ -85,8 +78,14 @@ article a:hover {
 
 footer {
   background-color: #1f1f1f;
-  padding: 10px;
+  font-size: 15px;
+  width: 100%;
   text-align: center;
+  margin: 0;
+  padding: 10px;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 h1 {
@@ -160,8 +159,10 @@ p {
   color: #ffffff;
 }
 
-.white{
-  color: #ffffff;
+.logo {
+  border-radius: 50px;
+  margin-right: 10px;
+  margin-top: 20px;
 }
 
 .boxModal {
@@ -279,8 +280,6 @@ p {
   margin-top: -80px;
 }
 
-
-
 /* FAUCET */
 
 /* FARM */
@@ -288,18 +287,12 @@ p {
 /* FOOTBAR */
 
 #about {
-  
   color: #ffbb00;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  display: block;
+  display: inline-block;
 }
 
 #about a {
   color: #00b62d;
-  margin-left: 10px;
   text-decoration: none;
 }
 
@@ -307,16 +300,9 @@ p {
   text-decoration: underline;
 }
 
-.social {
-  left: 0;
-  
-  right: 0;
-  text-align: center;
-  margin-top: 15px;
-}
+#social {
+  display: inline-block;
 
-.social a {
-  padding: 2px;
 }
 
 /* INPUT */

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Portada from '../images/token.png'
+import Portada from '../images/patologo.png'
 
 class Faucet extends Component {
 
@@ -7,7 +7,7 @@ class Faucet extends Component {
     return (
       <div>
         <h1 class="titles">CLAIM FREE PVP EVERY 24 HOURS</h1>
-        <p><img src={Portada} /></p>
+        <p><img src={Portada} class="logo" /></p>
         <article>
           <div class="boxModal">    
             <table>
@@ -47,43 +47,6 @@ class Faucet extends Component {
               <a href="https://testnet.bscscan.com/address/0x613Aa50c5245C7b3fEFe28f26009216Df754767d" target="_blank" rel="noopener noreferrer">PVP CONTRACT</a>
             </div>
           </div>
-          <div class="boxModal">       
-            <table>
-              <thead>
-                <tr>
-                  <th scope="col">AVAILABE PVP_NFT</th>                     
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    {Math.round(this.props.maxMint - this.props.actualMint)}
-                  </td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td>
-                    <div class="btn2">
-                      <button
-                        className="slide_from_left"
-                        onClick={(event) => {
-                          event.preventDefault()
-                          this.props.claimNFTs(1)
-                        }}>
-                        CLAIM FREE
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
-            <h4>WALLET BALANCE: &nbsp;<span>{this.props.nftBalance} {this.props.nftName}</span></h4>
-              <div class="footerModal">
-                <a href="https://testnet.bscscan.com/address/0x3B709314Bc7213C6784b0a8a1Dcbd5cAB02B8f12" target="_blank" rel="noopener noreferrer">PATO_NFT CONTRACT</a>
-                <a href={this.props.nftUri} target="_blank" rel="noopener noreferrer">NFT METADATA</a>
-              </div>
-            </div>
         </article>
       </div>  
     );

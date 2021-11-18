@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Portada from '../images/token.png'
+import Portada from '../images/patologo.png'
 
 class Pool extends Component {
 
@@ -7,7 +7,7 @@ class Pool extends Component {
     return (
       <div>
         <h1 class="titles">STAKE PVP AND EARN REWARDS</h1>
-        <p><img src={Portada} /></p>
+        <p><img src={Portada} class="logo" /></p>
         <article> 
           <div class="boxModal">
             <table>
