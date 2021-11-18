@@ -51,7 +51,7 @@ class Pool extends Component {
                         type="submit"             
                         onClick={(event) => {
                           event.preventDefault()
-                          this.props.harvest()
+                          this.props.harvestToken()
                         }}>
                         CLAIM
                       </button>

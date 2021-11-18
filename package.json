@@ -1,8 +1,14 @@
 {
-  "name": "tuviella-frontend",
+  "name": "patoverdeprojects",
   "version": "0.1.0",
-  "description": "TuViellaFarm Swap",
+  "description": "Pato Verde Projects",
+  "author": "PVP",
   "license": "MIT",
+  "homepage": "https://frontend.d1tl0s5ji7a54k.amplifyapp.com/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeandroCDN/FaucetProyect.git"
+  },
   "dependencies": {
     "@proyectcoinmanager/uikit": "^0.1.6",
     "@web3-react/core": "^6.1.9",

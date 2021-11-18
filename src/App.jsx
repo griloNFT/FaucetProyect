@@ -563,8 +563,7 @@ class App extends Component {
               <ul id="menu">                                                          
                 <NavLink className="inactive" activeClassName="active" to="/claim"><li><a>CLAIM</a></li></NavLink>                                     
                 <NavLink className="inactive" activeClassName="active" to="/pool"><li><a>POOL</a></li></NavLink>                                     
-                <NavLink className="inactive" activeClassName="active" to="/vote"><li><a>VOTE</a></li></NavLink>
-                <NavLink className="inactive" activeClassName="active" to="/lottery"><li><a>LOTTERY</a></li></NavLink>                                
+                <NavLink className="inactive" activeClassName="active" to="/vote"><li><a>VOTE</a></li></NavLink>                               
                 <NavLink className="inactive" activeClassName="active" to="/nft"><li><a>NFT</a></li></NavLink>    
                 <NavLink className="inactive" activeClassName="active" to="/games"><li><a>GAMES</a></li></NavLink>                   
               </ul> 
@@ -577,7 +576,6 @@ class App extends Component {
                   <Route path="/claim">{claim}</Route>
                   <Route path="/pool">{pool}</Route>
                   <Route path="/vote">{soon}</Route>
-                  <Route path="/lottery">{soon}</Route>
                   <Route path="/nft">{soon}</Route>
                   <Route path="/games">{soon}</Route> 
                   <Route component={NotFound} /> 
