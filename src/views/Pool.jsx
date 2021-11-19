@@ -4,9 +4,10 @@ import Portada from '../images/patologo.png'
 class Pool extends Component {
 
   render() {
+    let decimals = 1000000000000000000;
     return (
       <div>
-        <h1 class="titles">STAKE PVP AND EARN REWARDS</h1>
+        <h1 class="titles">STAKE PVP TOKENS</h1>
         <p><img src={Portada} class="logo" /></p>
         <article> 
           <div class="boxModal">
@@ -67,6 +68,7 @@ class Pool extends Component {
                   placeholder="Minimum amount: 1"              
                   type="number"
                   min="1"
+                  max={Math.round(this.props.patoTokenBalance) / decimals}
                   onChange={this.props.handleChange} 
                 />
                 <span class="field__label-wrap">
@@ -108,6 +110,10 @@ class Pool extends Component {
             </div>    
             <h4>WALLET BALANCE: &nbsp;<span>{Math.round(window.web3.utils.fromWei(this.props.patoTokenBalance.toString(), 'Ether')*100)/100 + " " + this.props.tokenName.toString()}</span></h4>
             <div class="footerModal">
+              <h3>INFO</h3>
+              <p>
+                In this POOL section you can stake your PVP tokens and earn more PVP tokens. Actually the reward per block are 1500 PVP tokens per day.
+              </p>
               <a href="https://testnet.bscscan.com/address/0x5AD196844dfa35C53b72e92A9927653455530503" target="_blank" rel="noopener noreferrer">POOL CONTRACT</a>
               <a href="https://testnet.bscscan.com/address/0x613Aa50c5245C7b3fEFe28f26009216Df754767d" target="_blank" rel="noopener noreferrer">PVP CONTRACT</a>
             </div>

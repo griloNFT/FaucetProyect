@@ -76,7 +76,7 @@ class App extends Component {
  
     if(!chainInUse){
       this.setState({ loading: "INVALID_CHAIN" })
-      window.alert('INVALID NETWORK, CONNECT TO BSC-TESTNET NETWORK!')
+      window.alert('INVALID NETWORK, CONNECT TO BSC-MAINNET NETWORK!')
     } else {
       this.setState({ chainInUse })
       this.setState({ account: accounts[0] })
@@ -437,7 +437,9 @@ class App extends Component {
     let home
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
       home = <div>
-        <Home />
+        <Home 
+        
+        />
       </div>
     }
 
