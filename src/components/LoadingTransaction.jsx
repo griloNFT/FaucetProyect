@@ -7,7 +7,7 @@ class LoadingTransaction extends Component {
     return ( 
       <div>
         <article>
-          <h1>METAMASK</h1>
+          <h1>Metamask</h1>
           <div class="loader">
             <div class="spinner">
               <Spinner class="circle"/>

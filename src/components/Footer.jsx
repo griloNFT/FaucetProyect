@@ -12,29 +12,29 @@ class Footer extends Component {
     return (
       <div>
         <div id="about">
-          <a href="/">CHART</a>
-          <a href="/">GITHUB</a>
-          <a href="https://leandrodenos.gitbook.io/pato-verde-projects/faucet-project/detalles/">DOCS</a>
-          <a href="https://medium.com/">BLOG</a>
+          <a href="/" target="_blank" rel="noopener noreferrer">Chart</a>
+          <a href="/" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://leandrodenos.gitbook.io/pato-verde-projects/faucet-project/detalles/" target="_blank" rel="noopener noreferrer">Docs</a>
+          <a href="https://medium.com/" target="_blank" rel="noopener noreferrer">Blog</a>
         </div>
         <div id="social">
           <a href="https://www.youtube.com/channel/UCoxr0mC9BpLIpajYDepgnFQ/featured" target="_blank" rel="noopener noreferrer">
-            <img src={YouTube} width="40" height="40" className="d-inline-block align-top" alt="" />
+            <img src={YouTube} width="30" height="30" className="d-inline-block align-top" alt="" />
           </a>
           <a href="https:/instagram.com" target="_blank" rel="noopener noreferrer">
-            <img src={Instagram} width="35" height="35" className="d-inline-block align-top" alt="" />
+            <img src={Instagram} width="25" height="25" className="d-inline-block align-top" alt="" />
           </a>
           <a href="https://t.me/Onepiecetokenofficial" target="_blank" rel="noopener noreferrer">
-            <img src={Telegram} width="35" height="35" className="d-inline-block align-top" alt="" />
+            <img src={Telegram} width="25" height="25" className="d-inline-block align-top" alt="" />
           </a>
           <a href="https://twitter.com/OnepiezeBSC1" target="_blank" rel="noopener noreferrer">
-            <img src={Twitter} width="35" height="35" className="d-inline-block align-top" alt="" />
+            <img src={Twitter} width="25" height="25" className="d-inline-block align-top" alt="" />
           </a>
           <a href="https://discord.gg/whfCeyXQ" target="_blank" rel="noopener noreferrer">
-            <img src={Discord} width="35" height="35" className="d-inline-block align-top" alt="" />
+            <img src={Discord} width="25" height="25" className="d-inline-block align-top" alt="" />
           </a>
           <a href="https://www.twitch.tv/patoverde_pv" target="_blank" rel="noopener noreferrer">
-            <img src={Twitch} width="35" height="35" className="d-inline-block align-top" alt="" />
+            <img src={Twitch} width="25" height="25" className="d-inline-block align-top" alt="" />
           </a>
         </div>
       </div>

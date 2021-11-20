@@ -34,7 +34,7 @@ import BettingPanel from './views/Games/components/BettingPanel/BettingPanel'
 
 import Soon from './views/Soon'
 
-import patoIcon from './images/patologo.png'
+import Logo from './images/patologo.png'
 
 import './App.css'
 
@@ -87,12 +87,33 @@ class App extends Component {
         this.setState({ patoTokenBalance: patoTokenBalance.toString() })
         let faucetPatoTokenBalance = await patoToken.methods.balanceOf(chainInUse.faucetAddress).call()  
         this.setState({ faucetPatoTokenBalance: faucetPatoTokenBalance.toString() })
+        let totalSupply = await patoToken.methods.totalSupply().call()  
+        this.setState({ totalSupply: totalSupply.toString() })
+        let maxSupply = await patoToken.methods.maxSupply().call()  
+        this.setState({ maxSupply: maxSupply.toString() })
+        let tokenName = await patoToken.methods.name().call()
+        this.setState({ tokenName: tokenName.toString() })
+        let tokenSymbol = await patoToken.methods.symbol().call()
+        this.setState({ tokenSymbol: tokenSymbol.toString() })
+
       } catch(e) {
         window.alert('PATO CONTRACT NOT DEPLOYED TO DETECTED NETWORK!')
       }
       try {
         const staking = new web3.eth.Contract(StakingAbi.abi, chainInUse.stakingAddress)
         this.setState({ staking })
+        let perBlock = await staking.methods.rewardsPerDay(0, "0xe027625a79c62e2967a4ac3b5aa11a7a07cca7fd").call()
+        this.setState({ perBlock: perBlock.toString() })
+        let rewardsActive = await staking.methods.rewardsActive().call()
+        this.setState({ rewardsActive: rewardsActive.toString() })
+        let tokensInPool = await staking.methods.tokenInPool(0).call()
+        this.setState({ tokensInPool: tokensInPool.toString() })
+        let stakingStaked = await this.state.staking.methods.userInfo(0, this.state.account).call()
+        let stakingPending = await this.state.staking.methods.pendingPATO(0, this.state.account).call()
+        this.setState({ stakingStaked: stakingStaked[0],
+                        stakingPending: stakingPending,              
+                        patoExpiry: patoExpiry
+                      })
       } catch(e) {
         window.alert('STAKING CONTRACT NOT DEPLOYED TO DETECTED NETWORK!')
       }
@@ -115,21 +136,12 @@ class App extends Component {
         this.setState({ actualMint: actualMint.toString() })
         let nftCost = await nftMinter.methods.cost().call()
         this.setState({ nftCost: nftCost.toString() })
-        let nftName = await nftMinter.methods.name().call()
-        this.setState({ nftName: nftName.toString() })
-        let nftSymbol = await nftMinter.methods.symbol().call()
-        this.setState({ nftSymbol: nftSymbol.toString() })
       } catch(e) {
         window.alert('NFT CONTRACT NOT DEPLOYED TO DETECTED NETWORK!')
       }
 
       let patoExpiry = await this.state.faucet.methods.getExpiryOf(this.state.account, chainInUse.patoTokenAddress).call()
-      let stakingStakedViellas = await this.state.staking.methods.userInfo(0, this.state.account).call()
-      let stakingPendingViellas = await this.state.staking.methods.pendingPATO(0, this.state.account).call()
-      this.setState({ stakingPendingViellas: stakingPendingViellas, 
-                      stakingStakedViellas: stakingStakedViellas[0],
-                      patoExpiry: patoExpiry
-                    })
+      
       this.setState({ loading: 'FALSE' })
     }
   }
@@ -370,12 +382,16 @@ class App extends Component {
       patoToken: {},
       faucet: {},
       staking: {},
-      stakingPendingViellas: 0,
-      stakingStakedViellas: 0,
+      stakingPending: 0,
+      stakingStaked: 0,
       approveValue: 100000000000000000000,
       value: 0,
       patoTokenBalance: '0',
       faucetPatoTokenBalance: '0',
+      perBlock: '0',
+      tokensInPool: '0',
+      totalSupply: '0',
+      maxSupply: '0',
       patoExpiry: 0,
       nftMinter: {},
       nftBalance: '0',
@@ -383,9 +399,10 @@ class App extends Component {
       actualMint: '0',
       nftCost: '0',
       nftUri: '',
-      nftName: '',
-      nftSymbol: '',
+      tokenName: '',
+      tokenSymbol: '',
       loading: 'WEB3',
+      rewardsActive: undefined,
       chainInUse: undefined,
 
       spinNum: 0,
@@ -438,7 +455,17 @@ class App extends Component {
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
       home = <div>
         <Home 
-        
+        patoPerBlock={this.state.perBlock}
+        rewardsActive={this.state.rewardsActive}
+        tokensInPool={this.state.tokensInPool}
+        stakingPending={this.state.stakingPending}
+        stakingStaked={this.state.stakingStaked}
+        totalSupply={this.state.totalSupply}
+        maxSupply={this.state.maxSupply}
+        tokenName={this.state.tokenName}
+        tokenSymbol={this.state.tokenSymbol}
+        patoTokenBalance={this.state.patoTokenBalance}
+        faucetPatoTokenBalance={this.state.faucetPatoTokenBalance}
         />
       </div>
     }
@@ -453,7 +480,7 @@ class App extends Component {
           patoTokenBalance={this.state.patoTokenBalance}
           faucetPatoTokenBalance={this.state.faucetPatoTokenBalance}
           patoExpiry={this.state.patoExpiry} 
-          tokenName="PVP"
+          tokenSymbol={this.state.tokenSymbol}
 
           nftMinter={this.state.nftMinter}
           claimNFTs={this.claimNFTs}
@@ -483,9 +510,9 @@ class App extends Component {
           approveValue={this.state.approveValue} 
           value={this.state.value}
           patoTokenBalance={this.state.patoTokenBalance}      
-          stakingPending={this.state.stakingPendingViellas}
-          stakingStaked={this.state.stakingStakedViellas}
-          tokenName="PVP" 
+          stakingPending={this.state.stakingPending}
+          stakingStaked={this.state.stakingStaked}
+          tokenSymbol={this.state.tokenSymbol}
         />
       </div>
     }
@@ -550,25 +577,26 @@ class App extends Component {
         <div>
           <Router>
             <header>
-              <a href="/">
-                <h1>PATO VERDE PROJECTS</h1>
-              </a>
               <div id="tokenModal">
-                {addToken}
-              </div>
+                <a href="/" id="hh1">
+                  <img src={Logo} width="30" height="30" alt="" /> 
+                  <h1>Pato</h1> <h1>Verde</h1> <h1>Projects</h1>
+                </a>
+                <nav>
+                  <ul id="menu">                                                          
+                    <NavLink className="inactive" activeClassName="active" to="/claim"><li><a>Claim</a></li></NavLink>                                     
+                    <NavLink className="inactive" activeClassName="active" to="/pool"><li><a>Pool</a></li></NavLink>                                     
+                    <NavLink className="inactive" activeClassName="active" to="/vote"><li><a>Vote</a></li></NavLink>                               
+                    <NavLink className="inactive" activeClassName="active" to="/nft"><li><a>Nft</a></li></NavLink>    
+                    <NavLink className="inactive" activeClassName="active" to="/games"><li><a>Games</a></li></NavLink>                   
+                  </ul> 
+                </nav> 
+              </div>                           
               <div id="walletModal">
+                {addToken}
                 <ConnectWalletButton />
-              </div>
+              </div> 
             </header>
-            <nav>
-              <ul id="menu">                                                          
-                <NavLink className="inactive" activeClassName="active" to="/claim"><li><a>CLAIM</a></li></NavLink>                                     
-                <NavLink className="inactive" activeClassName="active" to="/pool"><li><a>POOL</a></li></NavLink>                                     
-                <NavLink className="inactive" activeClassName="active" to="/vote"><li><a>VOTE</a></li></NavLink>                               
-                <NavLink className="inactive" activeClassName="active" to="/nft"><li><a>NFT</a></li></NavLink>    
-                <NavLink className="inactive" activeClassName="active" to="/games"><li><a>GAMES</a></li></NavLink>                   
-              </ul> 
-            </nav>
             <main>
               <section>   
                 <Switch>             

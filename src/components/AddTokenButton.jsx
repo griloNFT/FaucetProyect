@@ -11,7 +11,7 @@ class AddTokenButton extends Component {
         event.preventDefault()
         this.props.addToken()
         }}>
-      Add PVP token
+      Add PVP Token
       </button>
     );
   }

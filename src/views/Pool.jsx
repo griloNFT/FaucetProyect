@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Portada from '../images/patologo.png'
 
 class Pool extends Component {
 
@@ -7,24 +6,24 @@ class Pool extends Component {
     let decimals = 1000000000000000000;
     return (
       <div>
-        <h1 class="titles">STAKE PVP TOKENS</h1>
-        <p><img src={Portada} class="logo" /></p>
+        <h1 class="titles">Active Pools (1)</h1>
         <article> 
           <div class="boxModal">
+            <h3>PVP</h3>   
             <table>
               <thead>
                 <tr>
-                  <th scope="col">DEPOSIT</th>
-                  <th scope="col">PROFIT</th>
+                  <th scope="col">Deposit</th>
+                  <th scope="col">Profit</th>
                </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>
-                    <span>{Math.round(window.web3.utils.fromWei(this.props.stakingStaked.toString(), 'Ether')*100)/100}</span>
+                    {Math.round(window.web3.utils.fromWei(this.props.stakingStaked.toString(), 'Ether')*100)/100}
                   </td>
                   <td>
-                    <span>{Math.round(window.web3.utils.fromWei(this.props.stakingPending.toString(), 'Ether')*100)/100}</span>
+                    {Math.round(window.web3.utils.fromWei(this.props.stakingPending.toString(), 'Ether')*100)/100}
                   </td>
                 </tr>
               </tbody>
@@ -72,7 +71,7 @@ class Pool extends Component {
                   onChange={this.props.handleChange} 
                 />
                 <span class="field__label-wrap">
-                  <span class="field__label">PVP AMOUNT</span>
+                  <span class="field__label">PVP Amount</span>
                 </span>
               </label>
             </div>
@@ -108,14 +107,16 @@ class Pool extends Component {
                 </tfoot>
               </table> 
             </div>    
-            <h4>WALLET BALANCE: &nbsp;<span>{Math.round(window.web3.utils.fromWei(this.props.patoTokenBalance.toString(), 'Ether')*100)/100 + " " + this.props.tokenName.toString()}</span></h4>
+            <h4>Wallet Balance: &nbsp;<span>{Math.round(window.web3.utils.fromWei(this.props.patoTokenBalance.toString(), 'Ether')*100)/100 + " " + this.props.tokenSymbol.toString()}</span></h4>
             <div class="footerModal">
-              <h3>INFO</h3>
+              <h3>Info</h3>
               <p>
-                In this POOL section you can stake your PVP tokens and earn more PVP tokens. Actually the reward per block are 1500 PVP tokens per day.
+                2% fee in withdrawals.
               </p>
-              <a href="https://testnet.bscscan.com/address/0x5AD196844dfa35C53b72e92A9927653455530503" target="_blank" rel="noopener noreferrer">POOL CONTRACT</a>
-              <a href="https://testnet.bscscan.com/address/0x613Aa50c5245C7b3fEFe28f26009216Df754767d" target="_blank" rel="noopener noreferrer">PVP CONTRACT</a>
+              <p>
+                In this section you can stake your PVP tokens and earn more PVP tokens. Actually the reward per block are 1440 PVP tokens per day.
+              </p>
+              <a href="https://testnet.bscscan.com/address/0x5b34962406c8963f694dA4C84a82Fc98D7705caa" target="_blank" rel="noopener noreferrer">Smart Contract</a>
             </div>
           </div>
         </article>

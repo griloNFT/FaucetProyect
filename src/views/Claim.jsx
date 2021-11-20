@@ -1,28 +1,15 @@
 import React, { Component } from 'react'
-import Portada from '../images/patologo.png'
 
 class Faucet extends Component {
 
   render() {
     return (
       <div>
-        <h1 class="titles">CLAIM FREE PVP TOKENS</h1>
-        <p><img src={Portada} class="logo" /></p>
+        <h1 class="titles">Active Claims (1)</h1>
         <article>
-          <div class="boxModal">    
+          <div class="boxModal">
+            <h3>PVP</h3>    
             <table>
-              <thead>
-                <tr>
-                  <th scope="col">AVAILABE PVP</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td> 
-                    {Math.round(window.web3.utils.fromWei(this.props.faucetPatoTokenBalance.toString(), 'Ether')*100)/100}
-                  </td>
-                </tr>
-              </tbody>
               <tfoot>
                 <tr>
                   <td>
@@ -34,21 +21,21 @@ class Faucet extends Component {
                           event.preventDefault()
                           this.props.claimToken()
                         }}>
-                        {this.props.patoExpiry > 0 ? "CLAIM AGAIN IN " + this.props.patoExpiry + " SECS" : "CLAIM FREE"}
+                        {this.props.patoExpiry > 0 ? Math.round(this.props.patoExpiry / 3600) + " H " + Math.round(this.props.patoExpiry / 60) + " M": "CLAIM 1 PVP"}
                       </button>
+                      {}
                     </div>
                   </td>
                 </tr>
               </tfoot>
             </table> 
-            <h4>WALLET BALANCE: &nbsp;<span>{Math.round(window.web3.utils.fromWei(this.props.patoTokenBalance.toString(), 'Ether')*100)/100 + " " + this.props.tokenName.toString()}</span></h4>
+            <h4>Wallet Balance: &nbsp;<span>{Math.round(window.web3.utils.fromWei(this.props.patoTokenBalance.toString(), 'Ether')*100)/100 + " " + this.props.tokenSymbol.toString()}</span></h4>
             <div class="footerModal">
-              <h3>INFO</h3>
+              <h3>Info</h3>
               <p>
-                In this CLAIM section you can withdraw 1 free PVP token every 24 hours for each wallet.
+                In this section you can claim 1 free PVP token every 24 hours for each wallet.
               </p>
-              <a href="https://testnet.bscscan.com/address/0xE99E1B538c718C2F637845F303e0146Df4c85CE3" target="_blank" rel="noopener noreferrer">FAUCET CONTRACT</a>
-              <a href="https://testnet.bscscan.com/address/0x613Aa50c5245C7b3fEFe28f26009216Df754767d" target="_blank" rel="noopener noreferrer">PVP CONTRACT</a>
+              <a href="https://testnet.bscscan.com/address/0xE99E1B538c718C2F637845F303e0146Df4c85CE3" target="_blank" rel="noopener noreferrer">Smart Contract</a>
             </div>
           </div>
         </article>
