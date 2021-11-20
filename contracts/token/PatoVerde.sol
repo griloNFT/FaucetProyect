@@ -19,7 +19,7 @@ contract PatoVerde is ERC20 {
    *
    * See {ERC20-constructor}.
    */
-  constructor(address masterChef) ERC20('Pato Verde', 'PVP') {
+  constructor(address masterChef) ERC20('Pato Verde Projects', 'PVP') {
     uint initial = 10000000 ether;
     _mint(masterChef, initial);    
     owner = msg.sender;    

@@ -69,14 +69,14 @@ contract Staking is Ownable {
     //Contador de usuarios.
     uint public cantUsers = 0;
     //Fee in witdraaaws!
-    uint public fee = 500; 
+    uint public fee = 200; 
     // Total allocation points. Must be the sum of all allocation points in all pools.
     uint256 public totalAllocPoint = 0;
     // The block number when TUpato mining starts.
     uint256 public startBlock;
 
     //Variable para el timelock. Permite activar desactivar harvest and reinvet brrr.
-    bool public rewardsActive = true;
+    bool public rewardsActive = false;
     
 
     event Deposit(address indexed user, uint256 indexed pid, uint256 amount);
@@ -111,17 +111,58 @@ contract Staking is Ownable {
 
     }
 
-    function updateMultiplier(uint256 multiplierNumber) public onlyOwner {
-        BONUS_MULTIPLIER = multiplierNumber;
+    //Pato Fuctions
+    //------------------- GETTERS/ VIEWS----------------------------
+    // Return reward multiplier over the given _from to _to block.
+    function getMultiplier(uint256 _from, uint256 _to) public view returns (uint256) {
+        return _to.sub(_from).mul(BONUS_MULTIPLIER);
     }
+
+    // View function to see pending TUPATO on frontend.
+    function pendingPATO(uint256 _pid, address _user) external view returns (uint256) {
+        PoolInfo storage pool = poolInfo[_pid];
+        UserInfo storage user = userInfo[_pid][_user];
+        uint256 accPATOPerShare = pool.accPATOPerShare;
+        uint256 stakedSupply = pool.stakedToken.balanceOf(address(this));
+        if (block.number > pool.lastRewardBlock && stakedSupply != 0) {
+            uint256 multiplier = getMultiplier(pool.lastRewardBlock, block.number);
+            uint256 PATOReward = multiplier.mul(PATOPerBlock).mul(pool.allocPoint).div(totalAllocPoint);
+            accPATOPerShare = accPATOPerShare.add(PATOReward.mul(1e12).div(stakedSupply));
+        }
+        return user.amount.mul(accPATOPerShare).div(1e12).sub(user.rewardDebt);
+    }   
 
     function poolLength() external view returns (uint256) {
         return poolInfo.length;
     }
 
+    //Cant of user in all stakes.
+    function cantOfusers() public view returns(uint){
+        return cantUsers;
+    }
+    //Tokens en la pool.
+    function tokenInPool(uint _pid) public view returns (uint){
+        return poolInfo[_pid].totalTokensInPool;
+    }
+    //Amount of tokens in pool for each user
+    function userAmountInPool(uint256 _pid, address _address) public view returns (uint){      
+        
+        return  userInfo[_pid][_address].amount;
+    }
+    //Reward per day of msg.sender
+    function rewardsPerDay(uint256 _pid, address _address) public view returns (uint){      
+        
+        return  userInfo[_pid][_address].amount.mul(28800).div(poolInfo[_pid].totalTokensInPool).mul(PATOPerBlock); 
+    }
+    //-------------------------------------------------------------------------------
+
+    function updateMultiplier(uint256 multiplierNumber) public onlyOwner {
+        BONUS_MULTIPLIER = multiplierNumber;
+    }    
+
     // Add a new staking token to the pool. Can only be called by the owner.
     // XXX DO NOT add the same staking token more than once. Rewards will be messed up if you do.
-    function add(uint256 _allocPoint, IERC20 _stakedToken, bool _withUpdate) public onlyOwner {
+    function addPool(uint256 _allocPoint, IERC20 _stakedToken, bool _withUpdate) public onlyOwner {
         if (_withUpdate) {
             massUpdatePools();
         }
@@ -163,24 +204,7 @@ contract Staking is Ownable {
         }
     }
 
-    // Return reward multiplier over the given _from to _to block.
-    function getMultiplier(uint256 _from, uint256 _to) public view returns (uint256) {
-        return _to.sub(_from).mul(BONUS_MULTIPLIER);
-    }
-
-    // View function to see pending TUPATO on frontend.
-    function pendingPATO(uint256 _pid, address _user) external view returns (uint256) {
-        PoolInfo storage pool = poolInfo[_pid];
-        UserInfo storage user = userInfo[_pid][_user];
-        uint256 accPATOPerShare = pool.accPATOPerShare;
-        uint256 stakedSupply = pool.stakedToken.balanceOf(address(this));
-        if (block.number > pool.lastRewardBlock && stakedSupply != 0) {
-            uint256 multiplier = getMultiplier(pool.lastRewardBlock, block.number);
-            uint256 PATOReward = multiplier.mul(PATOPerBlock).mul(pool.allocPoint).div(totalAllocPoint);
-            accPATOPerShare = accPATOPerShare.add(PATOReward.mul(1e12).div(stakedSupply));
-        }
-        return user.amount.mul(accPATOPerShare).div(1e12).sub(user.rewardDebt);
-    }
+    
 
     // Update reward variables for all pools. Be careful of gas spending!
     function massUpdatePools() public {
@@ -214,8 +238,7 @@ contract Staking is Ownable {
         pool.lastRewardBlock = block.number;
     }
 
-    // Deposit LP tokens to MasterChef for pato allocation.
-    
+    // Deposit LP tokens to MasterChef for pato allocation.    
     function deposit(uint256 _pid, uint256 _amount) public {
         PoolInfo storage pool = poolInfo[_pid];
         UserInfo storage user = userInfo[_pid][msg.sender];
@@ -351,32 +374,10 @@ contract Staking is Ownable {
             }
         }
     }
-    //Pato Fuctions
-    //------------------- GETTERS----------------------------
     
 
-    //Cant of user in all stakes.
-    function cantOfusers() public view returns(uint){
-        return cantUsers;
-    }
-    //Tokens en la pool.
-    function tokenInPool(uint _pid) public view returns (uint){
-        return poolInfo[_pid].totalTokensInPool;
-    }
-
-    function userAmountInPool(uint256 _pid, address _address) public view returns (uint){      
-        
-        return  userInfo[_pid][_address].amount;
-    }
-
-    //Reward per day of msg.sender
-    function rewardsPerDay(uint256 _pid, address _address) public view returns (uint){      
-        
-        return  userInfo[_pid][_address].amount.mul(28800).div(poolInfo[_pid].totalTokensInPool).mul(PATOPerBlock); 
-    }
-
     //Setters-----------------------------------------------
-    //Configurar fee Default 50(2%)
+    //Configurar fee Default 200(2%)
     function setFee(uint _fee) public onlyOwner {
         fee = _fee;       
     }

@@ -2,12 +2,12 @@ const PatoVerde = artifacts.require('PatoVerde');
 const Staking = artifacts.require('Staking');
 const Reward = artifacts.require('Reward');
 const Faucet = artifacts.require("Faucet");
-const RandomToken = artifacts.require('RandomToken');
+//const RandomToken = artifacts.require('RandomToken');
 
 module.exports = async function (deployer, network, accounts) {
   
   //const viellasPerBlock = web3.utils.toWei('0.1', 'ether');
-  const viellasPerBlock = web3.utils.toWei('1', 'ether');
+  const viellasPerBlock = web3.utils.toWei('50000000000000000', 'wei');
   var PATO;
   var stk;
   var rwrd;
@@ -48,7 +48,7 @@ module.exports = async function (deployer, network, accounts) {
 
 
 
-  var content = "export const " + network + "TuViellaAddress = \"" + PATO.address + "\"\n";
+  var content = "export const " + network + "PatoAddress = \"" + PATO.address + "\"\n";
   content += "export const " + network + "FaucetAddress = \"" + fau.address + "\"\n";
   content += "export const " + network + "StakingAddress = \"" + stk.address + "\"\n";
   //content += "export const " + network + "RandomTokenAddress = \"" + rnd.address + "\"\n";

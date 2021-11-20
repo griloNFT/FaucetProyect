@@ -10,11 +10,12 @@ contract Faucet is AccessControlEnumerable{
   mapping(address=>address) owner;
   mapping(address=>uint) secs;
   mapping(address=>uint) amounts;
+  bool public setActiveOn = false; //for activate in launch.
 
   constructor(address admin, address tokenFaucet) {
     _setupRole(DEFAULT_ADMIN_ROLE, admin);
     owner[tokenFaucet] = admin;
-    secs[tokenFaucet] = 600;
+    secs[tokenFaucet] = 86400;
     amounts[tokenFaucet] = 1 ether; 
   }
 
@@ -51,6 +52,7 @@ contract Faucet is AccessControlEnumerable{
 
   function claim(address token) external{
     require(expiryOf[token][_msgSender()] < block.timestamp);
+    require(setActiveOn == true);
 
     IERC20(token).transfer(_msgSender(), amounts[token]);
 
@@ -91,4 +93,8 @@ contract Faucet is AccessControlEnumerable{
   function getEthBalance() external view returns(uint){
     return address(this).balance;
   }
+  function ActivateFaucet() public onlyAdmin{
+    setActiveOn = true;    
+  }
+
 }

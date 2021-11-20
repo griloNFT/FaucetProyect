@@ -27,6 +27,7 @@ module.exports = {
     
 
     bscTestnet: {
+      networkCheckTimeout: 10000,
       provider: () =>
         new HDWalletProvider(
           process.env.MNENOMIC,
@@ -36,7 +37,7 @@ module.exports = {
       network_id: 97, // Ropsten's id
       confirmations: 1, // # of confs to wait between deployments. (default: 0)
       timeoutBlocks: 200, // # of blocks before a deployment times out  (minimum/default: 50)
-      networkCheckTimeout: 35000
+      //skipDryRun: true      
     },
     
   },
