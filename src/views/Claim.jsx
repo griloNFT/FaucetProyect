@@ -26,7 +26,7 @@ class Faucet extends Component {
                           event.preventDefault()
                           this.props.claimToken()
                         }}>
-                        {this.props.patoExpiry > 0 ? hour + " H" + minute + " M": "CLAIM 1 PVP"}
+                        {this.props.patoExpiry > 0 ? hour + "h " + minute + "m": "CLAIM 1 PVP"}
                       </button>
                       {}
                     </div>
