@@ -3,6 +3,12 @@ import React, { Component } from 'react'
 class Faucet extends Component {
 
   render() {
+    
+    var day = Math.floor(seg / (24 * 3600));
+    var hour = Math.floor( (seg - day*24*3600) / 3600); 
+    var minute = Math.floor( (seg - day*24*3600 - hour*3600) /60 ); 
+    var seg = this.props.patoExpiry
+
     return (
       <div>
         <h1 class="titles">Active Claims (1)</h1>
@@ -21,7 +27,7 @@ class Faucet extends Component {
                           event.preventDefault()
                           this.props.claimToken()
                         }}>
-                        {this.props.patoExpiry > 0 ? Math.round(this.props.patoExpiry / 3600) + " H " + Math.round(this.props.patoExpiry / 60) + " M": "CLAIM 1 PVP"}
+                        {this.props.patoExpiry > 0 ? hour + " H" + minute + " M": "CLAIM 1 PVP"}
                       </button>
                       {}
                     </div>
