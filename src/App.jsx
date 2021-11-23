@@ -281,21 +281,21 @@ class App extends Component {
 
     let loading
     if(this.state.loading === 'WEB3') {
-      loading = <div>
+      loading = <main>
         <LoadingPage />
-      </div>
+      </main>
     }
     if(this.state.loading === 'TRANSACTION') {
-      loading = <div>
+      loading = <main>
         <LoadingTransaction />
-      </div>
+      </main>
     }
     if(this.state.loading === 'INVALID_CHAIN') {
-      loading = <div>
+      loading = <main>
         <WrongNetwork 
           addNetwork={this.addNetwork}
         />
-      </div>
+      </main>
     }
   
     let addToken

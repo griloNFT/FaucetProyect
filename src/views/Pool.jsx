@@ -111,10 +111,16 @@ class Pool extends Component {
             <div class="footerModal">
               <h3>Info</h3>
               <p>
-                2% fee in withdrawals.
+                In this section you can stake your PVP tokens to earn more PVP tokens.
               </p>
               <p>
-                In this section you can stake your PVP tokens and earn more PVP tokens. Actually the reward per block are 1440 PVP tokens per day.
+                You have to approve it once to be able to use the pool. (Don't use the approve button more than once)
+              </p>
+              <p>
+                A total of 1440 PVPs are distributed per day among all depositors.
+              </p>
+              <p>
+                2% fee in withdrawals.
               </p>
               <a href="https://bscscan.com/address/0xD350b27B3e98DB4a4Cb6436Caa8Deb5a3c79De84" target="_blank" rel="noopener noreferrer">Smart Contract</a>
             </div>

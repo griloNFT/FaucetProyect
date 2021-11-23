@@ -64,9 +64,15 @@ class Home extends Component {
               </p>
             </div>
             <div>
-              <h4>2. What can you do with PVP App?</h4>
+              <h4>2. Will PVP tokens have value?</h4>
               <p>
-                - Claim free PVP tokens every 24 hours. (Free claims will be available until 12/31/2021 23:59 UTC)
+                - Yes, in the future PVP tokens will have a value. (PVP tokens will be free for a limited time)
+              </p>
+            </div>
+            <div>
+              <h4>3. What can I do with PVP App?</h4>
+              <p>
+                - Claim 1 free PVP token every 24 hours. (Free claims will be available for a limited time)
               </p>
               <p>   
                 - Deposit PVP tokens in the pool to be rewarded with more PVP tokens.
@@ -82,22 +88,31 @@ class Home extends Component {
               </p>
             </div>
             <div>
-              <h4>3. Are you an influencer?</h4>
-              <p>- If you are a small or big influencer you can request for the creation of your project on the blockchain free!</p>
-              <p>- In the future we will implement Api Twitch that will allow you to interact with your followers on the blockchain.</p>
+              <h4>4. What if I am an influencer?</h4>
+              <p>
+                - If you are a small or big influencer you can request for the creation of your project on the blockchain free.
+              </p>
+              <p>
+                - In the future we will implement Api Twitch that will allow you to interact with your followers on the blockchain.
+              </p>
             </div>
+            <div id="twitch">
+              <h4>5. Where can I find the community?</h4>
+              <p>
+                - You can join the Discord server or follow us on our social medias.
+                </p>
+              <div>
+                <ReactPlayer
+                  width="640"
+                  height="360"
+                  url="https://www.twitch.tv/patoverde_pv"
+                  controls
+                />
+              </div> 
+            </div> 
           </div>   
         </article>
-        <div id="twitch">
-          <div>
-            <ReactPlayer
-              width="640"
-              height="360"
-              url="https://www.twitch.tv/patoverde_pv"
-              controls
-            />
-          </div> 
-        </div> 
+        
       </div>
     );
   }
