@@ -12,8 +12,8 @@ class Footer extends Component {
     return (
       <div>
         <div id="about">
-          <a href="/" target="_blank" rel="noopener noreferrer">Chart</a>
-          <a href="/" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://poocoin.app/tokens/0x63197d1294c659ddf64811a08428cf8637e55aeb" target="_blank" rel="noopener noreferrer">Chart</a>
+          <a href="https://github.com/LeandroCDN/FaucetProyect" target="_blank" rel="noopener noreferrer">GitHub</a>
           <a href="https://leandrodenos.gitbook.io/pato-verde-projects/faucet-project/detalles/" target="_blank" rel="noopener noreferrer">Docs</a>
           <a href="https://medium.com/" target="_blank" rel="noopener noreferrer">Blog</a>
         </div>
@@ -21,13 +21,13 @@ class Footer extends Component {
           <a href="https://www.youtube.com/channel/UCoxr0mC9BpLIpajYDepgnFQ/featured" target="_blank" rel="noopener noreferrer">
             <img src={YouTube} width="30" height="30" className="d-inline-block align-top" alt="" />
           </a>
-          <a href="https:/instagram.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
             <img src={Instagram} width="25" height="25" className="d-inline-block align-top" alt="" />
           </a>
-          <a href="https://t.me/Onepiecetokenofficial" target="_blank" rel="noopener noreferrer">
+          <a href="https://telegram.org/" target="_blank" rel="noopener noreferrer">
             <img src={Telegram} width="25" height="25" className="d-inline-block align-top" alt="" />
           </a>
-          <a href="https://twitter.com/OnepiezeBSC1" target="_blank" rel="noopener noreferrer">
+          <a href="https://twitter.com/PatoProjects" target="_blank" rel="noopener noreferrer">
             <img src={Twitter} width="25" height="25" className="d-inline-block align-top" alt="" />
           </a>
           <a href="https://discord.gg/whfCeyXQ" target="_blank" rel="noopener noreferrer">
