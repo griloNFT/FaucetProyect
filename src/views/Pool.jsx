@@ -116,7 +116,7 @@ class Pool extends Component {
               <p>
                 In this section you can stake your PVP tokens and earn more PVP tokens. Actually the reward per block are 1440 PVP tokens per day.
               </p>
-              <a href="https://testnet.bscscan.com/address/0xD350b27B3e98DB4a4Cb6436Caa8Deb5a3c79De84" target="_blank" rel="noopener noreferrer">Smart Contract</a>
+              <a href="https://bscscan.com/address/0xD350b27B3e98DB4a4Cb6436Caa8Deb5a3c79De84" target="_blank" rel="noopener noreferrer">Smart Contract</a>
             </div>
           </div>
         </article>

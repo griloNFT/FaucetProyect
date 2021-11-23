@@ -347,7 +347,7 @@ class App extends Component {
           tokenSymbol={this.state.tokenSymbol}
         />
       </div>
-    }
+    } 
  
     let pool
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {

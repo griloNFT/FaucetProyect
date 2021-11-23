@@ -35,7 +35,7 @@ class Faucet extends Component {
               <p>
                 In this section you can claim 1 free PVP token every 24 hours for each wallet.
               </p>
-              <a href="https://testnet.bscscan.com/address/0x5399FE0286202D0d1B736343344529Da00f9D22E" target="_blank" rel="noopener noreferrer">Smart Contract</a>
+              <a href="https://bscscan.com/address/0x0e5F2CFE504adf490B3b0e77cceB4C9793182719" target="_blank" rel="noopener noreferrer">Smart Contract</a>
             </div>
           </div>
         </article>
