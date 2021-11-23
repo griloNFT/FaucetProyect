@@ -3,11 +3,10 @@ import React, { Component } from 'react'
 class Faucet extends Component {
 
   render() {
-    
+    var seg = this.props.patoExpiry
     var day = Math.floor(seg / (24 * 3600));
     var hour = Math.floor( (seg - day*24*3600) / 3600); 
     var minute = Math.floor( (seg - day*24*3600 - hour*3600) /60 ); 
-    var seg = this.props.patoExpiry
 
     return (
       <div>
