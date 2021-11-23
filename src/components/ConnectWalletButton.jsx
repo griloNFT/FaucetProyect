@@ -3,7 +3,7 @@ import { useWeb3React } from "@web3-react/core"
 import { injected } from "./Connectors"
 
 export default function ConnectWalletButton() {
-  const { active, account, library, connector, activate, deactivate } = useWeb3React()
+  const { active, activate, deactivate } = useWeb3React()
 
   async function connect() {
     try {

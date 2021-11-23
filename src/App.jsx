@@ -11,7 +11,6 @@ import { Web3ReactProvider } from '@web3-react/core'
 import PatoVerde from './abis/PatoVerde.json'
 import FaucetAbi from './abis/Faucet.json'
 import StakingAbi from './abis/Staking.json'
-import SmartContract from './abis/nft/NerdyCoderClones.json'
 
 import LoadingPage from './components/LoadingPage'
 import LoadingTransaction from './components/LoadingTransaction'
@@ -25,13 +24,6 @@ import Footer from './components/Footer'
 import Home from './views/Home'
 import Claim from './views/Claim'
 import Pool from './views/Pool'
-import Vote from './views/Vote'
-import Market from './views/Market'
-
-import Board from './views/Games/components/Board/Board'
-import RecentNumbers from './views/Games/components/RecentNumbers/RecentNumbers'
-import BettingPanel from './views/Games/components/BettingPanel/BettingPanel'
-
 import Soon from './views/Soon'
 
 import Logo from './images/patologo.png'
@@ -80,7 +72,7 @@ class App extends Component {
     } else {
       this.setState({ chainInUse })
       this.setState({ account: accounts[0] })
-      try {
+      try { 
         const patoToken = new web3.eth.Contract(PatoVerde.abi, chainInUse.patoTokenAddress)
         this.setState({ patoToken })
         let patoTokenBalance = await patoToken.methods.balanceOf(this.state.account).call()
@@ -102,8 +94,8 @@ class App extends Component {
       try {
         const staking = new web3.eth.Contract(StakingAbi.abi, chainInUse.stakingAddress)
         this.setState({ staking })
-        let perBlock = await staking.methods.rewardsPerDay(0, "0xe027625a79c62e2967a4ac3b5aa11a7a07cca7fd").call()
-        this.setState({ perBlock: perBlock.toString() })
+        // let perBlock = await staking.methods.rewardsPerDay(0, "0xcc73ede51729ed1122e6b9b34180c75b7f58acfb").call()
+        // this.setState({ perBlock: perBlock.toString() })
         let rewardsActive = await staking.methods.rewardsActive().call()
         this.setState({ rewardsActive: rewardsActive.toString() })
         let tokensInPool = await staking.methods.tokenInPool(0).call()
@@ -112,7 +104,6 @@ class App extends Component {
         let stakingPending = await this.state.staking.methods.pendingPATO(0, this.state.account).call()
         this.setState({ stakingStaked: stakingStaked[0],
                         stakingPending: stakingPending,              
-                        patoExpiry: patoExpiry
                       })
       } catch(e) {
         window.alert('STAKING CONTRACT NOT DEPLOYED TO DETECTED NETWORK!')
@@ -120,28 +111,13 @@ class App extends Component {
       try {
         const faucet = new web3.eth.Contract(FaucetAbi.abi, chainInUse.faucetAddress)
         this.setState({ faucet })
+        let claimActive = await faucet.methods.setActiveOn().call()
+        this.setState({ claimActive: claimActive.toString() })
+        let patoExpiry = await this.state.faucet.methods.getExpiryOf(this.state.account, chainInUse.patoTokenAddress).call()
+        this.setState({ patoExpiry: patoExpiry})
       } catch(e) {
         window.alert('FAUCET CONTRACT NOT DEPLOYED TO DETECTED NETWORK!')
-      }
-      try {
-        const nftMinter = new web3.eth.Contract(SmartContract.abi, chainInUse.nftMinterAddress)
-        this.setState({ nftMinter })
-        let nftUri = await nftMinter.methods.baseURI().call()
-        this.setState({ nftUri: nftUri.toString() })
-        let nftBalance = await nftMinter.methods.balanceOf(this.state.account).call()
-        this.setState({ nftBalance: nftBalance.toString() })
-        let maxMint = await nftMinter.methods.maxSupply().call()
-        this.setState({ maxMint: maxMint.toString() })
-        let actualMint = await nftMinter.methods.totalSupply().call()
-        this.setState({ actualMint: actualMint.toString() })
-        let nftCost = await nftMinter.methods.cost().call()
-        this.setState({ nftCost: nftCost.toString() })
-      } catch(e) {
-        window.alert('NFT CONTRACT NOT DEPLOYED TO DETECTED NETWORK!')
-      }
-
-      let patoExpiry = await this.state.faucet.methods.getExpiryOf(this.state.account, chainInUse.patoTokenAddress).call()
-      
+      } 
       this.setState({ loading: 'FALSE' })
     }
   }
@@ -268,109 +244,6 @@ class App extends Component {
     });
   }
 
-  claimNFTs = async (_amount) => {
-    this.setState({ loading: 'TRANSACTION' })
-    if (_amount <= 0) {
-      return;
-    }
-    this.state.nftMinter.methods
-      .mint(this.state.account, _amount)
-      .send({
-        gasLimit: "285000",
-        from: this.state.account,
-        value: window.web3.utils.toWei((0 * _amount).toString(), "ether"),
-      })
-      .on('receipt', async (hash) => {
-        window.location.reload()
-      })
-      .on('error', function(error) {
-        window.location.reload()
-      });
-  }
-
-   /**
-     * Create the object used for determining the random result and the ammount to scroll the roulette ribbon by
-     * 
-     * @return {object} - The built object
-    */
-    create_obj = () => {
-      let obj = {}
-      for (let i = 0; i < 15; i++) {
-          if (i === 0) {
-              obj[i] = [5983, 6037];
-          } else {
-              let last = obj[i - 1][1];
-              obj[i] = [Math.round((last + 2.34) * 100) / 100, Math.round((last + 2.34 + 54) * 100) / 100];
-          }
-      }
-      return obj
-  }
-  /**
-   * Pick and random number given the object
-   * 
-   * @param {object} - Object built using create_obj()
-   * @return {float} - The ammount to scroll the roulette ribbon by
-   */
-  pick_random_number = (obj) => {
-      let keys = Object.keys(obj)
-      let random_key = keys[keys.length * Math.random() << 0];
-      let range_arr = obj[random_key]
-      let random_offset = Math.random() * (range_arr[1] - range_arr[0]) + range_arr[0];
-      return random_offset;
-  }
-  /**
-   * Function used to reset the state when a spin is finished
-   */
-  reset = () => {
-      this.setState({ spin: false, spin_complete: false, btn_disable: false })
-  }
-  /**
-   * Used to add a number to the lastFive to be shown in the recent spins section
-   * 
-   * @param {integer} - Number to add to the lastFive array 
-   */
-  addToLastTen = (number) => {
-      let copy = [...this.state.lastTen]
-      copy.splice(-1, 1);
-      copy.unshift(number);
-      this.setState({ lastTen: copy })
-  }
-  /**
-   * Used to find what number the ribbon landed on given the ribbon offset
-   * 
-   * @param {integer} chosen - The ribbon offset
-   * @param {object} obj - The object built via create_obj()
-   */
-  getResult = (chosen, obj) => {
-      for(var key in obj){
-          if(obj[key][0] <= chosen && obj[key][1] >= chosen){
-              return key
-          }
-      }
-  }
-  /**
-   * Used to spin the ribbon
-   * 
-   * @return {integer} The result of the spin 
-   */
-  spin = () => {
-      const number_obj = this.create_obj()
-      const chosen_number = this.pick_random_number(number_obj)
-      const result = this.getResult(chosen_number, number_obj)
-      let current_spinNum = this.state.spinNum
-      this.setState({ spin: true, spinNum: current_spinNum += 1, chosen: chosen_number, chosen_num: parseInt(result) })
-      setTimeout(() => {
-          this.setState({ spin_complete: true, spin: false })
-          this.addToLastTen(result)
-          setTimeout(() => {
-              this.reset()
-              clearTimeout()
-          }, 1000)
-          clearTimeout()
-      }, 8500)
-      return result;
-  }
-
   handleChange(event) {
     this.setState({value: event.target.value});
   }
@@ -393,23 +266,13 @@ class App extends Component {
       totalSupply: '0',
       maxSupply: '0',
       patoExpiry: 0,
-      nftMinter: {},
-      nftBalance: '0',
-      maxMint: '0',
-      actualMint: '0',
-      nftCost: '0',
-      nftUri: '',
       tokenName: '',
       tokenSymbol: '',
       loading: 'WEB3',
       rewardsActive: undefined,
       chainInUse: undefined,
+      claimActive: undefined,
 
-      spinNum: 0,
-      spin: false,
-      spin_complete: false,
-      lastTen: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      btn_disable: false,
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -422,6 +285,11 @@ class App extends Component {
         <LoadingPage />
       </div>
     }
+    if(this.state.loading === 'TRANSACTION') {
+      loading = <div>
+        <LoadingTransaction />
+      </div>
+    }
     if(this.state.loading === 'INVALID_CHAIN') {
       loading = <div>
         <WrongNetwork 
@@ -429,12 +297,7 @@ class App extends Component {
         />
       </div>
     }
-    if(this.state.loading === 'TRANSACTION') {
-      loading = <div>
-        <LoadingTransaction />
-      </div>
-    }
-
+  
     let addToken
       addToken = <div id="addBtn">
         <AddTokenButton 
@@ -454,18 +317,19 @@ class App extends Component {
     let home
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
       home = <div>
-        <Home 
-        patoPerBlock={this.state.perBlock}
-        rewardsActive={this.state.rewardsActive}
-        tokensInPool={this.state.tokensInPool}
-        stakingPending={this.state.stakingPending}
-        stakingStaked={this.state.stakingStaked}
-        totalSupply={this.state.totalSupply}
-        maxSupply={this.state.maxSupply}
-        tokenName={this.state.tokenName}
-        tokenSymbol={this.state.tokenSymbol}
-        patoTokenBalance={this.state.patoTokenBalance}
-        faucetPatoTokenBalance={this.state.faucetPatoTokenBalance}
+        <Home
+          patoPerBlock={this.state.perBlock}
+          rewardsActive={this.state.rewardsActive}
+          tokensInPool={this.state.tokensInPool}
+          stakingPending={this.state.stakingPending}
+          stakingStaked={this.state.stakingStaked}
+          totalSupply={this.state.totalSupply}
+          maxSupply={this.state.maxSupply}
+          tokenName={this.state.tokenName}
+          tokenSymbol={this.state.tokenSymbol}
+          patoTokenBalance={this.state.patoTokenBalance}
+          faucetPatoTokenBalance={this.state.faucetPatoTokenBalance}
+          claimActive={this.state.claimActive}
         />
       </div>
     }
@@ -481,17 +345,6 @@ class App extends Component {
           faucetPatoTokenBalance={this.state.faucetPatoTokenBalance}
           patoExpiry={this.state.patoExpiry} 
           tokenSymbol={this.state.tokenSymbol}
-
-          nftMinter={this.state.nftMinter}
-          claimNFTs={this.claimNFTs}
-          nftBalance={this.state.nftBalance}
-          maxMint={this.state.maxMint}
-          actualMint={this.state.actualMint}
-          nftCost={this.state.nftCost}
-          nftName={this.state.nftName}
-          nftSymbol={this.state.nftSymbol}
-          nftUri={this.state.nftUri}
-          nftName="PVPN"
         />
       </div>
     }
@@ -500,13 +353,13 @@ class App extends Component {
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
       pool = <div>
         <Pool
+          patoToken={this.state.patoToken}
+          staking={this.state.staking}
           approveToken={this.approveToken}
           harvestToken={this.harvestToken} 
           handleChange={this.handleChange}
           depositToken={this.depositToken}
           withdrawToken={this.withdrawToken}
-          patoToken={this.state.patoToken}
-          staking={this.state.staking}
           approveValue={this.state.approveValue} 
           value={this.state.value}
           patoTokenBalance={this.state.patoTokenBalance}      
@@ -517,61 +370,6 @@ class App extends Component {
       </div>
     }
 
-    let vote
-    if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
-      vote = <div>
-        <Vote
-          
-        />
-      </div>
-    }
-
-    let market
-    if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
-      market = <div>
-        <Market
-        />
-      </div>
-    }
-
-    const black_numbers = [1, 3, 5, 7, 9, 11, 13]
-    let games
-    if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
-      games = <div>
-        <Board 
-          spin={this.state.spin} 
-          complete={this.state.spin_complete} 
-          chosen_number={this.state.chosen} 
-          black_numbers={black_numbers} 
-        />
-        <RecentNumbers
-          title="Last 10 Spins"
-          lastTen={this.state.lastTen}
-          black_numbers={black_numbers}
-        />
-        <BettingPanel
-          spin={this.spin}
-          game={this.state.spin} 
-          complete={this.state.spin_complete}
-          chosen_number={this.state.chosen_num}
-
-          approveToken={this.approveToken}
-          harvestToken={this.harvestToken} 
-          handleChange={this.handleChange}
-          depositToken={this.depositToken}
-          withdrawToken={this.withdrawToken}
-          patoToken={this.state.patoToken}
-          staking={this.state.staking}
-          approveValue={this.state.approveValue} 
-          value={this.state.value}
-          patoTokenBalance={this.state.patoTokenBalance}      
-          stakingPending={this.state.stakingPendingViellas}
-          stakingStaked={this.state.stakingStakedViellas}
-          tokenName="PVP" 
-        />
-      </div> 
-    }
-
     return (
       <Web3ReactProvider getLibrary={getLibrary}>
         <div>
@@ -580,7 +378,7 @@ class App extends Component {
               <div id="tokenModal">
                 <a href="/" id="hh1">
                   <img src={Logo} width="30" height="30" alt="" /> 
-                  <h1>Pato</h1> <h1>Verde</h1> <h1>Projects</h1>
+                  <h1>Pato</h1><h1>Verde</h1><h1>Projects</h1>
                 </a>
                 <nav>
                   <ul id="menu">                                                          
