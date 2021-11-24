@@ -284,7 +284,7 @@ class App extends Component {
       loading = <main>
         <LoadingPage />
       </main>
-    }
+    } 
     if(this.state.loading === 'TRANSACTION') {
       loading = <main>
         <LoadingTransaction />
