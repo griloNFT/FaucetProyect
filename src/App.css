@@ -22,7 +22,7 @@ header {
 
 #hh1 h1 {
   padding: 5px;
-  color: #13ff4e;
+  color: #00ff40;
 }
 
 #hh1 img {
@@ -99,7 +99,7 @@ h2 {
 }
 
 h3 {
-  color: #13ff4e;
+  color: #00ff40;
   font-size: 20px;
 }
 
@@ -176,7 +176,7 @@ p {
   width: 380px;
   height: 100%;
   padding: 20px;
-  box-shadow: 0px 0px 15px #13ff4e;
+  box-shadow: 0px 0px 10px #00ff40;
 }
 
 .footerModal {
@@ -227,11 +227,11 @@ p {
 }
 
 .active {
-  color: #13ff4e;
+  color: #00ff40;
 }
 
 .active:hover {
-  color: #13ff4e;
+  color: #00ff40;
 }
 
 /* HEADER */
@@ -262,7 +262,7 @@ p {
   width: 800px;
   height: 100%;
   padding: 20px;
-  box-shadow: 0px 0px 15px #13ff4e;
+  box-shadow: 0px 0px 10px #00ff40;
 }
 
 .homes div {
@@ -281,7 +281,7 @@ p {
   width: 800px;
   height: 100%;
   padding: 20px;
-  box-shadow: 0px 0px 15px #13ff4e;
+  box-shadow: 0px 0px 10px #00ff40;
 }
 
 .homes2 h4 {
@@ -356,7 +356,7 @@ p {
   --uiFieldBorderWidth: var(--fieldBorderWidth, 2px);
   --uiFieldPaddingRight: var(--fieldPaddingRight, 1rem);
   --uiFieldPaddingLeft: var(--fieldPaddingLeft, 1rem);   
-  --uiFieldBorderColorActive: var(--fieldBorderColorActive, #06b900b2);
+  --uiFieldBorderColorActive: var(--fieldBorderColorActive, #ffbb00);
   display: var(--fieldDisplay, inline-flex);
   position: relative;
   font-size: var(--fieldFontSize, 1rem);
@@ -451,7 +451,7 @@ p {
   margin-right: 10px;
   margin-top: 6px;
   box-sizing: border-box;
-  background-color: #13ff4e;
+  background-color: #00ff40;
   border-radius: 0.6em;
   color: #000000;
   font-size: 15px;
@@ -481,15 +481,15 @@ p {
   font-weight: bold;
   font-size: 20px;
   background: #1a1a1a;
-  border: 2px solid #13ff4e;
-  color: #13ff4e;
+  border: 2px solid #ffbb00;
+  color: #ffbb00;
   border-radius: 10px;
   overflow: hidden;
   transition: 0.4s;
 }
 
 .btn2 button:hover:enabled {
-  background: #13ff4e;
+  background: #ffbb00;
   border: 2px solid #000000;
   color: #000000;
 }

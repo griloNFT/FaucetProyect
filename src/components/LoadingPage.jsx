@@ -7,12 +7,7 @@ class LoadingPage extends Component {
     return ( 
       <div>
         <article>
-          <h1>Loading</h1>
-          <div class="loader">
-            <div class="spinner">
-              <Spinner class="circle"/>
-            </div>
-          </div>
+          <h1>Connect Wallet</h1>
         </article>
       </div>
     ); 
