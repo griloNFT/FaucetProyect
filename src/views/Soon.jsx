@@ -5,7 +5,7 @@ class Soon extends Component {
   render() {
     return ( 
       <div>
-        <h1 class="titles">Soon</h1>
+        <h1 class="titles">Comming Soon</h1>
       </div>
     );
   }
