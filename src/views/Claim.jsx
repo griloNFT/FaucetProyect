@@ -36,11 +36,11 @@ class Faucet extends Component {
             </table> 
             <h4>Wallet Balance: &nbsp;<span>{Math.round(window.web3.utils.fromWei(this.props.patoTokenBalance.toString(), 'Ether')*100)/100 + " " + this.props.tokenSymbol.toString()}</span></h4>
             <div class="footerModal">
-              <h3>Info</h3>
+              <h3>About</h3>
               <p>
                 In this section you can claim 1 free PVP token every 24 hours for each wallet.
               </p>
-              <a href="https://bscscan.com/address/0x0e5F2CFE504adf490B3b0e77cceB4C9793182719" target="_blank" rel="noopener noreferrer">Smart Contract</a>
+              <a href="https://bscscan.com/address/0x0e5F2CFE504adf490B3b0e77cceB4C9793182719" target="_blank" rel="noopener noreferrer">View Smart Contract</a>
             </div>
           </div>
         </article>

@@ -109,7 +109,7 @@ class Pool extends Component {
             </div>    
             <h4>Wallet Balance: &nbsp;<span>{Math.round(window.web3.utils.fromWei(this.props.patoTokenBalance.toString(), 'Ether')*100)/100 + " " + this.props.tokenSymbol.toString()}</span></h4>
             <div class="footerModal">
-              <h3>Info</h3>
+              <h3>About</h3>
               <p>
                 In this section you can stake your PVP tokens to earn more PVP tokens.
               </p>
@@ -117,12 +117,12 @@ class Pool extends Component {
                 You have to approve it once to be able to use the pool. (Don't use the approve button more than once)
               </p>
               <p>
-                A total of 1440 PVPs are distributed per day among all depositors.
+                A total of 1440 PVP are distributed per day among all depositors.
               </p>
               <p>
                 2% fee in withdrawals.
               </p>
-              <a href="https://bscscan.com/address/0xD350b27B3e98DB4a4Cb6436Caa8Deb5a3c79De84" target="_blank" rel="noopener noreferrer">Smart Contract</a>
+              <a href="https://bscscan.com/address/0xD350b27B3e98DB4a4Cb6436Caa8Deb5a3c79De84" target="_blank" rel="noopener noreferrer">View Smart Contract</a>
             </div>
           </div>
         </article>

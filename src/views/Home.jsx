@@ -35,6 +35,10 @@ class Home extends Component {
               <h4>Price:</h4>     
               <h5>0 $ (FREE)</h5>
             </div>
+          </div>
+        </article>
+        <article>
+        <div class="homes2">
             <h3>Claim Stats</h3>
             <div>
               <h4>Active Claims:</h4>     
@@ -42,6 +46,10 @@ class Home extends Component {
               <h4>Available To Claim:</h4>     
               <h5>{this.props.faucetPatoTokenBalance / decimals + " " + this.props.tokenSymbol}</h5>
             </div>
+          </div>
+        </article>
+        <article>
+        <div class="homes2">
             <h3>Pool Stats</h3>
             <div>
               <h4>Active Rewards:</h4>
