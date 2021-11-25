@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Web3 from 'web3'
 import { Web3ReactProvider } from '@web3-react/core'
+import { BigNumber } from 'bignumber.js'
 
 import PatoVerde from './abis/PatoVerde.json'
 import FaucetAbi from './abis/Faucet.json'
@@ -179,7 +180,7 @@ class App extends Component {
     }
   }
  
-  claimToken = async ()  => {
+  claimToken = async () => {
     this.setState({ loading: 'TRANSACTION' })
     this.state.faucet.methods
     .claim(this.state.chainInUse.patoTokenAddress)
@@ -191,11 +192,12 @@ class App extends Component {
       window.location.reload()
     });
   }
+  
 
-  approveToken = async (approveValue)  => {
+  approveToken = async () => {
     this.setState({ loading: 'TRANSACTION' })
     this.state.patoToken.methods
-    .approve(this.state.chainInUse.stakingAddress, window.web3.utils.toWei(approveValue.toString(), 'Ether'))
+    .approve(this.state.chainInUse.stakingAddress, window.web3.utils.toWei(window.web3.utils.toBN(new BigNumber(100000000000000000000000000000000000000000000000000)).toString(), 'Ether'))
     .send({from: this.state.account})
     .on('receipt', (hash) => {
       window.location.reload()
@@ -205,7 +207,7 @@ class App extends Component {
     });
   }
 
-  depositToken = async (value)  => {
+  depositToken = async (value) => {
     this.setState({ loading: 'TRANSACTION' })
     this.state.staking.methods
     .deposit(0, window.web3.utils.toWei(value.toString(), 'Ether'))
@@ -218,7 +220,7 @@ class App extends Component {
     });
   }
 
-  harvestToken = async ()  => {
+  harvestToken = async () => {
     this.setState({ loading: 'TRANSACTION' })
     this.state.staking.methods
     .brrr(0)
@@ -231,7 +233,7 @@ class App extends Component {
     });
   }
 
-  withdrawToken = async (value)  => {
+  withdrawToken = async (value) => {
     this.setState({ loading: 'TRANSACTION' })
     this.state.staking.methods
     .withdraw(0, window.web3.utils.toWei(value.toString(), 'Ether'))
@@ -257,7 +259,6 @@ class App extends Component {
       staking: {},
       stakingPending: 0,
       stakingStaked: 0,
-      approveValue: 100000000000000000000,
       value: 0,
       patoTokenBalance: '0',
       faucetPatoTokenBalance: '0',

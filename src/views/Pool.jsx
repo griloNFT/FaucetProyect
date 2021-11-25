@@ -37,7 +37,7 @@ class Pool extends Component {
                         type="submit"
                         onClick={(event) => {
                           event.preventDefault()
-                          this.props.approveToken(this.props.approveValue)
+                          this.props.approveToken()
                         }}>
                         APPROVE
                       </button>
