@@ -26,6 +26,7 @@ import Home from './views/Home'
 import Claim from './views/Claim'
 import Pool from './views/Pool'
 import Soon from './views/Soon'
+import Maintenance from './views/Maintenance'
 
 import Logo from './images/patologo.png'
 
@@ -315,6 +316,15 @@ class App extends Component {
       </div>
     }
 
+    let maintenance
+    if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
+      maintenance = <div>
+        <Maintenance
+        
+        />
+      </div>
+    }
+
     let home
     if(this.state.loading === 'FALSE' && this.state.loading !== 'INVALID_CHAIN') {
       home = <div>
@@ -400,9 +410,9 @@ class App extends Component {
               <section>   
                 <Switch>             
                   {loading}
-                  <Route exact path="/">{home}</Route>         
-                  <Route path="/claim">{claim}</Route>
-                  <Route path="/pool">{pool}</Route>
+                  <Route exact path="/">{maintenance}</Route>         
+                  <Route path="/claim">{maintenance}</Route>
+                  <Route path="/pool">{maintenance}</Route>
                   <Route path="/vote">{soon}</Route>
                   <Route path="/nft">{soon}</Route>
                   <Route path="/games">{soon}</Route> 

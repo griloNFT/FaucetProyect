@@ -44,7 +44,7 @@ class Home extends Component {
               <h4>Active Claims:</h4>     
               <h5>{this.props.claimActive}</h5>
               <h4>Available To Claim:</h4>     
-              <h5>{this.props.faucetPatoTokenBalance / decimals + " " + this.props.tokenSymbol}</h5>
+              <h5>{Math.round(this.props.faucetPatoTokenBalance / decimals) + " " + this.props.tokenSymbol}</h5>
             </div>
           </div>
         </article>

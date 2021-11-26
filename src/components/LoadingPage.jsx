@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Spinner } from 'reactstrap'
 
 class LoadingPage extends Component {
 
